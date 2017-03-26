@@ -10,16 +10,20 @@
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    <body>       
+    <body>    
+        <div class="row">
+            <a href="{{ path('show_main') }}">
+                <div class="header"> 
+                    <div class="logo">
+                        Лого
+                    </div>
+                </div>
+            </a>
+        </div>
         <div class="wrapper row">	
 			<div class="side-container"></div>	
 			
-			<div class="main-container">
-				<div class="header">
-					<div class="inner">
-						Лого
-					</div>
-				</div>
+			<div class="main-container">                            
 				<div class="middle row">
 					<div class="page">
 						<div class="navigation-box">

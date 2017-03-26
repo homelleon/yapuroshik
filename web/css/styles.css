@@ -39,6 +39,7 @@ a {
   float: left; }
 
 .main-container {
+  padding: 15px;
   width: 90%;
   margin: 0px;
   float: left; }
@@ -50,15 +51,11 @@ a {
   border-radius: 2px 2px 2px 2px; }
 
 .header {
+  padding: 15px;
   float: left;
   margin-top: 5px;
   margin-bottom: 10px;
   width: 100%; }
-
-.header .inner {
-  background-color: rgba(125, 75, 0, 0.9);
-  color: green;
-  min-height: 70px; }
 
 .page {
   float: left;
