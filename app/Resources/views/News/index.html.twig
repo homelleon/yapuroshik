@@ -1,12 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <ul>
-    {% for note in notes %}
-        <li>{{ note }}</li>
-    {% endfor %}
-    </ul>
-    
+    <h1>{{ name }} </h1><br>
+    Автор: <i>{{ author }}</i><br>
+    {{ description }}<br>
+    <br>
     {% for page in pages %}
         <a href="/news/{{ page }}">{{ page }}</a>
     {% endfor %}
