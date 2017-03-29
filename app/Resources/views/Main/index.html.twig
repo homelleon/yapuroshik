@@ -1,17 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <ul>
-    {% for note in notes %}
-        <li>{{ note }}</li>
-    {% endfor %}
-    </ul>
-    
+    Главная страница<br>
     {% for page in pages %}
         <a href="/news/{{ page }}">{{ page }}</a>
     {% endfor %}
-{% endblock %}
-
-{% block sidebar %}
-    {{ parent() }}<p>Это сайд бар</p>
 {% endblock %}

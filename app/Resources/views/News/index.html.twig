@@ -1,15 +1,11 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>{{ name }} </h1><br>
-    Автор: <i>{{ author }}</i><br>
-    {{ description }}<br>
-    <br>
+    <h2>Новости</h2>
+    {{ article.getName() }}<br>
+    Автор: {{ article.getAuthor() }}
+    <p>{{ article.getDescription() }}</p>
     {% for page in pages %}
         <a href="/news/{{ page }}">{{ page }}</a>
     {% endfor %}
-{% endblock %}
-
-{% block sidebar %}
-    {{ parent() }}<p>Это сайд бар</p>
 {% endblock %}
