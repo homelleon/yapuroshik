@@ -117,7 +117,7 @@ class DefaultController extends Controller
     }
 
     /**
-     * @Route("/news/{id}")
+     * @Route("/news/{id}", name="show_news")
      * 
      * @param type $id
      * @return type

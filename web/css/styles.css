@@ -35,7 +35,7 @@ a {
 .inner {    
   background-color: rgba(125, 75, 0, 0.99);
   height: auto;
-  padding: 15px;
+  padding: 20px;
   margin: 5px; 
   margin-top: 0px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
@@ -119,7 +119,7 @@ a {
 
 .main-container {
   width: 500px;
-  flex-direction: row;
+  flex-direction: row;  
   flex-grow: 2;
   padding: 0px;
   margin: 0px;}
@@ -136,18 +136,29 @@ a {
 
 .content {
   float: left;
-  width: 100%;}
+  width: 70%;}
 
 .article {
-  color: black;  
+  color: black; 
+  padding-left: 10px;
+  padding-right: 5px;
+}
+
+.navigation_main_left {
+    float: left;
+}
+
+.navigation_main_right {
+    float: right;
 }
 
 .sidebar {
-  float: left;
   padding-left: 12px;
-  width: 20%; }
+  width: 30%; }
 
 .sidebar .inner {
+  position: fixed;
+  min-width: 200px;
   margin-top: 0px; }
 
 .space {

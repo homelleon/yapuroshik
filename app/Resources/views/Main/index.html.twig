@@ -3,13 +3,26 @@
 {% block body %}
     Рад вас приветствовать на моем сайте!<br>
     {% for article in articles %}
-        <a href="/news/{{ article.getID() }}">
+        
             <div class="article">
-                <p><h3>{{ article.getName() }}</h3></p>
-                <p>Автор: {{ article.getAuthor() }}</p>
-                <p>{{ article.getDescription() }}</p>
-                <hr>
+                <h3>{{ article.name }}</h3>
+                <p>Автор: {{ article.author }}</p>
+                <p>{{ article.description }}</p>  
+                <div class="navigation_main_left">
+                <a href="{{ path("show_news", {id: article.id}) }}">
+                    <div class="button_article">
+                        Подробнее                                     
+                    </div>
+                </a> 
+                </div>
+                <div class="navigation_main_right">
+                <a href="{{ path("show_news", {id: article.id}) }}">
+                    <div class="button_article">
+                        Комментировать
+                    </div>
+                </a>
+                </div>
             </div>
-        </a>
+            <hr>
     {% endfor %}
 {% endblock %}
