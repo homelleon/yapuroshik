@@ -14,3 +14,5 @@
 !var/SymfonyRequirements.php
 /vendor/
 /web/bundles/
+
+/Web/Symfony/yapuroshik/app/config/parameters.yml
