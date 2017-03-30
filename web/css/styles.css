@@ -29,7 +29,8 @@ body {
   padding: 0px;}
 
 a {
-  color: blue;}
+  color: blue;
+  text-decoration: none;}
 
 .inner {    
   background-color: rgba(125, 75, 0, 0.99);
@@ -137,6 +138,10 @@ a {
   float: left;
   width: 100%;}
 
+.article {
+  color: black;  
+}
+
 .sidebar {
   float: left;
   padding-left: 12px;
@@ -168,6 +173,7 @@ a {
 
 .footer a {
   color: black;
+  text-decoration: none;
   border: 2px solid black;
   padding: 5px;
   cursor: pointer;}

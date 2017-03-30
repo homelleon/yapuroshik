@@ -1,11 +1,8 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h2>Новости</h2>
-    {{ article.getName() }}<br>
-    Автор: {{ article.getAuthor() }}
+    <a href="{{ path('show_main') }}">Назад</a><br>
+    <p><h2>{{ article.getName() }}</h2></p>
+    <p>Автор: {{ article.getAuthor() }}</p>
     <p>{{ article.getDescription() }}</p>
-    {% for page in pages %}
-        <a href="/news/{{ page }}">{{ page }}</a>
-    {% endfor %}
 {% endblock %}

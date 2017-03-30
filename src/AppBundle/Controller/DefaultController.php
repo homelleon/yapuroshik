@@ -20,15 +20,9 @@ class DefaultController extends Controller
          $articles = $this->getDoctrine()
         ->getRepository('AppBundle:Article')
         ->findAll();
-         
-         $pages = array();
-         for($i=0;$i<count($articles);$i++)
-        {
-            $pages[] = $i+1;
-        }        
+               
         return $this->render('main/index.html.twig', [
-            'articles' => $articles,
-            'pages' => $pages           
+            'articles' => $articles          
         ]);
     }
     

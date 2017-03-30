@@ -1,8 +1,15 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    Главная страница<br>
-    {% for page in pages %}
-        <a href="/news/{{ page }}">{{ page }}</a>
+    Рад вас приветствовать на моем сайте!<br>
+    {% for article in articles %}
+        <a href="/news/{{ article.getID() }}">
+            <div class="article">
+                <p><h3>{{ article.getName() }}</h3></p>
+                <p>Автор: {{ article.getAuthor() }}</p>
+                <p>{{ article.getDescription() }}</p>
+                <hr>
+            </div>
+        </a>
     {% endfor %}
 {% endblock %}
