@@ -110,6 +110,15 @@ a {
   margin: 5px;
   cursor: pointer; }
 
+.button_article {
+  color: white;
+  background-color: #c89600;
+  border-radius: 2px 2px 2px 2px;
+  text-align: center;
+  width: auto;
+  height: auto;
+  padding: 5px;}
+
 .side-container {
   width: 5px;
   flex-direction: row;
@@ -144,12 +153,9 @@ a {
   padding-right: 5px;
 }
 
-.navigation_main_left {
-    float: left;
-}
-
-.navigation_main_right {
-    float: right;
+.article_navigation {
+  display: flex;
+  justify-content: space-between;
 }
 
 .sidebar {

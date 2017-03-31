@@ -1,8 +1,10 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <a href="{{ path('show_main') }}">Назад</a><br>
-    <p><h2>{{ article.name }}</h2></p>
-    <p>Автор: {{ article.author }}</p>
-    <p>{{ article.description }}</p>
+    <div class="inner">
+        <a href="{{ path('show_main') }}">Назад</a><br>
+        <p><h2>{{ article.name }}</h2></p>
+        <p>Автор: {{ article.author }}</p>
+        <p>{{ article.description }}</p>
+    </div>
 {% endblock %}

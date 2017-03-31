@@ -1,28 +1,39 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    Рад вас приветствовать на моем сайте!<br>
-    {% for article in articles %}
-        
+    <div class="inner">
+        Рад вас приветствовать на моем сайте!<br>
+    </div>
+    {% for article in articles %}             
+        <div class="inner">
             <div class="article">
                 <h3>{{ article.name }}</h3>
                 <p>Автор: {{ article.author }}</p>
-                <p>{{ article.description }}</p>  
-                <div class="navigation_main_left">
+                <p>{{ article.description }}</p>                 
+            </div>
+            <div class="article_navigation">
+                <div>
                 <a href="{{ path("show_news", {id: article.id}) }}">
-                    <div class="button_article">
+                    <div class="button">
                         Подробнее                                     
                     </div>
                 </a> 
                 </div>
-                <div class="navigation_main_right">
+                    
+                <div>
                 <a href="{{ path("show_news", {id: article.id}) }}">
-                    <div class="button_article">
+                    <div class="button">
                         Комментировать
                     </div>
                 </a>
                 </div>
             </div>
             <hr>
+        </div>
     {% endfor %}
+{% endblock %}
+{% block sidebar %}
+<div class="inner">
+    Sidebar
+    </div>
 {% endblock %}

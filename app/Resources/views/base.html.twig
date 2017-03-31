@@ -56,15 +56,12 @@
                 <div class="main-container">                            
                     <div class="middle row">					
                         <div class="content">
-                            <div class="inner">
-                                {% block body %}
-                                {% endblock %}                                
-                            </div>                            
+                            {% block body %}
+                            {% endblock %}                          
                         </div> 
                         <div class="sidebar">
-                            <div class="inner">
-                                Sidebar
-                            </div>
+                            {% block sidebar %}                            
+                            {% endblock %}
                          </div>  
                     </div>                    
                 </div>
