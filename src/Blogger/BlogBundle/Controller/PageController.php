@@ -1,24 +1,23 @@
 <?php
+// src/Blogger/BlogBundle/Controller/PageController.php
 
-namespace AppBundle\Controller;
+namespace Blogger\BlogBundle\Controller;
 
-use Symfony\Component\HttpFoundation\Response;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
-use AppBundle\Entity\Article;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-
-class DefaultController extends Controller
+class PageController extends Controller
 {
-    /**
+   /**
      * @Route("/", name="show_main")
      * @Method("GET")
      */
     public function mainAction()
     {
          $articles = $this->getDoctrine()
-        ->getRepository('AppBundle:Article')
+        ->getRepository('BlogBundle:Article')
         ->findAll();
                
         return $this->render('main/index.html.twig', [
@@ -62,7 +61,7 @@ class DefaultController extends Controller
      */
     public function contactsAction()
     {
-        return $this->render('nonews/index.html.twig');
+        return $this->render('nonews/contacts/contacts.html.twig');
         
     }
     
@@ -74,7 +73,7 @@ class DefaultController extends Controller
      * @param type $theme
      * @param type $image_id
      * @param type $description
-     * @return \AppBundle\Controller\Response
+     * @return \BlogBundle\Controller\Response
      */
     public function createArticleAction($name, $author, $theme, $image_id, $description)
     {
@@ -104,7 +103,7 @@ class DefaultController extends Controller
     public function deleteArticleAction($name)
     {   
         $article = $this->getDoctrine()
-        ->getRepository('AppBundle:Article')
+        ->getRepository('BlogBundle:Article')
         ->findOneByName($name);
         
         $em = $this->getDoctrine()->getManager();
@@ -126,7 +125,7 @@ class DefaultController extends Controller
     public function  showNewsAction($id)
     {
         $article = $this->getDoctrine()
-        ->getRepository('AppBundle:Article')
+        ->getRepository('BlogBundle:Article')
         ->find($id);
 
         if (!$article) {
@@ -139,6 +138,4 @@ class DefaultController extends Controller
             'article' => $article
         ]);
     }
-    
-    
 }
