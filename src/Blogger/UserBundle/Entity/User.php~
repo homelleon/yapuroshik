@@ -1,0 +1,106 @@
+<?php
+
+namespace Blogger\UserBundle\Entity;
+
+use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Description of User
+ * @ORM\Entity
+ * @ORM\Table(name="user")
+ * 
+ * @author homelleon
+ */
+class User implements \Serializable, UserInterface  {
+    
+    /**
+     * @ORM\Column(type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
+     */
+    private $id;
+    
+    /**
+     * @ORM\Column(type="string", unique=true) 
+     */
+    private $username;
+    
+    /**
+     * @ORM\Column(type="string", unique=true) 
+     */
+    private $email;
+    
+    /**
+     * @ORM\Column(type="string", length=40) 
+     */
+    private $password;
+    
+    /**
+     * @ORM\Column(type="string") 
+     */
+    private $salt;
+    
+    /**
+     * @ORM\Column(type="datatime") 
+     */
+    private $created;
+    
+     /**
+     * @ORM\Column(type="datatime") 
+     */
+    private $updated;  
+    
+    /**
+     * @ORM\Column(type="smallint")
+     */
+    private $status;
+    
+     /**
+     *
+     * @var \Doctrine\Common\Collectopn\ArrayCollection
+     * @ORM\ManyToMany(targetEntity="Role",inversedBy="users") 
+     * @ORM\JoinTable(name="users_roles")
+     */
+    private $roles;
+    
+    public function __construct() {
+        $this->roles = new ArrayCollection();
+        $this->created = new \DateTime();
+        $this->updated = new \DataTime();
+        $this->status = 1;
+    }   
+    
+    public function serialize() {
+        return serialize([$this->id]);
+    }
+    
+    public function unserialize($serialized) {
+        list($this->id) = $this->unserialize($serialized);
+    }
+    
+    public function getRoles() {
+        return $this->roles->toArray();
+    }
+    
+    public function getPassword() {
+        return $this->password;
+    }
+    
+    public function getSalt() {
+        return $this->salt;
+    }
+    
+    public function getUsername() {
+        return $this->username;
+    }
+
+    public function setRole($role) {
+        $this->role = $role;
+    }   
+    
+    public function eraseCredentials() {
+        
+    }
+    
+}

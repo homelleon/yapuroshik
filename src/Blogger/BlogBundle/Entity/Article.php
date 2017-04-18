@@ -8,11 +8,10 @@ use Doctrine\ORM\Mapping as ORM;
  * News blog entity.
  * 
  * @ORM\Entity
- * @ORM\Table(name="article") *
+ * @ORM\Table(name="article") 
  * 
  */
-class Article 
-{
+class Article {
      /**
      * @ORM\Column(type="integer")
      * @ORM\Id
@@ -50,8 +49,7 @@ class Article
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -62,8 +60,7 @@ class Article
      *
      * @return Article
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -74,8 +71,7 @@ class Article
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -86,8 +82,7 @@ class Article
      *
      * @return Article
      */
-    public function setAuthor($author)
-    {
+    public function setAuthor($author) {
         $this->author = $author;
 
         return $this;
@@ -98,8 +93,7 @@ class Article
      *
      * @return string
      */
-    public function getAuthor()
-    {
+    public function getAuthor() {
         return $this->author;
     }
 
@@ -110,8 +104,7 @@ class Article
      *
      * @return Article
      */
-    public function setTheme($theme)
-    {
+    public function setTheme($theme) {
         $this->theme = $theme;
 
         return $this;
@@ -122,8 +115,7 @@ class Article
      *
      * @return string
      */
-    public function getTheme()
-    {
+    public function getTheme() {
         return $this->theme;
     }
 
@@ -134,8 +126,7 @@ class Article
      *
      * @return Article
      */
-    public function setImageId($imageId)
-    {
+    public function setImageId($imageId) {
         $this->image_id = $imageId;
 
         return $this;
@@ -146,8 +137,7 @@ class Article
      *
      * @return integer
      */
-    public function getImageId()
-    {
+    public function getImageId() {
         return $this->image_id;
     }
 
@@ -158,8 +148,7 @@ class Article
      *
      * @return Article
      */
-    public function setDescription($description)
-    {
+    public function setDescription($description) {
         $this->description = $description;
 
         return $this;
@@ -170,8 +159,7 @@ class Article
      *
      * @return string
      */
-    public function getDescription()
-    {
+    public function getDescription() {
         return $this->description;
     }
 }

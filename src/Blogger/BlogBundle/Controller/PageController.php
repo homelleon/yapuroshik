@@ -20,7 +20,7 @@ class PageController extends Controller
         ->getRepository('BlogBundle:Article')
         ->findAll();
                
-        return $this->render('main/index.html.twig', [
+        return $this->render('page/index.html.twig', [
             'articles' => $articles          
         ]);
     }
@@ -31,7 +31,7 @@ class PageController extends Controller
      */
     public function aboutAction()
     {
-        return $this->render('nonews/about/about.html.twig');
+        return $this->render('page/about.html.twig');
         
     }
     
@@ -41,7 +41,7 @@ class PageController extends Controller
      */
     public function photoAction()
     {
-        return $this->render('nonews/index.html.twig');
+        return $this->render('page/nonews.html.twig');
         
     }
     
@@ -51,7 +51,7 @@ class PageController extends Controller
      */
     public function videoAction()
     {
-        return $this->render('nonews/index.html.twig');
+        return $this->render('page/nonews.html.twig');
         
     }
     
@@ -61,7 +61,7 @@ class PageController extends Controller
      */
     public function contactsAction()
     {
-        return $this->render('nonews/contacts/contacts.html.twig');
+        return $this->render('page/contacts.html.twig');
         
     }
     
@@ -134,7 +134,7 @@ class PageController extends Controller
             );
         }
         
-        return $this->render('news/index.html.twig', [            
+        return $this->render('page/news.html.twig', [            
             'article' => $article
         ]);
     }
