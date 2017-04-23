@@ -12,37 +12,40 @@ use Doctrine\ORM\Mapping as ORM;
  * 
  */
 class Article {
-     /**
+
+    /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
-     /**
+
+    /**
      * @ORM\Column(type="string", length=100)
      */
     private $name;
-    
+
     /**
      * @ORM\Column(type="string", length=100)
      */
     private $author;
-    
-     /**
+
+    /**
      * @ORM\Column(type="string", length=100)
      */
     private $theme;
-    
-     /**
+
+    /**
      * @ORM\Column(type="integer")
      */
     private $image_id;
-    
+
     /**
      * @ORM\Column(type="text")
      */
     private $description;
+    
+    private $comments;
 
     /**
      * Get id
@@ -162,4 +165,9 @@ class Article {
     public function getDescription() {
         return $this->description;
     }
+
+    public function getComments() {
+        
+    }
+
 }

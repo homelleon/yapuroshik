@@ -1,6 +1,41 @@
-{# src/Blogger/BlogBundle/Resources/views/Page/index.html.twig #}
-{% extends 'BloggerBlogBundle::layout.html.twig' %}
+{% extends 'BlogBundle::base.html.twig' %}
 
-{% block body %}
-    Blog homepage
+{% block content %}
+    <div class="inner">
+        Рад вас приветствовать на моем сайте!<br>
+    </div>
+    {% for article in articles %}             
+        <div class="inner">
+            <div class="article">
+                <h3>{{ article.name }}</h3>
+                <p>Автор: {{ article.author }}</p>
+                <p>{{ article.description }}</p>                 
+            </div>
+            <div class="article-navigation">
+                <div>
+                    <a href="{{ path("show_news", {id: article.id}) }}">
+                        <div class="button">
+                            Подробнее                                     
+                        </div>
+                    </a> 
+                </div>
+                    
+                <div>
+                <a href="{{ path("show_news", {id: article.id}) }}">
+                    <div class="button">
+                        Комментировать
+                    </div>
+                </a>
+                </div>
+            </div>
+            <hr>
+        </div>
+    {% endfor %}
+{% endblock %}
+{% block sidebar %}
+<div class="sidebar">
+    <div class="inner">
+        Sidebar
+    </div>
+</div>
 {% endblock %}

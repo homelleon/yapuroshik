@@ -11,30 +11,29 @@ use Doctrine\ORM\Mapping as ORM;
  *
  * @author homelleon
  */
-class Enquiry 
-{
+class Enquiry {
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
      * @ORM\Column(type="string", length=50)
      */
     protected $name;
-    
+
     /**
      * @ORM\Column(type="string", length=100)
      */
     protected $email;
-    
+
     /**
      * @ORM\Column(type="text", length=100)
      */
     protected $subject;
-    
     protected $body;
-    
+
 }

@@ -1,17 +1,22 @@
+{# AppBundle namespace #}
+
 <!DOCTYPE html>
 <html>
+    {# head #}
     <head>
         <meta charset="utf-8">
-        <title>{% block title  %}Япрошик{% endblock %}</title>
+        <title>{% block title  %}Япрошик{% endblock %}</title>        
         {% block stylesheets %}
             <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
-            <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/styles.css') }}">      
             <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/font-awesome.min.css') }}">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
+    {# body #}
     <body>    
         <div class="upper">
+            {# header #}
             <div class="header row">
 
                 <div class="side-container"></div>
@@ -28,60 +33,37 @@
                             </div>
                         </div>
                     </a>
-                    <div class="navigation">                            
-                        <a href="{{ path('show_main') }}">
-                                <div class="button">Главная</div>
-                        </a>
-                        <a href="{{ path('show_about') }}">
-                                <div class="button">Обо мне</div>
-                        </a>
-                        <a href="{{ path('show_photo') }}">
-                                <div class="button">Фото</div>
-                        </a>
-                        <a href="{{ path('show_video') }}">
-                                <div class="button">Видео</div>
-                        </a>
-                        <a href="{{ path('show_contacts') }}">
-                                <div class="button">Контакты</div>
-                        </a>
-                    </div>                    
+                            
+                    {% block navigation %}{% endblock %}
+                    
                 </div>
 
                 <div class="side-container"></div>
 
             </div>
+            {# middle #}
             <div class="wrapper row">	
                 <div class="side-container"></div>	
 
                 <div class="main-container">                            
-                    <div class="middle row">					
-                        <div class="content">
-                            {% block body %}
-                            {% endblock %}                          
-                        </div> 
-                        <div class="sidebar">
-                            {% block sidebar %}                            
-                            {% endblock %}
-                         </div>  
-                    </div>                    
-                </div>
+                    <div class="middle row">
+                        {% block body %}{% endblock %}                      
+                        {% block sidebar %}{% endblock %}                        
+                    </div>  
+                </div>                    
+            
 
-                <div class="side-container"></div>	
-
-            </div>	
+                <div class="side-container"></div> 
+            </div>            
         </div>
+                    
         <div class ="space row"></div>
+        {# footer #}
         <div class="footer row">
             <div class="foot-border row">
                 <div class="side-container"></div>
                 <div class="main-container">
-                    <div class="foot-navigation">
-                        <a href="{{ path('show_main') }}">Главная</a>
-                        <a href="{{ path('show_about') }}">Обо мне</a>
-                        <a href="{{ path('show_photo') }}">Фото</a>
-                        <a href="{{ path('show_video') }}">Видео</a>
-                        <a href="{{ path('show_contacts') }}">Контакты</a>				
-                    </div>
+                    {% block foot_navigation %}{% endblock %}
                 </div>                           
                 <div class="side-container"></div>
             </div>         

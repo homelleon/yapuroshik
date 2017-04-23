@@ -1,4 +1,5 @@
 <?php
+
 // src/Blogger/BlogBundle/Controller/PageController.php
 
 namespace Blogger\BlogBundle\Controller;
@@ -8,63 +9,77 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
-class PageController extends Controller
-{
-   /**
+class PageController extends Controller {
+
+    /**
      * @Route("/", name="show_main")
      * @Method("GET")
      */
-    public function mainAction()
-    {
-         $articles = $this->getDoctrine()
-        ->getRepository('BlogBundle:Article')
-        ->findAll();
-               
-        return $this->render('page/index.html.twig', [
-            'articles' => $articles          
+    public function mainAction() {
+        $articles = $this->getDoctrine()
+            ->getRepository('BlogBundle:Article')
+            ->findAll();
+
+        return $this->render('BlogBundle:Page:index.html.twig', [
+            'articles' => $articles
         ]);
     }
-    
+
     /**
      * @Route("/about", name="show_about")
      * @Method("GET")
      */
-    public function aboutAction()
-    {
-        return $this->render('page/about.html.twig');
-        
+    public function aboutAction() {
+        return $this->render('BlogBundle:Page:about.html.twig');
     }
-    
-       /**
+
+    /**
      * @Route("/photo", name="show_photo")
      * @Method("GET")
      */
-    public function photoAction()
-    {
-        return $this->render('page/nonews.html.twig');
-        
+    public function photoAction() {
+        return $this->render('BlogBundle:Page:nonews.html.twig');
     }
-    
-       /**
+
+    /**
      * @Route("/video", name="show_video")
      * @Method("GET")
      */
-    public function videoAction()
-    {
-        return $this->render('page/nonews.html.twig');
-        
+    public function videoAction() {
+        return $this->render('BlogBundle:Page:nonews.html.twig');
     }
-    
-     /**
+
+    /**
      * @Route("/contacts", name="show_contacts")
      * @Method("GET")
      */
-    public function contactsAction()
-    {
-        return $this->render('page/contacts.html.twig');
-        
+    public function contactsAction() {
+        return $this->render('BlogBundle:Page:contacts.html.twig');
     }
-    
+
+    /**
+     * @Route("/news/{id}", name="show_news")
+     * 
+     * @param type $id
+     * @return type
+     * @throws type
+     */
+    public function newsAction($id) {
+        $article = $this->getDoctrine()
+            ->getRepository('BlogBundle:Article')
+            ->find($id);
+
+        if (!$article) {
+            throw $this->createNotFoundException(
+                'No product found for id ' . $id
+            );
+        }
+
+        return $this->render('BlogBundle:Page:news.html.twig', [
+                'article' => $article
+        ]);
+    }
+
     /**
      * @Route("/addArticle/{name}/{author}/{theme}/{image_id}/{description}")
      * 
@@ -75,67 +90,42 @@ class PageController extends Controller
      * @param type $description
      * @return \BlogBundle\Controller\Response
      */
-    public function createArticleAction($name, $author, $theme, $image_id, $description)
-    {
+    public function createArticleAction($name, $author, $theme, $image_id, $description) {
         $article = new Article();
         $article->setName($name);
         $article->setAuthor($author);
         $article->setTheme($theme);
         $article->setImageId($image_id);
         $article->setDescription($description);
-        
+
         $em = $this->getDoctrine()->getManager();
-        
+
         $em->persist($article);
-        
-        $em->flush();   
-        
-        return new Response('Saved new article with id '.$article->getId());
+
+        $em->flush();
+
+        return new Response('Saved new article with id ' . $article->getId());
     }
-    
+
     /**
      * @Route("/deleteArticle/{name}")
      * 
      * @param type $name
      * @return type
      * @throws type
-     */    
-    public function deleteArticleAction($name)
-    {   
-        $article = $this->getDoctrine()
-        ->getRepository('BlogBundle:Article')
-        ->findOneByName($name);
-        
-        $em = $this->getDoctrine()->getManager();
-        
-        $em->remove($article);
-        
-        $em->flush();
-        
-        return new Response('Deleted article with name '.$article->getName());
-    }
-
-    /**
-     * @Route("/news/{id}", name="show_news")
-     * 
-     * @param type $id
-     * @return type
-     * @throws type
      */
-    public function  showNewsAction($id)
-    {
+    public function deleteArticleAction($name) {
         $article = $this->getDoctrine()
-        ->getRepository('BlogBundle:Article')
-        ->find($id);
+            ->getRepository('BlogBundle:Article')
+            ->findOneByName($name);
 
-        if (!$article) {
-            throw $this->createNotFoundException(
-                'No product found for id '.$id
-            );
-        }
-        
-        return $this->render('page/news.html.twig', [            
-            'article' => $article
-        ]);
+        $em = $this->getDoctrine()->getManager();
+
+        $em->remove($article);
+
+        $em->flush();
+
+        return new Response('Deleted article with name ' . $article->getName());
     }
+
 }
