@@ -58,7 +58,7 @@ class PageController extends Controller {
     }
 
     /**
-     * @Route("/news/{id}", name="show_news")
+     * @Route("/news/{id}", requirements={"id" = "\d+"}, name="show_news")
      * 
      * @param type $id
      * @return type
@@ -81,21 +81,21 @@ class PageController extends Controller {
     }
 
     /**
-     * @Route("/addArticle/{name}/{author}/{theme}/{image_id}/{description}")
+     * @Route("/addArticle/{title}/{author}/{theme}/{image}/{description}")
      * 
-     * @param type $name
+     * @param type $title
      * @param type $author
      * @param type $theme
-     * @param type $image_id
+     * @param type $image
      * @param type $description
      * @return \BlogBundle\Controller\Response
      */
-    public function createArticleAction($name, $author, $theme, $image_id, $description) {
+    public function createArticleAction($title, $author, $theme, $image, $description) {
         $article = new Article();
-        $article->setName($name);
+        $article->setName($title);
         $article->setAuthor($author);
         $article->setTheme($theme);
-        $article->setImageId($image_id);
+        $article->setImage($image);
         $article->setDescription($description);
 
         $em = $this->getDoctrine()->getManager();
@@ -127,5 +127,21 @@ class PageController extends Controller {
 
         return new Response('Deleted article with name ' . $article->getName());
     }
+    
+    /**
+     * @Route("/goToVkontakte", name="vk")
+     * @return type
+     */
+    public function vkAction() {
+        return $this->redirect("https://vk.com/yaproshik");
+    }
+    
+      /**
+     * @Route("goToFacebook", name="fb")
+     * @return type
+     */
+    public function facebookAction() {
+        return $this->redirect("https://www.facebook.com/yaproshik/");
+    }    
 
 }

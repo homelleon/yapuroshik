@@ -31,7 +31,7 @@ class Role implements RoleInterface {
     
     /**
      * @var \Doctine\Common\Collections\ArrayCollection
-     * @ORM\ManyToMany(targetEntity="User", mappedBy="users")
+     * @ORM\ManyToMany(targetEntity="User", mappedBy="roles")
      */
     private $users;
     

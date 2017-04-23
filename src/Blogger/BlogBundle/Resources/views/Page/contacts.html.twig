@@ -4,8 +4,8 @@
         Контактные данные
     </h3>
     <p>
-        Моя группа в вконтакте: {{ asset('https://vk.com/yaproshik') }}<br>
-        Мой группа в facebook: {{ asset('https://www.facebook.com/yaproshik/') }}<br>
+        <a href="{{ path("vk") }}">Группа Вконтакте</a><br>
+        <a href="{{ path("fb") }}">Группа Facebook</a><br>
         Для деловых предложений: {{ asset('ihomelleoni@yandex.ru') }}
     </p>
 {% endblock %}

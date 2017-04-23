@@ -9,7 +9,7 @@
     <hr>
     {% for article in articles %}
         <a href="{{ path("show_news", {id: article.id}) }}">
-            {{ article.name }}
+            {{ article.title }}
             {{ article.author }}
         </a>
         <hr>

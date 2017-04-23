@@ -23,7 +23,7 @@ class Article {
     /**
      * @ORM\Column(type="string", length=100)
      */
-    private $name;
+    private $title;
 
     /**
      * @ORM\Column(type="string", length=100)
@@ -36,9 +36,9 @@ class Article {
     private $theme;
 
     /**
-     * @ORM\Column(type="integer")
+     * @ORM\Column(type="string", length=20)
      */
-    private $image_id;
+    private $image;
 
     /**
      * @ORM\Column(type="text")
@@ -46,6 +46,20 @@ class Article {
     private $description;
     
     private $comments;
+    
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $created;
+    
+    /**
+     * @ORM\Column(type="datetime")
+     */
+    private $updated;
+    
+    public function __construct() {
+ 
+    }
 
     /**
      * Get id
@@ -60,13 +74,9 @@ class Article {
      * Set name
      *
      * @param string $name
-     *
-     * @return Article
      */
     public function setName($name) {
         $this->name = $name;
-
-        return $this;
     }
 
     /**
@@ -82,13 +92,10 @@ class Article {
      * Set author
      *
      * @param string $author
-     *
-     * @return Article
+     * 
      */
     public function setAuthor($author) {
         $this->author = $author;
-
-        return $this;
     }
 
     /**
@@ -105,12 +112,9 @@ class Article {
      *
      * @param string $theme
      *
-     * @return Article
      */
     public function setTheme($theme) {
         $this->theme = $theme;
-
-        return $this;
     }
 
     /**
@@ -123,25 +127,22 @@ class Article {
     }
 
     /**
-     * Set imageId
+     * Set image
      *
-     * @param integer $imageId
-     *
-     * @return Article
+     * @param integer $image
+     * 
      */
-    public function setImageId($imageId) {
-        $this->image_id = $imageId;
-
-        return $this;
+    public function setImage($image) {
+        $this->image = $image;
     }
 
     /**
-     * Get imageId
+     * Get image
      *
      * @return integer
      */
-    public function getImageId() {
-        return $this->image_id;
+    public function getImage() {
+        return $this->image;
     }
 
     /**
@@ -149,12 +150,9 @@ class Article {
      *
      * @param string $description
      *
-     * @return Article
      */
     public function setDescription($description) {
         $this->description = $description;
-
-        return $this;
     }
 
     /**
@@ -167,7 +165,75 @@ class Article {
     }
 
     public function getComments() {
-        
+        return $this->comments;
+    }
+    
+    public function addComment($comment) {
+        $this->comments[] = $comment;
     }
 
+
+    /**
+     * Set title
+     *
+     * @param string $title
+     *
+     * @return Article
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+    }
+
+    /**
+     * Get title
+     *
+     * @return string
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     *
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime
+     */
+    public function getCreated()
+    {
+        return $this->created;
+    }
+
+    /**
+     * Set updated
+     *
+     * @param \DateTime $updated
+     */
+    public function setUpdated($updated)
+    {
+        $this->updated = $updated;
+    }
+
+    /**
+     * Get updated
+     *
+     * @return \DateTime
+     */
+    public function getUpdated()
+    {
+        return $this->updated;
+    }
 }
