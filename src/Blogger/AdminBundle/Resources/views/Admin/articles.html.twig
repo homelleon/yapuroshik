@@ -8,10 +8,16 @@
     </p>
     <hr>
     {% for article in articles %}
+        {% if article.isDeleted %}
+            <s>
+        {% endif %}
         <a href="{{ path("show_news", {id: article.id}) }}">
             {{ article.title }}
             {{ article.author }}
         </a>
+        {% if article.isDeleted %}
+            </s>
+        {% endif %}
         <hr>
     {% endfor %}
 {% endblock %}

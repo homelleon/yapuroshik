@@ -4,32 +4,36 @@
     <div class="inner">
         Рад вас приветствовать на моем сайте!<br>
     </div>
-    {% for article in articles %}             
-        <div class="inner">
-            <div class="article">
-                <h3>{{ article.title }}</h3>
-                <p>Автор: {{ article.author }}</p>
-                <p>{{ article.description }}</p>                 
-            </div>
-            <div class="article-navigation">
-                <div>
+    {% for article in articles %}  
+        {% if not article.isDeleted %}
+            <div class="inner">
+                <div class="article">                
+                    <h3>{{ article.title }}</h3>
+                    <i>{{ article.theme }}</i>
+                    <p>Автор: {{ article.author }}</p>
+                    <p>{{ article.description }}</p>
+                    <p><i>создано: {{ article.created|date('Y-m-d H:i:s') }} отредактировано: {{ article.updated|date('Y-m-d H:i:s') }} </i></p>
+                </div>
+                <div class="article-navigation">
+                    <div>
+                        <a href="{{ path("show_news", {id: article.id}) }}">
+                            <div class="button">
+                                Подробнее                                     
+                            </div>
+                        </a> 
+                    </div>
+
+                    <div>
                     <a href="{{ path("show_news", {id: article.id}) }}">
                         <div class="button">
-                            Подробнее                                     
+                            Комментировать
                         </div>
-                    </a> 
-                </div>
-                    
-                <div>
-                <a href="{{ path("show_news", {id: article.id}) }}">
-                    <div class="button">
-                        Комментировать
+                    </a>
                     </div>
-                </a>
                 </div>
+                <hr>
             </div>
-            <hr>
-        </div>
+        {% endif %}
     {% endfor %}
 {% endblock %}
 {% block sidebar %}

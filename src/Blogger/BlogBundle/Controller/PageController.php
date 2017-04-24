@@ -7,7 +7,6 @@ namespace Blogger\BlogBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 
 class PageController extends Controller {
 
@@ -71,7 +70,7 @@ class PageController extends Controller {
 
         if (!$article) {
             throw $this->createNotFoundException(
-                'No product found for id ' . $id
+                'No article found for id ' . $id
             );
         }
 
@@ -80,54 +79,6 @@ class PageController extends Controller {
         ]);
     }
 
-    /**
-     * @Route("/addArticle/{title}/{author}/{theme}/{image}/{description}")
-     * 
-     * @param type $title
-     * @param type $author
-     * @param type $theme
-     * @param type $image
-     * @param type $description
-     * @return \BlogBundle\Controller\Response
-     */
-    public function createArticleAction($title, $author, $theme, $image, $description) {
-        $article = new Article();
-        $article->setName($title);
-        $article->setAuthor($author);
-        $article->setTheme($theme);
-        $article->setImage($image);
-        $article->setDescription($description);
-
-        $em = $this->getDoctrine()->getManager();
-
-        $em->persist($article);
-
-        $em->flush();
-
-        return new Response('Saved new article with id ' . $article->getId());
-    }
-
-    /**
-     * @Route("/deleteArticle/{name}")
-     * 
-     * @param type $name
-     * @return type
-     * @throws type
-     */
-    public function deleteArticleAction($name) {
-        $article = $this->getDoctrine()
-            ->getRepository('BlogBundle:Article')
-            ->findOneByName($name);
-
-        $em = $this->getDoctrine()->getManager();
-
-        $em->remove($article);
-
-        $em->flush();
-
-        return new Response('Deleted article with name ' . $article->getName());
-    }
-    
     /**
      * @Route("/goToVkontakte", name="vk")
      * @return type

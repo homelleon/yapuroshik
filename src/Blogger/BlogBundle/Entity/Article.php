@@ -57,6 +57,11 @@ class Article {
      */
     private $updated;
     
+    /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $is_deleted;
+    
     public function __construct() {
  
     }
@@ -69,23 +74,27 @@ class Article {
     public function getId() {
         return $this->id;
     }
-
-    /**
-     * Set name
+    
+        /**
+     * Set title
      *
-     * @param string $name
+     * @param string $title
+     *
+     * @return Article
      */
-    public function setName($name) {
-        $this->name = $name;
+    public function setTitle($title)
+    {
+        $this->title = $title;
     }
 
     /**
-     * Get name
+     * Get title
      *
      * @return string
      */
-    public function getName() {
-        return $this->name;
+    public function getTitle()
+    {
+        return $this->title;
     }
 
     /**
@@ -174,29 +183,6 @@ class Article {
 
 
     /**
-     * Set title
-     *
-     * @param string $title
-     *
-     * @return Article
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-    }
-
-    /**
-     * Get title
-     *
-     * @return string
-     */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-
-    /**
      * Set created
      *
      * @param \DateTime $created
@@ -235,5 +221,29 @@ class Article {
     public function getUpdated()
     {
         return $this->updated;
+    }
+
+    /**
+     * Set isDeleted
+     *
+     * @param boolean $isDeleted
+     *
+     * @return Article
+     */
+    public function setIsDeleted($isDeleted)
+    {
+        $this->is_deleted = $isDeleted;
+
+        return $this;
+    }
+
+    /**
+     * Get isDeleted
+     *
+     * @return boolean
+     */
+    public function getIsDeleted()
+    {
+        return $this->is_deleted;
     }
 }

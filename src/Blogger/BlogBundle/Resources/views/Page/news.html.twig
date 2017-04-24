@@ -6,5 +6,6 @@
         <p><h2>{{ article.title }}</h2></p>
         <p>Автор: {{ article.author }}</p>
         <p>{{ article.description }}</p>
+        <a href="{{ path('news_edit',{id: article.id}) }}">Редактировать</a><br>
     </div>
 {% endblock %}
