@@ -54,6 +54,9 @@
             </div>
         {% endif %}
     {% endfor %}
+    {% for page in pages %}
+        <a href="{{ path("show_page", {page: page}) }}">{{ page }}</a>
+    {% endfor %}
 {% endblock %}
 {% block sidebar %}
 <div class="sidebar">

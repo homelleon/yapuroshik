@@ -9,18 +9,65 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class PageController extends Controller {
+    
+    private $article_count = 5;
 
     /**
      * @Route("/", name="show_main")
      * @Method("GET")
      */
     public function mainAction() {
+        $a_count = $this->getArticleCount();
         $articles = $this->getDoctrine()
             ->getRepository('BlogBundle:Article')
-            ->findAll();
-
+            ->findBy(  
+                array(),
+                array('created' => 'DESC'),
+                $a_count,
+                0
+             ); 
+        
+        $pages_count = count($articles)/$a_count; 
+        for($i = 1;$i<=$pages_count+1;$i++){
+            $pages[] = $i;
+        }
+        
         return $this->render('BlogBundle:Page:index.html.twig', [
-            'articles' => $articles
+            'articles' => $articles,
+            'pages' => $pages
+        ]);
+    }
+    
+    /**
+     * @Route("/page/{page}", name="show_page")
+     */
+    public function pageAction($page) {
+        if($page = 1) {
+            return $this->redirect("show_main");
+        }
+        $a_count = $this->getArticleCount();
+        $pages_count = count($articles)/$a_count; 
+        for($i = 1;$i<=$pages_count+1;$i++){
+            $pages[] = $i;
+        }
+        
+        if($page == 1) {
+            return $this->redirect('/');
+        }
+        
+        $offset = $page*$a_count - $a_count;
+        $articles = $this->getDoctrine()
+            ->getRepository('BlogBundle:Article')
+            ->findBy(
+                array(),
+                array('created' => 'DESC'),
+                $a_count,
+                $offset                   
+            );
+        
+        return $this->render('BlogBundle:Page:page.html.twig', [
+            'articles' => $articles,
+            'pages' => $pages
         ]);
     }
 
@@ -93,6 +140,10 @@ class PageController extends Controller {
      */
     public function facebookAction() {
         return $this->redirect("https://www.facebook.com/yaproshik/");
-    }    
+    } 
+    
+    public function getArticleCount() {
+        return $this->article_count;
+    }
 
 }

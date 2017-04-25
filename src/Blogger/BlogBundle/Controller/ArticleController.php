@@ -26,14 +26,18 @@ class ArticleController extends Controller {
      */
     public function articleCreateAction(Request $request) {
         
-        $form = $this->createEditForm($article);        
+        $article = new Article();
+        $form = $this->createCreationForm($article);        
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
-            $article = new Article();          
-            $article = $form->getData();
-            
+                      
+            $article = $form->getData();            
             $created = new DateTime();
+            $author = "homelleon";
+            $image = "image";
+            $article->setAuthor($author);
+            $article->setImage($image);
             $article->setCreated($created);
             $article->setUpdated($created); 
             
@@ -163,5 +167,22 @@ class ArticleController extends Controller {
             ->getForm();
         return $form;        
     }
-
+    
+     private function createCreationForm($article) {        
+        $form = $this->createFormBuilder($article)
+            ->add('title',TextType::class, [
+                'label' => 'Название: '
+            ])
+            ->add('theme',TextType::class, [
+                'label' => 'Тема: '
+            ])
+            ->add('description',TextareaType::class, [
+                'label' => 'Описание: '
+            ])
+            ->add('submit',SubmitType::class, [
+                'label' => 'Применить'
+            ])             
+            ->getForm();
+        return $form;        
+    }
 }
