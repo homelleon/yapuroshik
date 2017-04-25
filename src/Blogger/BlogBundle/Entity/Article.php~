@@ -62,8 +62,14 @@ class Article {
      */
     private $is_deleted;
     
+     /**
+     * @ORM\Column(type="boolean", nullable=false)
+     */
+    private $is_updated;
+    
     public function __construct() {
- 
+        $this->is_deleted = false;
+        $this->is_updated = false;
     }
 
     /**
@@ -203,23 +209,28 @@ class Article {
         return $this->created;
     }
 
+
     /**
-     * Set updated
+     * Set isDeleted
      *
-     * @param \DateTime $updated
+     * @param boolean $isDeleted
+     *
+     * @return Article
      */
-    public function setUpdated($updated)
+    public function setIsDeleted($isDeleted)
     {
-        $this->updated = $updated;
+        $this->is_deleted = $isDeleted;
+
+        return $this;
     }
 
     /**
-     * Get updated
+     * Get isDeleted
      *
-     * @return \DateTime
+     * @return boolean
      */
-    public function getUpdated()
+    public function getIsDeleted()
     {
-        return $this->updated;
+        return $this->is_deleted;
     }
 }

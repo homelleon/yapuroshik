@@ -9,12 +9,46 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use DateTime;
 use Symfony\Component\HttpFoundation\Response;
 use Blogger\BlogBundle\Entity\Article;
 
 class ArticleController extends Controller {
+    
+    /**
+     * @Route("/news/create", name="article_create");
+     *      
+     * @param type 
+     * @return type
+     * @throws type
+     */
+    public function articleCreateAction(Request $request) {
+        
+        $form = $this->createEditForm($article);        
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $article = new Article();          
+            $article = $form->getData();
+            
+            $created = new DateTime();
+            $article->setCreated($created);
+            $article->setUpdated($created); 
+            
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($article);
+            $em->flush();
+            
+            return $this->redirectToRoute('show_main');
+        }
+            
+        return $this->render('BlogBundle:Page:newscreate.html.twig', [
+            'form' => $form->createView(),
+            'article' => $article
+        ]);
+    }
 
    
     /**
@@ -27,7 +61,7 @@ class ArticleController extends Controller {
      * @param type $description
      * @return \BlogBundle\Controller\Response
      */
-    public function createArticleAction($title, $author, $theme, $image, $description) {
+    public function articleAddAction($title, $author, $theme, $image, $description) {
         $article = new Article();
         $article->setTitle($title);
         $article->setAuthor($author);
@@ -47,7 +81,6 @@ class ArticleController extends Controller {
         return new Response('Saved new article with id ' . $article->getId());
     }
     
-       
     /**
      * @Route("/news/edit/{id}", name="news_edit");
      * 
@@ -55,7 +88,7 @@ class ArticleController extends Controller {
      * @return type
      * @throws type
      */
-    public function newsEditAction($id, Request $request) {
+    public function articleEditAction($id, Request $request) {
         $article = $this->getDoctrine()
             ->getRepository('BlogBundle:Article')
             ->find($id);
@@ -66,14 +99,13 @@ class ArticleController extends Controller {
             );
         }        
         
-        $form = $this->createEditForm($article);
-        
+        $form = $this->createEditForm($article);        
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
             $article = $form->getData();
             $article->setUpdated(new DateTime());
-            
+            $article->setIsUpdated(true);
             $em = $this->getDoctrine()->getManager();
             $em->persist($article);
             $em->flush();
@@ -85,7 +117,9 @@ class ArticleController extends Controller {
             'form' => $form->createView(),
             'article' => $article
         ]);
-    }
+    }    
+       
+    
 
     /**
      * @Route("/deleteArticle/{name}")
@@ -94,7 +128,7 @@ class ArticleController extends Controller {
      * @return type
      * @throws type
      */
-    public function deleteArticleAction($name) {
+    public function articleRemoveAction($name) {
         $article = $this->getDoctrine()
             ->getRepository('BlogBundle:Article')
             ->findOneByName($name);
@@ -116,7 +150,7 @@ class ArticleController extends Controller {
             ->add('theme',TextType::class, [
                 'label' => 'Тема: '
             ])
-            ->add('description',TextType::class, [
+            ->add('description',TextareaType::class, [
                 'label' => 'Описание: '
             ])
             ->add('is_deleted',CheckboxType::class, [

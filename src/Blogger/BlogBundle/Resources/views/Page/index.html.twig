@@ -2,17 +2,36 @@
 
 {% block content %}
     <div class="inner">
+        <div class="welcome">
         Рад вас приветствовать на моем сайте!<br>
+        <div class="article-add"><a href=" {{ path("article_create") }}">+</a></div>
+        </div>
     </div>
     {% for article in articles %}  
         {% if not article.isDeleted %}
             <div class="inner">
                 <div class="article">                
-                    <h3>{{ article.title }}</h3>
-                    <i>{{ article.theme }}</i>
-                    <p>Автор: {{ article.author }}</p>
-                    <p>{{ article.description }}</p>
-                    <p><i>создано: {{ article.created|date('Y-m-d H:i:s') }} отредактировано: {{ article.updated|date('Y-m-d H:i:s') }} </i></p>
+                    <div class="title">
+                        {{ article.title }}
+                    </div>
+                                     
+                    <div class="author">
+                        Автор: {{ article.author }}
+                        <div class="date"> 
+                            создано: {{ article.created|date('Y-m-d H:i:s') }} 
+                        </div>
+                    </div>                    
+                     <div class="theme">
+                        {{ article.theme }}
+                    </div>   
+                    <div class="description">
+                        {{ article.description }}
+                    </div>                      
+                    {% if article.isUpdated %}                          
+                        <div class="date">
+                            отредактировано: {{ article.updated|date('Y-m-d H:i:s') }}
+                        </div>
+                    {% endif %}  
                 </div>
                 <div class="article-navigation">
                     <div>

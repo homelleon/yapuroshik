@@ -3,9 +3,25 @@
 {% block content %}
     <div class="inner">
         <a href="{{ path('show_main') }}">Назад</a><br>
-        <p><h2>{{ article.title }}</h2></p>
-        <p>Автор: {{ article.author }}</p>
-        <p>{{ article.description }}</p>
+        <div class="article">
+            <div class="title">
+                {{ article.title }}
+            </div>
+            <div class="author">
+                Автор: {{ article.author }}
+                <div class="date">
+                    создано: {{ article.created|date('Y-m-d H:i:s') }}
+                </div>
+            </div>
+            <div class="description">
+                {{ article.description }}
+            </div>
+            {% if article.isUpdated %}
+                <div class="date"> 
+                    отредактировано: {{ article.updated|date('Y-m-d H:i:s') }}
+                </div>
+            {% endif %}
+        </div>
         <a href="{{ path('news_edit',{id: article.id}) }}">Редактировать</a><br>
     </div>
 {% endblock %}

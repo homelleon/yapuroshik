@@ -110,15 +110,6 @@ a {
     margin: 5px;
     cursor: pointer; }
 
-.button-article {
-    color: white;
-    background-color: #c89600;
-    border-radius: 2px 2px 2px 2px;
-    text-align: center;
-    width: auto;
-    height: auto;
-    padding: 5px;}
-
 .side-container {
     width: 5px;
     flex-direction: row;
@@ -143,20 +134,13 @@ a {
     padding: 10px;
     margin: 0px;}
 
-.content {
-    float: left;
-    width: 70%;}
-
-.article {
-    color: black; 
-    padding-left: 10px;
-    padding-right: 5px;
-}
-
-.article-navigation {
+.welcome {
     display: flex;
     justify-content: space-between;
 }
+.content {
+    float: left;
+    width: 70%;}
 
 .sidebar {
     padding-left: 12px;
