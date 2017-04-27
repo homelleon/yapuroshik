@@ -17,3 +17,8 @@
 
 /Web/Symfony/yapuroshik/app/config/parameters.yml
 nbproject/private/private.xml
+src/Blogger/BlogBundle/Entity/Article.php~
+src/Blogger/BlogBundle/Entity/Enquiry.php~
+src/Blogger/UserBundle/Entity/Role.php~
+src/Blogger/UserBundle/Entity/User.php~
+src/Blogger/UserBundle/Entity/UserAccount.php~
