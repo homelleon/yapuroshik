@@ -48,7 +48,11 @@ class MainPageController extends Controller {
     public function pageAction($page) {
        
         $a_p_count = $this->getArticlePageCount();
-        $pages_count = count($articles)/$a_p_count; 
+        $articles = $this->getDoctrine()
+            ->getRepository('BlogBundle:Article')
+            ->findAll(); 
+        $a_count = count($articles);
+        $pages_count = ($a_count - 1)/$a_p_count + 1; 
         for($i = 1;$i<=$pages_count;$i++){
             $pages[] = $i;
         }
@@ -70,7 +74,7 @@ class MainPageController extends Controller {
                 $offset                   
             );
         
-        return $this->render('BlogBundle:Page:page.html.twig', [
+        return $this->render('BlogBundle:Page:index.html.twig', [
             'articles' => $articles,
             'pages' => $pages
         ]);
