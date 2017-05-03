@@ -30,11 +30,16 @@ class MainPageController extends Controller {
                 $a_p_count,
                 0
              ); 
-        
-        $pages_count = ($a_count - 1)/$a_p_count + 1; 
-        for($i = 1;$i<=$pages_count;$i++){
-            $pages[] = $i;
+                
+        $pages_count = ($a_count - 1)/$a_p_count + 1;         
+        if($pages_count <= 1) {
+            $pages[] = 0;
+        } else {
+            for($i = 1;$i<=$pages_count;$i++){
+                $pages[] = $i;
+            }
         }
+        
         
         return $this->render('BlogBundle:Page:index.html.twig', [
             'articles' => $articles,

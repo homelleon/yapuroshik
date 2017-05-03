@@ -4,6 +4,8 @@ namespace Blogger\BlogBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use Blogger\FileBundle\Entity\Image;
+
 /**
  * News blog entity.
  * 
@@ -34,10 +36,11 @@ class Article {
      * @ORM\Column(type="string", length=100)
      */
     private $theme;
-
+    
     /**
-     * @ORM\Column(type="string", length=20)
-     */
+     * @ORM\OneToOne(targetEntity="Blogger\FileBundle\Entity\Image")
+     * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
+     */ 
     private $image;
 
     /**

@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use DateTime;
 use Symfony\Component\HttpFoundation\Response;
 use Blogger\BlogBundle\Entity\Article;
+use Blogger\FileBundle\Entity\Image;
 use Blogger\BlogBundle\Form\Article\ArticleType;
 use Blogger\BlogBundle\Form\Article\EditArticleType;
 
@@ -30,17 +31,26 @@ class ArticleController extends Controller {
         
         if ($form->isSubmitted() && $form->isValid()) {
                       
-            $article = $form->getData();            
+            $article = $form->getData();  
             $created = new DateTime();
             $author = "homelleon";
-            $image = "image";
+            
+            $path = "121";
+            $path = "/image/" . $path;            
+            $image = new Image($path);
+            $image->setFormat("JPG");
+            $image->setHeight(800);
+            $image->setWidth(600);
+            $image->setName("Image2");
+            
             $article->setAuthor($author);
             $article->setImage($image);
             $article->setCreated($created);
             $article->setUpdated($created); 
             
             $em = $this->getDoctrine()->getManager();
-            $em->persist($article);
+            $em->persist($image);
+            $em->persist($article);            
             $em->flush();
             
             return $this->redirectToRoute('show_main');
@@ -77,7 +87,7 @@ class ArticleController extends Controller {
             $article = $form->getData();
             $article->setUpdated(new DateTime());
             $article->setIsUpdated(true);
-            $em = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager();          
             $em->persist($article);
             $em->flush();
             

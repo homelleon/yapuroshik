@@ -22,13 +22,13 @@ class ArticleType extends AbstractType {
             ])
             ->add('theme',TextType::class, [
                 'label' => 'Тема: '
-            ])
+            ])              
             ->add('description',TextareaType::class, [
                 'label' => 'Описание: '
             ])
             ->add('submit',SubmitType::class, [
                 'label' => 'Применить'
-            ])
+            ])            
         ;             
     }
 }
