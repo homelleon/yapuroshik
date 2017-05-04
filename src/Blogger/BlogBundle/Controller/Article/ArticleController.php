@@ -31,18 +31,29 @@ class ArticleController extends Controller {
         
         if ($form->isSubmitted() && $form->isValid()) {
                       
-            $article = $form->getData();  
+            $article = $form->getData(); 
             $created = new DateTime();
             $author = "homelleon";
             
-            $path = "121";
-            $path = "/image/" . $path;            
-            $image = new Image($path);
-            $image->setFormat("JPG");
-            $image->setHeight(800);
-            $image->setWidth(600);
-            $image->setName("Image2");
+            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            $file = $article->getImage();
+            $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+            $file->move(
+                $this->getParameter('image_directory'),
+                $fileName
+            );
             
+            $height = 800;
+            $width = 600;
+            $format = 'JPG';
+                 
+            $image = new Image($fileName);
+            $image->setName($fileName);
+            $image->setFormat($format);
+            $image->setHeight($height);
+            $image->setWidth($width);
+                                                
             $article->setAuthor($author);
             $article->setImage($image);
             $article->setCreated($created);

@@ -24,6 +24,9 @@
                      <div class="theme">
                         {{ article.theme }}
                     </div>   
+                    <div class="image">
+                        <img src="{{ asset('uploads/images/' ~ article.image.path) }}" height="150" width="200">
+                    </div>
                     <div class="description">
                         {{ article.description }}
                     </div>                      
