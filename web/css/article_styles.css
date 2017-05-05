@@ -1,7 +1,12 @@
+.article-border {
+    background-color: #ffffff;
+    padding: 5px;
+}
+
 .article {
     color: black; 
     padding-left: 10px;
-    padding-right: 5px;
+    padding-right: 5px;    
 }
 
 .article-navigation {
@@ -16,6 +21,10 @@
     cursor: pointer; 
 }
 
+.article-add a:hover {
+    color: #cc0033;
+}
+
 .button-article {
     color: white;
     background-color: #c89600;
@@ -26,23 +35,52 @@
     padding: 5px;}
 
 .article .title {
+    color: #333333;
     font-size: 30px;
     font-weight: bold;
 }
-.article .theme {
-    font-size: 15px;
-    font-style: italic;
-    
+
+.article .title a {
+    color: #333333;
 }
 
-.article .author {
+.article .title a:hover {
+    color: #cc0033;
+}
+
+.article .theme {
+    background-color: #c89600;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
     font-size: 15px;
+    font-style: italic;
+    padding: 5px;
+}
+
+.article .head-info {    
     display: flex;
     justify-content: space-between;
 }
+.article .author {
+    background-color: #c89600;
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0 0 5px rgba(0,0,0,0.5);
+    font-size: 15px;
+    padding: 5px;
+}
+
+.article .image {
+    text-align: center;
+}
+
+.article .image img {
+    width: 80%;
+    justify-content: space-between;
+    border-radius: 2px 2px 2px 2px;
+}
 
 .article .description {
-    font-size: 30px;
+    font-size: 15px;
 }
 
 .article .date {
@@ -60,13 +98,4 @@ textarea {
     background-color: #ababab; 
 }
 
-button {
-    color: white;
-    background-color: #c89600;
-    border-radius: 2px 2px 2px 2px;
-    text-align: center;
-    width: auto;
-    height: auto;
-    padding: 5px;
-}
 

@@ -2,29 +2,37 @@
 
 {% block content %}
     <div class="inner">
-        <a href="{{ path('show_main') }}">Назад</a><br>
-        <div class="article">
-            <div class="title">
-                {{ article.title }}
-            </div>
-            <div class="image">
-                Изображение: {{ article.image.name }}
-            </div>
-            <div class="author">
-                Автор: {{ article.author }}
+        <div class="article-border">
+            <a href="{{ path('show_main') }}">Назад</a><br>
+            <div class="article">
+                <div class="title">
+                    {{ article.title }}
+                </div>
+                <div class="head-info">
+                    <div class="theme">
+                        #{{ article.theme }}
+                    </div>
+                    <div class="author">
+                        Автор: {{ article.author }}                    
+                    </div>                
+                </div>
                 <div class="date">
                     создано: {{ article.created|date('Y-m-d H:i:s') }}
                 </div>
-            </div>
-            <div class="description">
-                {{ article.description }}
-            </div>
-            {% if article.isUpdated %}
-                <div class="date"> 
-                    отредактировано: {{ article.updated|date('Y-m-d H:i:s') }}
+                <div class="image">
+                    <img src="{{ asset('uploads/images/' ~ article.image.path) }}">
                 </div>
-            {% endif %}
+               
+                <div class="description">
+                    {{ article.description }}
+                </div>
+                {% if article.isUpdated %}
+                    <div class="date"> 
+                        отредактировано: {{ article.updated|date('Y-m-d H:i:s') }}
+                    </div>
+                {% endif %}
+            </div>
+            <a href="{{ path('news_edit',{id: article.id}) }}">Редактировать</a><br>
         </div>
-        <a href="{{ path('news_edit',{id: article.id}) }}">Редактировать</a><br>
     </div>
 {% endblock %}

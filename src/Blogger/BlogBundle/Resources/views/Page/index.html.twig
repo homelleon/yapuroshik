@@ -10,47 +10,52 @@
     {% for article in articles %}  
         {% if not article.isDeleted %}
             <div class="inner">
-                <div class="article">                
-                    <div class="title">
-                        {{ article.title }}
-                    </div>
-                                     
-                    <div class="author">
-                        Автор: {{ article.author }}
+                <div class="article-border">
+                    <div class="article">                
+                        <div class="title">
+                            <a href="{{ path("show_news", {id: article.id}) }}">{{ article.title }}</a>
+                        </div>
+                        <div class="head-info">                            
+                            <div class="theme">
+                                #{{ article.theme }}
+                            </div>  
+                            <div class="author">
+                                Автор: {{ article.author }}                            
+                            </div> 
+                        </div>
                         <div class="date"> 
                             создано: {{ article.created|date('Y-m-d H:i:s') }} 
                         </div>
-                    </div>                    
-                     <div class="theme">
-                        {{ article.theme }}
-                    </div>   
-                    <div class="image">
-                        <img src="{{ asset('uploads/images/' ~ article.image.path) }}" height="150" width="200">
+                        <a href="{{ path("show_news", {id: article.id}) }}">
+                            <div class="image">
+                                <img src="{{ asset('uploads/images/' ~ article.image.path) }}">
+                            </div>
+                        </a>
+                        <div class="description">
+                            {{ article.description }}
+                        </div>                      
+                        {% if article.isUpdated %}                          
+                            <div class="date">
+                                отредактировано: {{ article.updated|date('Y-m-d H:i:s') }}
+                            </div>
+                        {% endif %}  
                     </div>
-                    <div class="description">
-                        {{ article.description }}
-                    </div>                      
-                    {% if article.isUpdated %}                          
-                        <div class="date">
-                            отредактировано: {{ article.updated|date('Y-m-d H:i:s') }}
+                    <div class="article-navigation">
+                        <div>
+                            <a href="{{ path("show_news", {id: article.id}) }}">
+                                <div class="button">
+                                    Подробнее                                     
+                                </div>
+                            </a> 
                         </div>
-                    {% endif %}  
-                </div>
-                <div class="article-navigation">
-                    <div>
+
+                        <div>
                         <a href="{{ path("show_news", {id: article.id}) }}">
                             <div class="button">
-                                Подробнее                                     
+                                Комментировать
                             </div>
-                        </a> 
-                    </div>
-
-                    <div>
-                    <a href="{{ path("show_news", {id: article.id}) }}">
-                        <div class="button">
-                            Комментировать
+                        </a>
                         </div>
-                    </a>
                     </div>
                 </div>
                 <hr>
