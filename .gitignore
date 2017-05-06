@@ -18,3 +18,4 @@
 /Web/Symfony/yapuroshik/app/config/parameters.yml
 nbproject/private/private.xml
 src/**/Entity/**/*~
+web/uploads/**/*
