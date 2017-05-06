@@ -2,8 +2,12 @@
 
 {% block content %}
     <div class="inner">
-        <div class="article-border">
-            <a href="{{ path('show_main') }}">Назад</a><br>
+        <div class="border">
+            <a href="{{ path('show_main') }}">
+                <div class="button">
+                    Назад
+                </div>
+            </a><br>
             <div class="article">
                 <div class="title">
                     {{ article.title }}
@@ -32,7 +36,11 @@
                     </div>
                 {% endif %}
             </div>
-            <a href="{{ path('news_edit',{id: article.id}) }}">Редактировать</a><br>
+            <a href="{{ path('news_edit',{id: article.id}) }}">
+                <div class="button">
+                    Редактировать
+                </div>
+            </a><br>
         </div>
     </div>
 {% endblock %}

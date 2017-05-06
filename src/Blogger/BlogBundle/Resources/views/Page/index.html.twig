@@ -10,17 +10,17 @@
     {% for article in articles %}  
         {% if not article.isDeleted %}
             <div class="inner">
-                <div class="article-border">
+                <div class="border">
                     <div class="article">                
                         <div class="title">
-                            <a href="{{ path("show_news", {id: article.id}) }}">{{ article.title }}</a>
-                        </div>
+                            <a href="{{ path("show_news", {id: article.id}) }}">{{ article.title }}</a>                            
+                        </div>                        
                         <div class="head-info">                            
                             <div class="theme">
                                 #{{ article.theme }}
                             </div>  
                             <div class="author">
-                                Автор: {{ article.author }}                            
+                                автор: {{ article.author }}                            
                             </div> 
                         </div>
                         <div class="date"> 
@@ -44,7 +44,7 @@
                         <div>
                             <a href="{{ path("show_news", {id: article.id}) }}">
                                 <div class="button">
-                                    Подробнее                                     
+                                    &#128269; подробнее                                     
                                 </div>
                             </a> 
                         </div>
@@ -52,7 +52,7 @@
                         <div>
                         <a href="{{ path("show_news", {id: article.id}) }}">
                             <div class="button">
-                                Комментировать
+                                комментировать &#10000;
                             </div>
                         </a>
                         </div>
@@ -71,7 +71,9 @@
 {% block sidebar %}
 <div class="sidebar">
     <div class="inner">
-        Sidebar
+        <div class="border">        
+            Sidebar
+        </div>
     </div>
 </div>
 {% endblock %}

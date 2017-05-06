@@ -1,9 +1,3 @@
-.article-border {
-    background-color: #ffffff;
-    border-radius: 2px 2px 2px 2px;
-    padding: 5px;
-}
-
 .article {
     color: black; 
     padding-left: 10px;
@@ -11,13 +5,14 @@
 }
 
 .article-navigation {
+    font-size: 15px;
     display: flex;
     justify-content: space-between;
 }
 
 .article-add a {
     color: #c89600;
-    font-size: 30px;
+    font-size: 40px;
     font-weight: bold;
     cursor: pointer; 
 }
@@ -39,6 +34,7 @@
     color: #333333;
     font-size: 30px;
     font-weight: bold;
+    margin-bottom: 5px;
 }
 
 .article .title a {
@@ -82,6 +78,7 @@
 
 .article .description {
     font-size: 15px;
+    margin: 10px 0px 20px 0px;
 }
 
 .article .date {
@@ -90,6 +87,8 @@
     padding-top: 5px;
     padding-bottom: 5px;
 }
+
+
 
 input {
     background-color: #ababab;  
