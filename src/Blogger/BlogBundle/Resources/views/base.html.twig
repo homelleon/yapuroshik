@@ -21,8 +21,10 @@
 </div> 
 {% endblock %}
 
-{% block body %}
+{% block body %}   
 <div class="content">
+    {% block sort %}
+    {% endblock %}    
     {% block content %}
     {% endblock %}
 </div>

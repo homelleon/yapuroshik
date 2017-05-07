@@ -17,14 +17,16 @@
                         </div>                        
                         <div class="head-info">                            
                             <div class="theme">
-                                #{{ article.theme }}
+                                <a href="{{ path("news_sorted", {category: 'theme', value: article.theme}) }}">
+                                    #{{ article.theme }}
+                                </a>
                             </div>  
                             <div class="author">
                                 автор: {{ article.author }}                            
                             </div> 
                         </div>
                         <div class="date"> 
-                            создано: {{ article.created|date('Y-m-d H:i:s') }} 
+                            создано: {{ article.created|date }} 
                         </div>
                         <a href="{{ path("show_news", {id: article.id}) }}">
                             <div class="image">
@@ -36,7 +38,7 @@
                         </div>                      
                         {% if article.isUpdated %}                          
                             <div class="date">
-                                отредактировано: {{ article.updated|date('Y-m-d H:i:s') }}
+                                отредактировано: {{ article.updated|date }}
                             </div>
                         {% endif %}  
                     </div>

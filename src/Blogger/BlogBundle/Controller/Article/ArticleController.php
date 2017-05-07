@@ -23,7 +23,7 @@ class ArticleController extends Controller {
      * @return type
      * @throws type
      */
-    public function articleCreateAction(Request $request) {
+    public function createAction(Request $request) {
         
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);        
@@ -67,7 +67,7 @@ class ArticleController extends Controller {
             return $this->redirectToRoute('show_main');
         }
             
-        return $this->render('BlogBundle:Page:newscreate.html.twig', [
+        return $this->render('BlogBundle:News:news_create.html.twig', [
             'form' => $form->createView(),
             'article' => $article
         ]);
@@ -80,7 +80,7 @@ class ArticleController extends Controller {
      * @return type
      * @throws type
      */
-    public function articleEditAction($id, Request $request) {
+    public function editAction($id, Request $request) {
         $article = $this->getDoctrine()
             ->getRepository('BlogBundle:Article')
             ->find($id);
@@ -105,7 +105,7 @@ class ArticleController extends Controller {
             return $this->redirectToRoute('show_main');
         }
             
-        return $this->render('BlogBundle:Page:newsedit.html.twig', [
+        return $this->render('BlogBundle:News:news_edit.html.twig', [
             'form' => $form->createView(),
             'article' => $article
         ]);
@@ -120,7 +120,7 @@ class ArticleController extends Controller {
      * @return type
      * @throws type
      */
-    public function articleRemoveAction($title) {
+    public function removeAction($title) {
         $article = $this->getDoctrine()
             ->getRepository('BlogBundle:Article')
             ->findOneBy(array('title' => $title));
