@@ -22,7 +22,9 @@
                                 </a>
                             </div>  
                             <div class="author">
-                                автор: {{ article.author }}                            
+                                <a href="{{ path("news_sorted", {category: 'author', value: article.author}) }}">
+                                    автор: {{ article.author }}                            
+                                </a>
                             </div> 
                         </div>
                         <div class="date"> 
