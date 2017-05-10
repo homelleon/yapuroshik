@@ -13,6 +13,7 @@ use Blogger\BlogBundle\Entity\Article;
 use Blogger\FileBundle\Entity\Image;
 use Blogger\BlogBundle\Form\Article\ArticleType;
 use Blogger\BlogBundle\Form\Article\EditArticleType;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ArticleController extends Controller {
     
@@ -91,15 +92,42 @@ class ArticleController extends Controller {
             );
         }        
         
+        $image = $article->getImage();
         $form = $this->createForm(EditArticleType::class, $article); ;        
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
             $article = $form->getData();
+            
             $article->setUpdated(new DateTime());
             $article->setIsUpdated(true);
-            $em = $this->getDoctrine()->getManager();          
+            $em = $this->getDoctrine()->getManager(); 
+            
+            if($article->getImage() != NULL) {
+                $file = $article->getImage();
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+                $file->move(
+                    $this->getParameter('image_directory'),
+                    $fileName
+                );
+
+                $height = 800;
+                $width = 600;
+                $format = 'JPG';
+
+                $image = new Image($fileName);
+                $image->setName($fileName);
+                $image->setFormat($format);
+                $image->setHeight($height);
+                $image->setWidth($width);                
+                $em->persist($image);
+            } 
+            
+            $article->setImage($image);
+                                 
             $em->persist($article);
+            
             $em->flush();
             
             return $this->redirectToRoute('show_main');

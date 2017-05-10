@@ -24,7 +24,9 @@ class ArticleType extends AbstractType {
                 'label' => 'Тема: '
             ])           
             ->add('image', FileType::class, [
-                'label' => 'Изображение (JPG формат)'
+                'label' => 'Изображение (JPG формат)',
+                'data_class' => null,
+                'required' => false
             ])
             ->add('description',TextareaType::class, [
                 'label' => 'Описание: '
