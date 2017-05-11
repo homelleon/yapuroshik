@@ -4,7 +4,9 @@
     <div class="inner">
         <div class="welcome">
         Рад вас приветствовать на моем сайте!<br>
-        <div class="article-add"><a href=" {{ path("article_create") }}">+</a></div>
+        {% if is_granted('ROLE_ADMIN') %}
+            <div class="article-add"><a href=" {{ path("article_create") }}">+</a></div>
+        {% endif %}
         </div>
     </div>
     {% for article in articles %}  
