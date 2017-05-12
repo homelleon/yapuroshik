@@ -27,7 +27,7 @@ class ArticleController extends Controller {
     public function createAction(Request $request) {
         
         $article = new Article();
-        $form = $this->createForm(ArticleType::class, $article);        
+        $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {

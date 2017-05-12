@@ -28,7 +28,9 @@ security:
             http_basic: ~
 
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
-            #form_login: ~            
+            form_login: 
+                login-path: login
+                check-path: login
        
             logout:
                 path: /logout

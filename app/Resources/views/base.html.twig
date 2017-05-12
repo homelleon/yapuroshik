@@ -10,6 +10,7 @@
             <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
             <link rel="stylesheet" href="{{ asset('css/styles.css') }}">   
             <link rel="stylesheet" href="{{ asset('css/article_styles.css') }}">  
+            <link rel="stylesheet" href="{{ asset('css/security_styles.css') }}">  
             <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/font-awesome.min.css') }}">
         {% endblock %}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -39,7 +40,24 @@
                     
                 </div>
 
-                <div class="side-container"></div>
+                    <div class="side-container">                        
+                        <div class="login">
+                            <div class="inner-orange">
+                                {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                    name
+                                {% else %}
+                                    {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+                                        <a href="{{ path('login') }}">авторизоваться</a>
+                                    {% endif %}
+                                {% endif %}
+                            </div>
+                            {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                                <div class="inner-orange">                                
+                                    <a href="{{ path('logout') }}">выйти</a>                                
+                                </div>
+                            {% endif %}
+                        </div>                        
+                    </div>
 
             </div>
             {# middle #}

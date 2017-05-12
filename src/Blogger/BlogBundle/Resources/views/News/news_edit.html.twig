@@ -2,7 +2,9 @@
 
 {% block content %}
     <div class="inner">
-        <a href="{{ path("show_main") }}" >Назад</a><br>
+        <a href="{{ path("show_main") }}" >
+            <div class="button inner-orange">Назад</div>
+        </a><br>
         {{ form_start(form) }}
         {{ form_widget(form) }}
         {{ form_end(form) }} 
