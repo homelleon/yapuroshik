@@ -64,6 +64,13 @@ class User implements \Serializable, UserInterface  {
      */
     private $roles;
     
+    /**
+     * @ORM\OneToOne(targetEntity="UserAccount")
+     * @ORM\JoinColumn(name="account_id", referencedColumnName="id")
+     * @var type     
+     */
+    private $userAccount;
+    
     public function __construct() {
         $this->roles = new ArrayCollection();
         $this->created = new \DateTime();

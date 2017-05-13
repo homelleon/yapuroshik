@@ -4,15 +4,14 @@ security:
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
-        in_memory:
-            memory: 
-                users:                   
-                    admin:
-                        password: href
-                        roles: 'ROLE_ADMIN'
+        our_db_provider:
+            entity:
+                class: UserBundle:User
+                property: username        
 
     encoders:
-        Symfony\Component\Security\Core\User\User: plaintext
+        Blogger\UserBundle\Entity\User:
+            algorithm: bcrypt
         
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -23,9 +22,11 @@ security:
         main:
             anonymous: ~
             # activate different ways to authenticate
-
+            pattern: ^/
             # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
             http_basic: ~
+            
+            provider: our_db_provider
 
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
             form_login: 
@@ -38,7 +39,7 @@ security:
                     
     access_control:
         # require ROLE_ADMIN for /admin*
-        - { path: ^/admin, roles: ROLE_ADMIN }
+        # - { path: ^/admin, roles: ROLE_ADMIN }
         - { path: ^/news/edit/, roles: ROLE_ADMIN }
         - { path: ^/news/create, roles: ROLE_ADMIN }
         - { path: ^/news/delete/, roles: ROLE_ADMIN }

@@ -64,6 +64,13 @@ class User implements \Serializable, UserInterface  {
      */
     private $roles;
     
+    /**
+     * @ORM\OneToOne(targetEntity="UserAccount")
+     * @ORM\JoinColumn(name="account_id", referencedColumnName="id")
+     * @var type     
+     */
+    private $userAccount;
+    
     public function __construct() {
         $this->roles = new ArrayCollection();
         $this->created = new \DateTime();
@@ -274,5 +281,29 @@ class User implements \Serializable, UserInterface  {
     public function removeRole(\Blogger\UserBundle\Entity\Role $role)
     {
         $this->roles->removeElement($role);
+    }
+
+    /**
+     * Set userAccount
+     *
+     * @param \Blogger\UserBundle\Entity\UserAccount $userAccount
+     *
+     * @return User
+     */
+    public function setUserAccount(\Blogger\UserBundle\Entity\UserAccount $userAccount = null)
+    {
+        $this->userAccount = $userAccount;
+
+        return $this;
+    }
+
+    /**
+     * Get userAccount
+     *
+     * @return \Blogger\UserBundle\Entity\UserAccount
+     */
+    public function getUserAccount()
+    {
+        return $this->userAccount;
     }
 }

@@ -1,0 +1,21 @@
+{# Blogger:AdminBundle:Admin namespace #}
+
+{% extends "AdminBundle::base.html.twig" %}
+
+{% block content %}
+    <p>
+        <a href="{{ path("admin") }}">Назад</a>
+    </p>
+    <hr>
+    {% for role in roles %}        
+        <a href="{{ path("role", {id: article.id}) }}">
+            {{ role.name }}
+            {{ role.role }}
+        </a>
+        <hr>
+    {% endfor %}
+{% endblock %}
+
+{% block admin_side %}
+    Roles side
+{% endblock %}

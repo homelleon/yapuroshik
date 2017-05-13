@@ -13,8 +13,12 @@ class UserController extends Controller {
      */
     public function userAction($name) {
         return $this->render('UserBundle:Default:index.html.twig', [
-                    'name' => $name
+            'name' => $name
         ]);
-    }    
+    }  
+    
+    public function userAddAction($Request) {
+        
+    }
 
 }

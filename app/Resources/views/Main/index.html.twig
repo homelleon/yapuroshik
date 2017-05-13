@@ -1,0 +1,36 @@
+{# AppBundle namespace #}
+    
+{% extends "base.html.twig" %}
+
+{% block stylesheets %}{% endblock %}                           
+{% block navigation %}{% endblock %}
+
+{% block login %}
+    <div class="login">                            
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <div class="inner-orange">
+                name
+            </div>
+        {% else %}
+            {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+                <a href="{{ path('login') }}">
+                    <div class="inner-orange">авторизоваться</div>
+                </a>
+            <a href="{{ path('login') }}">
+                <div class="inner-orange">зарегестрироваться</div>                                
+            </a>
+            {% endif %}
+        {% endif %}                           
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a href="{{ path('logout') }}">
+                <div class="inner-orange">выйти</div>
+            </a> 
+        {% endif %}
+    </div>    
+{% endblock %}                    
+
+{% block body %}{% endblock %}                      
+{% block sidebar %}{% endblock %}                                        
+{% block foot_navigation %}{% endblock %}                   
+{% block javascripts %}{% endblock %}
+  
