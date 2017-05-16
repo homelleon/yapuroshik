@@ -1,3 +1,8 @@
+security:
+    resource: "@SecurityBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 file:
     resource: "@FileBundle/Controller/"
     type:     annotation
