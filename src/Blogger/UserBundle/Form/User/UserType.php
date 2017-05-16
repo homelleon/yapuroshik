@@ -1,11 +1,13 @@
 <?php
 
-namespace Blogger\UserBundle\Form\Role;
+namespace Blogger\UserBundle\Form\User;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 /**
  * Description of UserType
@@ -15,11 +17,14 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 class UserType extends AbstractType {
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('name',TextType::class, [
-                'label' => 'Название: '
+            ->add('username',TextType::class, [
+                'label' => 'Логин: '
             ])
-            ->add('password',TextType::class, [
-                'label' => 'Пароль: '
+            ->add('password',RepeatedType::class, [
+                'label' => 'Пароль: ',
+                'type' => PasswordType::class,
+                'first_options'  => array('label' => 'Пароль: '),
+                'second_options' => array('label' => 'Пароль еще раз: '),
             ])               
             ->add('email',TextType::class, [
                 'label' => 'Электронный адрес: '

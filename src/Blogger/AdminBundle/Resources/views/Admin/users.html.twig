@@ -1,0 +1,24 @@
+{# Blogger:AdminBundle:Admin:users.html.twig namespace #}
+
+{% extends "AdminBundle::base.html.twig" %}
+
+{% block content %}
+    <p>
+        <a href="{{ path("admin") }}">Назад</a>
+    </p>
+    <a href="{{ path("admin_users_create") }}"><div>+</div></a>
+    <hr>
+    {% for user in users %}        
+        <a href="{{ path("user", {id: user.id}) }}">
+            {{ user.username }}
+            {% for role in user.roles %}
+                {{ role.name }}
+            {% endfor %}
+        </a>
+        <hr>
+    {% endfor %}
+{% endblock %}
+
+{% block admin_side %}
+    User side
+{% endblock %}

@@ -4,8 +4,10 @@ namespace Blogger\AdminBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
+use Blogger\UserBundle\Entity\User;
 
-class AdminController extends Controller {
+class AdminPageController extends Controller {
 
     /**
      * @Route("/admin", name="admin")
@@ -27,12 +29,17 @@ class AdminController extends Controller {
        ]); 
     }
     
-     /**
+    /**
      * @Route("/admin/users", name="admin_users")
      * @return type
      */
     public function usersAction() {
-       return $this->render('AdminBundle:Admin:index.html.twig'); 
-    }
+       $users = $this->getDoctrine()
+            ->getRepository('UserBundle:User')
+            ->findAll();
+       return $this->render('AdminBundle:Admin:users.html.twig', [
+           'users' => $users
+       ]); 
+    }    
 
 }

@@ -3,11 +3,12 @@
 namespace Blogger\UserBundle\Entity;
 
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Description of User
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Blogger\UserBundle\Repository\UserRepository")
  * @ORM\Table(name="user")
  * 
  * @author homelleon

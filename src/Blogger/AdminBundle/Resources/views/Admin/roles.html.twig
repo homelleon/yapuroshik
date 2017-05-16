@@ -1,4 +1,4 @@
-{# Blogger:AdminBundle:Admin namespace #}
+{# Blogger:AdminBundle:Admin:roles.html.twig namespace #}
 
 {% extends "AdminBundle::base.html.twig" %}
 
@@ -7,8 +7,11 @@
         <a href="{{ path("admin") }}">Назад</a>
     </p>
     <hr>
+    <a href="{{ path("admin_roles_create") }}">
+        <div>+</div>
+    </a>
     {% for role in roles %}        
-        <a href="{{ path("role", {id: article.id}) }}">
+        <a href="{{ path("role", {id: role.id}) }}">
             {{ role.name }}
             {{ role.role }}
         </a>

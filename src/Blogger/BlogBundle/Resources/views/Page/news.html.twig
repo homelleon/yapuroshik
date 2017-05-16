@@ -38,11 +38,13 @@
                     </div>
                 {% endif %}
             </div>
-            <a href="{{ path('news_edit',{id: article.id}) }}">
-                <div class="button inner-orange">
-                    Редактировать
-                </div>
-            </a><br>
+            {% if is_granted('ROLE_ADMIN') %}
+                <a href="{{ path('news_edit',{id: article.id}) }}">
+                    <div class="button inner-orange">
+                        Редактировать
+                    </div>
+                </a><br>
+            {% endif %}
         </div>
     </div>
 {% endblock %}

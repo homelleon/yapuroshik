@@ -13,7 +13,6 @@ use Blogger\BlogBundle\Entity\Article;
 use Blogger\FileBundle\Entity\Image;
 use Blogger\BlogBundle\Form\Article\ArticleType;
 use Blogger\BlogBundle\Form\Article\EditArticleType;
-use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 class ArticleController extends Controller {
     

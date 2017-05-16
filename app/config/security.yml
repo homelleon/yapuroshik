@@ -6,8 +6,7 @@ security:
     providers:
         our_db_provider:
             entity:
-                class: UserBundle:User
-                property: username        
+                class: UserBundle:User             
 
     encoders:
         Blogger\UserBundle\Entity\User:

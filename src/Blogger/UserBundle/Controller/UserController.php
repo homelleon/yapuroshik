@@ -9,16 +9,15 @@ use Symfony\Component\HttpFoundation\Request;
 class UserController extends Controller {
 
     /**
-     * @Route("/user/{name}")
+     * @Route("/user/{id}", name="user")
      */
-    public function userAction($name) {
+    public function userAction($id) {
+        $user = $this->getDoctrine()
+            ->getRepository('UserBundle:User')
+            ->findById($id);
         return $this->render('UserBundle:Default:index.html.twig', [
-            'name' => $name
+            'user' => $user
         ]);
     }  
-    
-    public function userAddAction($Request) {
-        
-    }
 
 }
