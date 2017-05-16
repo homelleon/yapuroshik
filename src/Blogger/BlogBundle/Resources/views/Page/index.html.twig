@@ -16,21 +16,21 @@
                     <div class="article">                
                         <div class="title">
                             <a href="{{ path("show_news", {id: article.id}) }}">{{ article.title }}</a>                            
-                        </div>                        
-                        <div class="head-info">                            
+                        </div>       
+                        <div class="head-info">
                             <div class="theme">
                                 <a href="{{ path("news_sorted", {category: 'theme', value: article.theme}) }}">
                                     #{{ article.theme }}
                                 </a>
-                            </div>  
+                            </div>
                             <div class="author">
                                 <a href="{{ path("news_sorted", {category: 'author', value: article.author}) }}">
-                                    автор: {{ article.author }}                            
+                                    автор: {{ article.author }}
                                 </a>
                             </div> 
                         </div>
                         <div class="date"> 
-                            создано: {{ article.created|date }} 
+                            создано: {{ article.created|date }}
                         </div>
                         <a href="{{ path("show_news", {id: article.id}) }}">
                             <div class="image">
