@@ -2,7 +2,7 @@
 
 namespace Blogger\UserBundle\Entity;
 
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -13,7 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  * 
  * @author homelleon
  */
-class User implements \Serializable, UserInterface  {
+class User implements \Serializable, AdvancedUserInterface  {
     
     /**
      * @ORM\Column(type="integer")
@@ -56,6 +56,7 @@ class User implements \Serializable, UserInterface  {
      * @ORM\Column(type="smallint")
      */
     private $status;
+ 
     
      /**
      *
@@ -72,6 +73,26 @@ class User implements \Serializable, UserInterface  {
      */
     private $userAccount;
     
+    public function isAccountNonExpired()
+    {
+        return true;
+    }
+
+    public function isAccountNonLocked()
+    {
+        return true;
+    }
+
+    public function isCredentialsNonExpired()
+    {
+        return true;
+    }
+
+    public function isEnabled()
+    {
+        return $this->isActive;
+    }
+    
     public function __construct() {
         $this->roles = new ArrayCollection();
         $this->created = new \DateTime();
@@ -80,11 +101,21 @@ class User implements \Serializable, UserInterface  {
     }   
     
     public function serialize() {
-        return serialize([$this->id]);
+        return serialize([
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->isActive
+            ]);
     }
     
     public function unserialize($serialized) {
-        list($this->id) = $this->unserialize($serialized);
+        list(
+            $this->id,
+            $this->username,
+            $this->password,
+            $this->isActive
+            ) = $this->unserialize($serialized);
     }
     
     public function getRoles() {

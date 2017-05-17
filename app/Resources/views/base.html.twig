@@ -38,29 +38,8 @@
                     {% block navigation %}{% endblock %}
                     
                 </div>
-                <div class="side-container">  
-                    {# login #}
-                    <div class="login">                            
-                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <div class="inner-orange">
-                                name
-                            </div>
-                        {% else %}
-                            {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
-                                <a href="{{ path('login') }}">
-                                    <div class="inner-orange">авторизоваться</div>
-                                </a>
-                            <a href="{{ path('login') }}">
-                                <div class="inner-orange">зарегестрироваться</div>                                
-                            </a>
-                            {% endif %}
-                        {% endif %}                           
-                        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-                            <a href="{{ path('logout') }}">
-                                <div class="inner-orange">выйти</div>
-                            </a> 
-                        {% endif %}
-                    </div>                        
+                <div class="side-container"> 
+                    {% block login %}{% endblock %}
                 </div>
             </div>
             {# middle #}

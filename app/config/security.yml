@@ -6,7 +6,8 @@ security:
     providers:
         our_db_provider:
             entity:
-                class: UserBundle:User             
+                class: UserBundle:User 
+                property: username
 
     encoders:
         Blogger\UserBundle\Entity\User:
@@ -29,8 +30,8 @@ security:
 
             # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
             form_login: 
-                login-path: login
-                check-path: login
+                login-path: /login
+                check-path: /login
        
             logout:
                 path: /logout
