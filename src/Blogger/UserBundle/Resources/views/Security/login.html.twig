@@ -14,13 +14,9 @@
         <div class="inner-orange">
             <label for="password">Password:</label>
             <input type="password" id="password" name="_password" />
-        </div>
-        {#
-            If you want to control the URL the user
-            is redirected to on success (more details below)
-            <input type="hidden" name="_target_path" value="/account" />
-        #}
-        
+        </div>        
+        {#<input type="hidden" name="_target_path" value="/account" />   #}     
+        {#<input type="hidden" name="_failure_path" value="login" />#}
         <button class="button inner-orange" type="submit">login</button>
     </form>
 {% endblock %}

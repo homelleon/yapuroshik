@@ -35,7 +35,7 @@ class UserAdminController extends Controller  {
             
             $salt = "a";
             $user->setSalt($salt);
-            $user->addRole($role);           
+            $user->setRole($role);           
             
             $em = $this->getDoctrine()->getManager();
             $em->persist($user);       

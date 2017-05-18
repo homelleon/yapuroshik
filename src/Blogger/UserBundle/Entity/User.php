@@ -53,27 +53,34 @@ class User implements \Serializable, AdvancedUserInterface  {
     private $updated;  
     
     /**
-     * @ORM\Column(type="smallint")
+     * @ORM\Column(type="boolean", nullable=false)
      */
-    private $status;
+    private $isActive;
  
     
      /**
      *
-     * @var \Doctrine\Common\Collectopn\ArrayCollection
-     * @ORM\ManyToMany(targetEntity="Role",inversedBy="users") 
-     * @ORM\JoinTable(name="users_roles")
+     * @ORM\ManyToOne(targetEntity="Role",inversedBy="users")
+     * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
      */
-    private $roles;
+    private $role;
     
     /**
-     * @ORM\OneToOne(targetEntity="UserAccount")
+     * @ORM\ManyToOne(targetEntity="UserAccount")
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id")
      * @var type     
      */
-    private $userAccount;
+    private $userAccount;  
     
-    public function isAccountNonExpired()
+    public function __construct() {
+        $this->role = 'ROLE_USER';
+        $this->created = new \DateTime();
+        $this->updated = new \DateTime();
+        $this->isActive = true;
+        $this->salt = md5(uniqid(null, true));
+    }   
+    
+     public function isAccountNonExpired()
     {
         return true;
     }
@@ -92,13 +99,6 @@ class User implements \Serializable, AdvancedUserInterface  {
     {
         return $this->isActive;
     }
-    
-    public function __construct() {
-        $this->roles = new ArrayCollection();
-        $this->created = new \DateTime();
-        $this->updated = new \DateTime();
-        $this->status = 1;
-    }   
     
     public function serialize() {
         return serialize([
@@ -119,7 +119,11 @@ class User implements \Serializable, AdvancedUserInterface  {
     }
     
     public function getRoles() {
-        return $this->roles->toArray();
+        return [$this->role];
+    }
+
+        public function getRole() {
+        return $this->role->getRole();
     }
     
     public function getPassword() {
@@ -127,16 +131,12 @@ class User implements \Serializable, AdvancedUserInterface  {
     }
     
     public function getSalt() {
-        return $this->salt;
+        return null;
     }
     
     public function getUsername() {
         return $this->username;
-    }
-
-    public function setRole($role) {
-        $this->role = $role;
-    }   
+    }  
     
     public function eraseCredentials() {
         
@@ -267,53 +267,6 @@ class User implements \Serializable, AdvancedUserInterface  {
         return $this->updated;
     }
 
-    /**
-     * Set status
-     *
-     * @param integer $status
-     *
-     * @return User
-     */
-    public function setStatus($status)
-    {
-        $this->status = $status;
-
-        return $this;
-    }
-
-    /**
-     * Get status
-     *
-     * @return integer
-     */
-    public function getStatus()
-    {
-        return $this->status;
-    }
-
-    /**
-     * Add role
-     *
-     * @param \Blogger\UserBundle\Entity\Role $role
-     *
-     * @return User
-     */
-    public function addRole(\Blogger\UserBundle\Entity\Role $role)
-    {
-        $this->roles[] = $role;
-
-        return $this;
-    }
-
-    /**
-     * Remove role
-     *
-     * @param \Blogger\UserBundle\Entity\Role $role
-     */
-    public function removeRole(\Blogger\UserBundle\Entity\Role $role)
-    {
-        $this->roles->removeElement($role);
-    }
 
     /**
      * Set userAccount
@@ -337,5 +290,44 @@ class User implements \Serializable, AdvancedUserInterface  {
     public function getUserAccount()
     {
         return $this->userAccount;
+    }
+
+
+    /**
+     * Set isActive
+     *
+     * @param boolean $isActive
+     *
+     * @return User
+     */
+    public function setIsActive($isActive)
+    {
+        $this->isActive = $isActive;
+
+        return $this;
+    }
+
+    /**
+     * Get isActive
+     *
+     * @return boolean
+     */
+    public function getIsActive()
+    {
+        return $this->isActive;
+    }
+
+    /**
+     * Set role
+     *
+     * @param \Blogger\UserBundle\Entity\Role $role
+     *
+     * @return User
+     */
+    public function setRole(\Blogger\UserBundle\Entity\Role $role = null)
+    {
+        $this->role = $role;
+
+        return $this;
     }
 }
