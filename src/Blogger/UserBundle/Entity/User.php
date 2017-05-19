@@ -115,7 +115,7 @@ class User implements \Serializable, AdvancedUserInterface  {
             $this->username,
             $this->password,
             $this->isActive
-            ) = $this->unserialize($serialized);
+        ) = unserialize($serialized);
     }
     
     public function getRoles() {
