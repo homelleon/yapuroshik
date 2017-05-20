@@ -11,9 +11,7 @@
     {% for user in users %}        
         <a href="{{ path("user", {id: user.id}) }}">
             {{ user.username }}
-            {% for role in user.roles %}
-                {{ role.name }}
-            {% endfor %}
+            {{ user.role.name }}
         </a>
         <hr>
     {% endfor %}

@@ -6,7 +6,7 @@
     <div class="login">
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
             <div class="inner-orange">
-                {{ user.username }}
+                {{ app.user.username }}
             </div>
         {% else %}
             {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}

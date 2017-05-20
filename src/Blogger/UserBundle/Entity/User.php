@@ -119,11 +119,11 @@ class User implements \Serializable, AdvancedUserInterface  {
     }
     
     public function getRoles() {
-        return [$this->role];
+        return [$this->role->getRole()];
     }
 
-        public function getRole() {
-        return $this->role->getRole();
+    public function getRole() {
+        return $this->role;
     }
     
     public function getPassword() {
