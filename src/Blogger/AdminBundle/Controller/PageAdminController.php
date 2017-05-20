@@ -7,7 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Blogger\UserBundle\Entity\User;
 
-class AdminPageController extends Controller {
+class PageAdminController extends Controller {
 
     /**
      * @Route("/admin", name="admin")
@@ -27,19 +27,6 @@ class AdminPageController extends Controller {
        return $this->render('AdminBundle:Admin:articles.html.twig', [
            'articles' => $articles
        ]); 
-    }
-    
-    /**
-     * @Route("/admin/users", name="admin_users")
-     * @return type
-     */
-    public function usersAction() {
-       $users = $this->getDoctrine()
-            ->getRepository('UserBundle:User')
-            ->findAll();
-       return $this->render('AdminBundle:Admin:users.html.twig', [
-           'users' => $users
-       ]); 
-    }    
+    } 
 
 }

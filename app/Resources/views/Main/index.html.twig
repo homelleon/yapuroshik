@@ -5,9 +5,11 @@
 {% block login %}
     <div class="login">
         {% if is_granted('IS_AUTHENTICATED_FULLY') %}
-            <div class="inner-orange">
-                {{ app.user.username }}
-            </div>
+            <a href="{{ path('user', {username: app.user.username}) }}">
+               <div class="button inner-orange">
+                    {{ app.user.username }}
+                </div>
+            </a>
         {% else %}
             {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
                 <a href="{{ path('login') }}">

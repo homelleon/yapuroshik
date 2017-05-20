@@ -24,8 +24,14 @@
 {% block body %}   
     <div class="content">
         {% block sort %}
-        {% endblock %}    
+        {% endblock %} 
         {% block content %}
+            <div class="inner">
+                <div class="border">
+                    {% block text %}
+                    {% endblock %}
+                </div>
+            </div>
         {% endblock %}
     </div>
 {% endblock %}

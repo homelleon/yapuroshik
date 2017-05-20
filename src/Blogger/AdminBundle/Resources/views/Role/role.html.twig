@@ -1,0 +1,12 @@
+{# empty Twig template #}
+
+{% extends 'BlogBundle:Page:nonews.html.twig' %}
+
+{% block text %}
+    <div>название: {{ role.name }}</div>
+    <div>доступ: {{ role.role }}</div>
+    <div>пользователи:</div>
+    {% for user in role.users %}
+        <div>{{ user.username }}</div>
+    {% endfor %}    
+{% endblock %}

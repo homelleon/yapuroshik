@@ -9,7 +9,7 @@
     <a href="{{ path("admin_users_create") }}"><div>+</div></a>
     <hr>
     {% for user in users %}        
-        <a href="{{ path("user", {id: user.id}) }}">
+        <a href="{{ path("user", {username: user.username}) }}">
             {{ user.username }}
             {{ user.role.name }}
         </a>

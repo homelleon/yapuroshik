@@ -1,7 +1,16 @@
 {# empty Twig template #}
 
-{% extends "base.html.twig" %}
+{% extends 'BlogBundle:Page:nonews.html.twig' %}
 
-{% block content %} 
-    {{ user.username }}
+{% block text %}
+    <div>логин: {{ user.username }}</div>
+    <div>e-mail: {{ user.email }}</div>
+    <div>роль: {{ user.role.name }}</div>
+    {% if is_granted('ROLE_ADMIN') %}
+        <div>
+            <a href="{{ path('admin') }}">
+                Админка
+            </a>
+        </div>
+    {% endif %}
 {% endblock %}

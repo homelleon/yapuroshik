@@ -16,7 +16,7 @@ use Blogger\UserBundle\Form\Role\RoleType;
 class RoleAdminController extends Controller  {
     
      /**
-     * @Route("/admin/roles/create", name="admin_roles_create")
+     * @Route("/admin/roles/create", name="roles_create")
      */
     public function createRoleAction(Request $request) {
         $role = new Role();
@@ -34,9 +34,39 @@ class RoleAdminController extends Controller  {
             return $this->redirectToRoute('admin_roles');
         }
             
-        return $this->render('AdminBundle:Admin:roles_create.html.twig', [
+        return $this->render('AdminBundle:Role:roles_create.html.twig', [
             'form' => $form->createView(),
             'role' => $role
+        ]);
+    }
+    
+      /**
+     * @Route("/admin/role/{name}", name="role")
+     */
+    public function showRoleAction($name) {
+        $role = $this->getDoctrine()
+            ->getRepository('UserBundle:Role')
+            ->findOneBy([
+                'name' => $name
+            ]);  
+            
+        return $this->render('AdminBundle:Role:role.html.twig', [
+            'role' => $role
+        ]);
+    }
+ 
+    
+    /**
+     * @Route("admin/roles", name="roles")
+     * @return type
+     */
+    public function showAllAction() {
+        $roles = $this->getDoctrine()
+            ->getRepository('UserBundle:Role')
+            ->findAll();
+        
+        return $this->render('AdminBundle:Role:roles.html.twig', [
+            'roles' => $roles
         ]);
     }
 }

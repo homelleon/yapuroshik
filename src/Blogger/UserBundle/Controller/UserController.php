@@ -9,13 +9,15 @@ use Symfony\Component\HttpFoundation\Request;
 class UserController extends Controller {
 
     /**
-     * @Route("/user/{id}", name="user")
+     * @Route("/user/{username}", name="user")
      */
-    public function userAction($id) {
+    public function userAction($username) {
         $user = $this->getDoctrine()
             ->getRepository('UserBundle:User')
-            ->findById($id);
-        return $this->render('UserBundle:Default:index.html.twig', [
+            ->findOneBy([
+                'username' => $username
+                    ]);
+        return $this->render('UserBundle:User:user.html.twig', [
             'user' => $user
         ]);
     }  

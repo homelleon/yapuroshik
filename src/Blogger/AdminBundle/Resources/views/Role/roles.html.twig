@@ -7,11 +7,11 @@
         <a href="{{ path("admin") }}">Назад</a>
     </p>
     <hr>
-    <a href="{{ path("admin_roles_create") }}">
+    <a href="{{ path("roles_create") }}">
         <div>+</div>
     </a>
     {% for role in roles %}        
-        <a href="{{ path("role", {id: role.id}) }}">
+        <a href="{{ path("role", {name: role.name}) }}">
             {{ role.name }}
             {{ role.role }}
         </a>

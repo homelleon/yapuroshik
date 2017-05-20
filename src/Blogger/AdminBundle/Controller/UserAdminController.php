@@ -16,6 +16,20 @@ use Blogger\UserBundle\Form\User\UserType;
  */
 class UserAdminController extends Controller  {
     
+        
+    /**
+     * @Route("/admin/users", name="admin_users")
+     * @return type
+     */
+    public function usersAction() {
+       $users = $this->getDoctrine()
+            ->getRepository('UserBundle:User')
+            ->findAll();
+       return $this->render('AdminBundle:User:users.html.twig', [
+           'users' => $users
+       ]); 
+    }   
+    
      /**
      * @Route("/admin/users/create", name="admin_users_create")
      */
@@ -44,7 +58,7 @@ class UserAdminController extends Controller  {
             return $this->redirectToRoute('admin_users');
         }
             
-        return $this->render('AdminBundle:Admin:users_create.html.twig', [
+        return $this->render('AdminBundle:User:users_create.html.twig', [
             'form' => $form->createView(),
             'user' => $user
         ]);
