@@ -45,9 +45,8 @@ class UserAdminController extends Controller  {
                 ->getRepository('UserBundle:Role')
                 ->findOneBy([
                     'name' => 'user'
-                    ]);
+                    ]);            
             
-            $salt = "a";
             $user->setSalt($salt);
             $user->setRole($role);           
             

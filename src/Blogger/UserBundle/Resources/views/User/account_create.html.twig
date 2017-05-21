@@ -1,0 +1,12 @@
+{# Blogger:UserBundle:User:account_create.html.twig namespace #}
+
+{% extends 'BlogBundle:Page:nonews.html.twig' %}
+
+{% block text %}
+    <a href="{{ path("user", {username: user.username}) }}">
+        <div class="button inner-orange">Назад</div>
+    </a><br>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }} 
+{% endblock %}

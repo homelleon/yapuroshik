@@ -5,6 +5,7 @@ namespace Blogger\UserBundle\Form\User;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\RepeatedType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
@@ -26,7 +27,7 @@ class UserType extends AbstractType {
                 'first_options'  => array('label' => 'Пароль: '),
                 'second_options' => array('label' => 'Пароль еще раз: '),
             ])               
-            ->add('email',TextType::class, [
+            ->add('email',EmailType::class, [
                 'label' => 'Электронный адрес: '
             ])
             ->add('submit',SubmitType::class, [

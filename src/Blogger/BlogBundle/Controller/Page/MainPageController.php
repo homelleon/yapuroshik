@@ -20,7 +20,7 @@ class MainPageController extends Controller {
     }
 
     /**
-     * @Route("/", name="show_main")
+     * @Route("/", name="main")
      * @Method("GET")
      */
     public function mainAction() {

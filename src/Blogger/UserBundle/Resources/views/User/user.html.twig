@@ -6,6 +6,15 @@
     <div>логин: {{ user.username }}</div>
     <div>e-mail: {{ user.email }}</div>
     <div>роль: {{ user.role.name }}</div>
+    {% if user.userAccount!= null %}
+        <div>имя: {{ user.userAccount.firstName }}</div>
+        <div>Фамилия: {{ user.userAccount.lastName }}</div>
+        <div>День рождения: {{ user.userAccount.birthday|date }}</div>
+        <div>пол: {{ user.userAccount.gender }}</div>
+    {% endif %}
+     <a href="{{ path("account_edit", {username: user.username}) }}">
+        Добавить информацию
+     </a>
     {% if is_granted('ROLE_ADMIN') %}
         <div>
             <a href="{{ path('admin') }}">

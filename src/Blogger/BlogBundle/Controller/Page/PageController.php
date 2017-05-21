@@ -12,7 +12,7 @@ class PageController extends Controller {
     
     
     /**
-     * @Route("/about", name="show_about")
+     * @Route("/about", name="about")
      * @Method("GET")
      */
     public function aboutAction() {
@@ -20,7 +20,7 @@ class PageController extends Controller {
     }
 
     /**
-     * @Route("/photo", name="show_photo")
+     * @Route("/photo", name="photo")
      * @Method("GET")
      */
     public function photoAction() {
@@ -28,7 +28,7 @@ class PageController extends Controller {
     }
 
     /**
-     * @Route("/video", name="show_video")
+     * @Route("/video", name="video")
      * @Method("GET")
      */
     public function videoAction() {
@@ -36,7 +36,7 @@ class PageController extends Controller {
     }
 
     /**
-     * @Route("/contacts", name="show_contacts")
+     * @Route("/contacts", name="contacts")
      * @Method("GET")
      */
     public function contactsAction() {

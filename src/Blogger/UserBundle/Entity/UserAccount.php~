@@ -21,27 +21,28 @@ class UserAccount {
     private $id;
     
      /**
-     * @ORM\Column(type="string") 
+     * @ORM\OneToOne(targetEntity="User", mappedBy="userAccount")
      */
     private $user;
     
      /**
-     * @ORM\Column(type="string") 
+     * @ORM\Column(type="string", nullable=true) 
+     * 
      */
     private $firstName;
     
      /**
-     * @ORM\Column(type="string") 
+     * @ORM\Column(type="string", nullable=true) 
      */
     private $lastName;
     
     /**
-     * @ORM\Column(type="datetime") 
+     * @ORM\Column(type="datetime", nullable=true) 
      */
     private $birthday;
     
     /**
-     * @ORM\Column(type="string") 
+     * @ORM\Column(type="string", nullable=true) 
      */
     private $gender;
     

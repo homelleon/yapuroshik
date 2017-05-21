@@ -24,6 +24,39 @@ class SecurityController extends Controller {
             'last_username' => $lastUsername,
             'error'         => $error,
         ]);
-    }    
+    } 
+    
+    /**
+     * @Route("/registration", name="registration")
+     */
+    public function registrationAction(Request $request) {
+        $user = new User();
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+        
+        if ($form->isSubmitted() && $form->isValid()) {                      
+            $user = $form->getData();             
+            $role = $this->getDoctrine()
+                ->getRepository('UserBundle:Role')
+                ->findOneBy([
+                    'name' => 'user'
+                ]);
+            
+            $salt = "a";
+            $user->setSalt($salt);
+            $user->setRole($role); 
+            
+            $em = $this->getDoctrine()->getManager();
+            $em->persist($user); 
+            $em->flush();
+            
+            return $this->redirectToRoute('main');
+        }
+            
+        return $this->render('AdminBundle:User:users_create.html.twig', [
+            'form' => $form->createView(),
+            'user' => $user
+        ]);
+    }
 
 }

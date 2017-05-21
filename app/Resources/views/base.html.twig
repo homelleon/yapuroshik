@@ -9,7 +9,7 @@
         <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">   
         <link rel="stylesheet" href="{{ asset('css/article_styles.css') }}">  
-        <link rel="stylesheet" href="{{ asset('css/security_styles.css') }}">  
+        <link rel="stylesheet" href="{{ asset('css/form_styles.css') }}">  
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/font-awesome.min.css') }}">        
         {% block stylesheets %}{% endblock %}        
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
@@ -23,7 +23,7 @@
                 <div class="side-container"></div>
 
                 <div class="main-container">
-                    <a href="{{ path('show_main') }}">
+                    <a href="{{ path('main') }}">
                         <div class="logo-container row">
                             {#<img class="logo" src="{{ asset('images/logo.png') }}" alt="logo" />#}
                             <div class="owner">

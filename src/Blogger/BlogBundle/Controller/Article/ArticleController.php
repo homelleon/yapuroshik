@@ -104,7 +104,9 @@ class ArticleController extends Controller {
      * @throws type
      */
     public function editAction($id, Request $request) {
-        $article = $this->getDoctrine()
+        $doctrine = $this->getDoctrine();
+        
+        $article = $doctrine
             ->getRepository('BlogBundle:Article')
             ->find($id);
         
@@ -122,8 +124,9 @@ class ArticleController extends Controller {
             $article = $form->getData();
             
             $article->setUpdated(new DateTime());
-            $article->setIsUpdated(true);
-            $em = $this->getDoctrine()->getManager(); 
+            $article->setIsUpdated(true);            
+            
+            $em = $doctrine->getManager(); 
             
             if($article->getImage() != NULL) {
                 $file = $article->getImage();
@@ -143,6 +146,7 @@ class ArticleController extends Controller {
                 $image->setFormat($format);
                 $image->setHeight($height);
                 $image->setWidth($width);                
+                
                 $em->persist($image);
             } 
             

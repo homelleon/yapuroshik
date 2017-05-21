@@ -3,6 +3,7 @@
 namespace Blogger\UserBundle\Entity;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
+use Blogger\UserBundle\Entity\UserAccount;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -66,7 +67,7 @@ class User implements \Serializable, AdvancedUserInterface  {
     private $role;
     
     /**
-     * @ORM\ManyToOne(targetEntity="UserAccount")
+     * @ORM\OneToOne(targetEntity="UserAccount")
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id")
      * @var type     
      */
@@ -77,7 +78,7 @@ class User implements \Serializable, AdvancedUserInterface  {
         $this->created = new \DateTime();
         $this->updated = new \DateTime();
         $this->isActive = true;
-        $this->salt = md5(uniqid(null, true));
+        $this->salt = "a";
     }   
     
      public function isAccountNonExpired()

@@ -3,19 +3,19 @@
 {% extends ":Main:index.html.twig" %}
 {% block navigation %}
     <div class="navigation">                            
-        <a href="{{ path('show_main') }}">
+        <a href="{{ path('main') }}">
                 <div class="button inner-orange">Главная</div>
         </a>
-        <a href="{{ path('show_about') }}">
+        <a href="{{ path('about') }}">
                 <div class="button inner-orange">Обо мне</div>
         </a>
-        <a href="{{ path('show_photo') }}">
+        <a href="{{ path('photo') }}">
                 <div class="button inner-orange">Фото</div>
         </a>
-        <a href="{{ path('show_video') }}">
+        <a href="{{ path('video') }}">
                 <div class="button inner-orange">Видео</div>
         </a>
-        <a href="{{ path('show_contacts') }}">
+        <a href="{{ path('contacts') }}">
                 <div class="button inner-orange">Контакты</div>
         </a>
     </div> 
@@ -42,11 +42,11 @@
 {% endblock %}
 {% block foot_navigation %}
     <div class="foot-navigation">
-        <a href="{{ path('show_main') }}">Главная</a>
-        <a href="{{ path('show_about') }}">Обо мне</a>
-        <a href="{{ path('show_photo') }}">Фото</a>
-        <a href="{{ path('show_video') }}">Видео</a>
-        <a href="{{ path('show_contacts') }}">Контакты</a>				
+        <a href="{{ path('main') }}">Главная</a>
+        <a href="{{ path('about') }}">Обо мне</a>
+        <a href="{{ path('photo') }}">Фото</a>
+        <a href="{{ path('video') }}">Видео</a>
+        <a href="{{ path('contacts') }}">Контакты</a>				
     </div>
 {% endblock %}
                 
