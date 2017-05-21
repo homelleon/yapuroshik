@@ -48,6 +48,14 @@ class Article {
      */
     private $description;
     
+    /**
+     * @ORM\ManyToMany(targetEntity="Comment")
+     * @ORM\JoinTable(name="comments_id", 
+     *  joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
+     *  inverseJoinColumns={@ORM\JoinColumn(name="comment_id", 
+     *  referencedColumnName="id", unique=true)})
+     * @var type 
+     */
     private $comments;
     
     /**
@@ -186,10 +194,19 @@ class Article {
         return $this->comments;
     }
     
-    public function addComment($comment) {
+    public function addComment(\Blogger\BlogBundle\Entity\Comment $comment) {
         $this->comments[] = $comment;
+    }    
+    
+    /**
+     * Remove comment
+     *
+     * @param \Blogger\BlogBundle\Entity\Comment $comment
+     */
+    public function removeComment(\Blogger\BlogBundle\Entity\Comment $comment)
+    {
+        $this->comments->removeElement($comment);
     }
-
 
     /**
      * Set created
@@ -284,4 +301,5 @@ class Article {
     {
         return $this->is_updated;
     }
+
 }

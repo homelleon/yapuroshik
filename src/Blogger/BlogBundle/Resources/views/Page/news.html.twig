@@ -47,4 +47,24 @@
             {% endif %}
         </div>
     </div>
+    {% block comment_form %}
+        <a href="{{ path("comment_add", {id: article.id}) }}">
+            <div class="comment-add">Добавить комментарий</div>
+        </a>
+    {% endblock %}
+    {% block comments %}
+        {% if article.comments!= null %}
+            {% for comment in article.comments %}
+                <div class="inner">
+                    <div class="border">
+                        <div class="comment">
+                            автор: {{ comment.author }}
+                            время: {{ comment.created }}
+                            комментарий: {{ comment.content }}
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        {% endif %}
+    {% endblock %}
 {% endblock %}

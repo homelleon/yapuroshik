@@ -1,0 +1,8 @@
+{# BlogBundle:News:comment_add.html.twig template #}
+{% extends 'BlogBundle:News:news.html.twig' %}
+
+{% block comment_add %}
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }} 
+{% endblock %}

@@ -53,7 +53,9 @@ class UserController extends Controller {
             $em->persist($userAccount);
             $em->flush();
             
-            return $this->redirectToRoute('main');
+            return $this->redirectToRoute('user',[
+                'username' => $username
+            ]);
         }
         return $this->render('UserBundle:User:account_create.html.twig', [
             'form' => $form->createView(),
