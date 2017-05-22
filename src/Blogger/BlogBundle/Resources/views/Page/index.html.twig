@@ -5,7 +5,7 @@
         <div class="welcome">
         Рад вас приветствовать на моем сайте!<br>
         {% if is_granted('ROLE_ADMIN') %}
-            <div class="article-add"><a href=" {{ path("article_create") }}">+</a></div>
+            <div class="article-add"><a href=" {{ path("article_create") }}">&#10010;</a></div>
         {% endif %}
         </div>
     </div>
@@ -49,16 +49,15 @@
                     <div class="article-navigation">
                         <div>
                             <a href="{{ path("show_news", {id: article.id}) }}">
-                                <div class="button inner-orange">
-                                    &#128269; подробнее                                     
+                                <div class="button inner-orange button-detailed">
+                                    подробнее                                     
                                 </div>
                             </a> 
-                        </div>
-
-                        <div>
-                        <a href="{{ path("show_news", {id: article.id}) }}">
-                            <div class="button inner-orange">
-                                комментировать &#10000;
+                        </div>                        
+                        <div>                       
+                        <a href="{{ path("comment_add", {id: article.id}) }}">
+                            <div class="button inner-orange button-comment">
+                                комментировать
                             </div>
                         </a>
                         </div>

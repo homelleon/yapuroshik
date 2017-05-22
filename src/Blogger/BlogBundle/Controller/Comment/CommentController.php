@@ -23,7 +23,7 @@ class CommentController extends Controller {
      * @return type
      * @throws type
      */
-    public function createCommentAction($id, Request $request) {
+    public function createCommentAction($id, Request $request) {        
         $doctrine = $this->getDoctrine();
         $article = $doctrine
             ->getRepository('BlogBundle:Article')
@@ -43,12 +43,13 @@ class CommentController extends Controller {
         if ($form->isSubmitted() && $form->isValid()) {
             $comment = $form->getData();
             $created = new DateTime();
-            $username = 'homelleon';
-            $author = $doctrine
-                ->getRepository('UserBundle:User')
-                ->findOneBy([
-                    'username' => $username
-                ]);
+            $author = $this->getUser();
+//            $username = 'homelleon';
+//            $author = $doctrine
+//                ->getRepository('UserBundle:User')
+//                ->findOneBy([
+//                    'username' => $username
+//                ]);
             $comment->setAuthor($author);
             $comment->setCreated($created);
             $article->addComment($comment);          

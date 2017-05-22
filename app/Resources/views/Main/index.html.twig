@@ -13,10 +13,10 @@
         {% else %}
             {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
                 <a href="{{ path('login') }}">
-                    <div class="button inner-orange">авторизоваться</div>
+                    <div class="button inner-orange">войти</div>
                 </a>
             <a href="{{ path('registration') }}">
-                <div class="button inner-orange">зарегестрироваться</div>
+                <div class="button inner-orange">регистрация</div>
             </a>
             {% endif %}
         {% endif %}

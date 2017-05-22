@@ -19,7 +19,7 @@ class CommentType extends AbstractType {
                 'label' => 'Комментарий: '
             ])
             ->add('submit',SubmitType::class, [
-                'label' => 'Применить'
+                'label' => 'Отправить'
             ])            
         ;             
     }

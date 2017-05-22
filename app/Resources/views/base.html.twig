@@ -23,23 +23,26 @@
                 <div class="side-container"></div>
 
                 <div class="main-container">
-                    <a href="{{ path('main') }}">
-                        <div class="logo-container row">
-                            {#<img class="logo" src="{{ asset('images/logo.png') }}" alt="logo" />#}
-                            <div class="owner">
-                                <div class="row">
-                                    Япрошик
+                    <div class="row space-between">
+                        <div class="header-left">
+                            <a href="{{ path('main') }}">
+                                <div class="logo-container row">
+                                    {#<img class="logo" src="{{ asset('images/logo.png') }}" alt="logo" />#}
+                                    <div class="owner">
+                                        <div class="row">
+                                            Япрошик
+                                        </div>
+                                        Путешествие в Японию
+                                    </div>
                                 </div>
-                                Путешествие в Японию
-                            </div>
+                            </a> 
+
+                            {% block navigation %}{% endblock %}
                         </div>
-                    </a>
-                            
-                    {% block navigation %}{% endblock %}
-                    
+                        {% block login %}{% endblock %} 
+                    </div>
                 </div>
-                <div class="side-container"> 
-                    {% block login %}{% endblock %}
+                <div class="side-container">                    
                 </div>
             </div>
             {# middle #}

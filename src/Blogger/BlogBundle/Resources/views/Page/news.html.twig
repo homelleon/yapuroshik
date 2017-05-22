@@ -23,7 +23,7 @@
                     </div>                
                 </div>
                 <div class="date">
-                    {#создано: {{ article.created|date }}#}
+                    создано: {{ article.created|date }}
                 </div>
                 <div class="image">
                     <img src="{{ asset('uploads/images/' ~ article.image.path) }}">
@@ -37,40 +37,47 @@
                         отредактировано: {{ article.updated|date }}
                     </div>
                 {% endif %}
-            </div>
-            {% if is_granted('ROLE_ADMIN') %}
-                <a href="{{ path('news_edit',{id: article.id}) }}">
-                    <div class="button inner-orange">
-                        Редактировать
+            </div>   
+            {% block comment_error %}
+            {% endblock %}
+            <div class="article-navigation">
+                <a href="{{ path("comment_add", {id: article.id}) }}">
+                    <div class="button inner-orange button-comment">
+                        комментировать
                     </div>
-                </a><br>
-            {% endif %}
+                </a>
+                {% if is_granted('ROLE_ADMIN') %}
+                    <a href="{{ path('news_edit',{id: article.id}) }}">
+                        <div class="button inner-orange">
+                            Редактировать &#10000;
+                        </div>
+                    </a>
+                {% endif %}
+            </div>
         </div>
     </div>
-    {% block comment_form %}
-        <a href="{{ path("comment_add", {id: article.id}) }}">
-            <div class="comment-add">Добавить комментарий</div>
-        </a>
+    {% block comment_form %}        
     {% endblock %}
     {% block comments %}
         {% if article.comments!= null %}
-            {% for comment in article.comments %}
-                <div class="inner">
-                    <div class="border">
-                        <div class="comment">
+            <div class="inner">
+                <div class="border">
+                    {% for comment in article.comments %}
+                        <div class="article comment">
                             <div class="author">
-                                автор: {{ comment.author.username }}
+                                {{ comment.author.username }}
                             </div>
-                            <div class="created">
+                            <div class="date">
                                 время: {{ comment.created|date }}
                             </div>
                             <div class="description">
-                                комментарий: {{ comment.content }}
+                                {{ comment.content }}
                             </div>
                         </div>
-                    </div>
+                        <hr>
+                    {% endfor %}
                 </div>
-            {% endfor %}
+            </div>
         {% endif %}
     {% endblock %}
 {% endblock %}

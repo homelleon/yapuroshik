@@ -68,6 +68,21 @@ class Article {
      */
     private $updated;
     
+     /**
+     * @ORM\ManyToMany(targetEntity="Blogger\UserBundle\Entity\User")
+     * @ORM\JoinTable(name="article_liked_users_id",
+     *  joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
+     *  inverseJoinColumns={@ORM\JoinColumn(name="user_id", 
+     *  referencedColumnName="id",unique=false)})
+     */ 
+    private $liked;
+    
+    /**
+     * @ORM\Column(type="integer")
+     * @var type 
+     */
+    private $watched;
+    
     /**
      * @ORM\Column(type="boolean", nullable=false)
      */
@@ -81,6 +96,7 @@ class Article {
     public function __construct() {
         $this->is_deleted = false;
         $this->is_updated = false;
+        $this->watched = 0;
     }
 
     /**
@@ -302,4 +318,62 @@ class Article {
         return $this->is_updated;
     }
 
+
+    /**
+     * Set watched
+     *
+     * @param integer $watched
+     *
+     * @return Article
+     */
+    public function setWatched($watched)
+    {
+        $this->watched = $watched;
+
+        return $this;
+    }
+
+    /**
+     * Get watched
+     *
+     * @return integer
+     */
+    public function getWatched()
+    {
+        return $this->watched;
+    }
+
+    /**
+     * Add liked
+     *
+     * @param \Blogger\UserBundle\Entity\User $liked
+     *
+     * @return Article
+     */
+    public function addLiked(\Blogger\UserBundle\Entity\User $liked)
+    {
+        $this->liked[] = $liked;
+
+        return $this;
+    }
+
+    /**
+     * Remove liked
+     *
+     * @param \Blogger\UserBundle\Entity\User $liked
+     */
+    public function removeLiked(\Blogger\UserBundle\Entity\User $liked)
+    {
+        $this->liked->removeElement($liked);
+    }
+
+    /**
+     * Get liked
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getLiked()
+    {
+        return $this->liked;
+    }
 }

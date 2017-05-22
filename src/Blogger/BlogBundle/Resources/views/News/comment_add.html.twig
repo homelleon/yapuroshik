@@ -1,12 +1,22 @@
 {# BlogBundle:News:comment_add.html.twig template #}
 {% extends 'BlogBundle:Page:news.html.twig' %}
 
+{% block comment_error %}
+    {% if is_granted('ROLE_USER') == false %}
+        <div class="error">
+            Войдите в свой аккаунт, чтобы оставить комменатрии!
+        </div>      
+    {% endif %} 
+{% endblock %}
+
 {% block comment_form %}
-    <div class="inner">
-        <div class="border">
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            {{ form_end(form) }} 
-        </div>
-    </div>
+    {% if is_granted('ROLE_USER') %}
+        <div class="inner">
+            <div class="border">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }} 
+            </div>
+        </div>   
+    {% endif %}    
 {% endblock %}

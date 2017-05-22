@@ -5,6 +5,8 @@ namespace Blogger\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Blogger\UserBundle\Entity\User;
+use Blogger\UserBundle\Form\User\UserType;
 
 class SecurityController extends Controller {
 
