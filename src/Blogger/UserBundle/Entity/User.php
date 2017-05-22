@@ -223,11 +223,11 @@ class User implements \Serializable, AdvancedUserInterface  {
     /**
      * Set created
      *
-     * @param \datatime $created
+     * @param \DateTime $created
      *
      * @return User
      */
-    public function setCreated(\datatime $created)
+    public function setCreated(\DateTime $created)
     {
         $this->created = $created;
 
@@ -237,7 +237,7 @@ class User implements \Serializable, AdvancedUserInterface  {
     /**
      * Get created
      *
-     * @return \datatime
+     * @return \DateTime
      */
     public function getCreated()
     {
@@ -247,11 +247,11 @@ class User implements \Serializable, AdvancedUserInterface  {
     /**
      * Set updated
      *
-     * @param \datatime $updated
+     * @param \DateTime $updated
      *
      * @return User
      */
-    public function setUpdated(\datatime $updated)
+    public function setUpdated(\DateTime $updated)
     {
         $this->updated = $updated;
 
@@ -261,7 +261,7 @@ class User implements \Serializable, AdvancedUserInterface  {
     /**
      * Get updated
      *
-     * @return \datatime
+     * @return \DateTime
      */
     public function getUpdated()
     {

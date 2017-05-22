@@ -23,7 +23,7 @@
                     </div>                
                 </div>
                 <div class="date">
-                    создано: {{ article.created|date }}
+                    {#создано: {{ article.created|date }}#}
                 </div>
                 <div class="image">
                     <img src="{{ asset('uploads/images/' ~ article.image.path) }}">
@@ -58,9 +58,15 @@
                 <div class="inner">
                     <div class="border">
                         <div class="comment">
-                            автор: {{ comment.author }}
-                            время: {{ comment.created }}
-                            комментарий: {{ comment.content }}
+                            <div class="author">
+                                автор: {{ comment.author.username }}
+                            </div>
+                            <div class="created">
+                                время: {{ comment.created|date }}
+                            </div>
+                            <div class="description">
+                                комментарий: {{ comment.content }}
+                            </div>
                         </div>
                     </div>
                 </div>

@@ -10,6 +10,7 @@ use Symfony\Component\HttpFoundation\Request;
 use DateTime;
 use Symfony\Component\HttpFoundation\Response;
 use Blogger\BlogBundle\Entity\Article;
+use Blogger\UserBundle\Entity\User;
 use Blogger\BlogBundle\Entity\Comment;
 use Blogger\BlogBundle\Form\Comment\CommentType;
 
@@ -42,8 +43,15 @@ class CommentController extends Controller {
         if ($form->isSubmitted() && $form->isValid()) {
             $comment = $form->getData();
             $created = new DateTime();
-            $author = "homelleon";
-            $article->addComment($comment);
+            $username = 'homelleon';
+            $author = $doctrine
+                ->getRepository('UserBundle:User')
+                ->findOneBy([
+                    'username' => $username
+                ]);
+            $comment->setAuthor($author);
+            $comment->setCreated($created);
+            $article->addComment($comment);          
             
             $em = $doctrine->getManager();
             $em->persist($comment);

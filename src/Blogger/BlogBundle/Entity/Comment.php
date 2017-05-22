@@ -5,6 +5,7 @@ namespace Blogger\BlogBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use \Blogger\UserBundle\Entity\User;
 
 /**
  * Description of Comment
@@ -22,8 +23,7 @@ class Comment {
     private $id;
     
     /**
-     * @ORM\OneToOne(targetEntity="Blogger\UserBundle\Entity\User")
-     * @ORM\JoinColumn(name="user_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="Blogger\UserBundle\Entity\User")
      */ 
     private $author;
     
@@ -37,7 +37,7 @@ class Comment {
      * @ORM\JoinTable(name="users_id", 
      *  joinColumns={@ORM\JoinColumn(name="comment_id", referencedColumnName="id")},
      *  inverseJoinColumns={@ORM\JoinColumn(name="user_id", 
-     *  referencedColumnName="id", unique=true)})
+     *  referencedColumnName="id",unique=false)})
      */ 
     private $liked;
     
@@ -170,11 +170,11 @@ class Comment {
     /**
      * Set author
      *
-     * @param \Blogger\BlogBundle\Entity\User $author
+     * @param \Blogger\UserBundle\Entity\User $author
      *
      * @return Comment
      */
-    public function setAuthor(\Blogger\BlogBundle\Entity\User $author = null)
+    public function setAuthor(\Blogger\UserBundle\Entity\User $author = null)
     {
         $this->author = $author;
 
@@ -184,7 +184,7 @@ class Comment {
     /**
      * Get author
      *
-     * @return \Blogger\BlogBundle\Entity\User
+     * @return \Blogger\UserBundle\Entity\User
      */
     public function getAuthor()
     {
