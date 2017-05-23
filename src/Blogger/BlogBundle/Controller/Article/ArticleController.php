@@ -56,7 +56,7 @@ class ArticleController extends Controller {
                       
             $article = $form->getData(); 
             $created = new DateTime();
-            $author = "homelleon";
+            $author = $this->getUser();
             
             /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $article->getImage();
@@ -87,7 +87,7 @@ class ArticleController extends Controller {
             $em->persist($article);            
             $em->flush();
             
-            return $this->redirectToRoute('show_main');
+            return $this->redirectToRoute('main');
         }
             
         return $this->render('BlogBundle:News:news_create.html.twig', [
@@ -156,7 +156,7 @@ class ArticleController extends Controller {
             
             $em->flush();
             
-            return $this->redirectToRoute('show_main');
+            return $this->redirectToRoute('main');
         }
             
         return $this->render('BlogBundle:News:news_edit.html.twig', [
@@ -187,5 +187,6 @@ class ArticleController extends Controller {
 
         return new Response('Deleted article with title ' . $article->getTitle());
     }
+    
     
 }

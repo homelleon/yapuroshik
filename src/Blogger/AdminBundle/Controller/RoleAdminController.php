@@ -31,7 +31,7 @@ class RoleAdminController extends Controller  {
             $em->persist($role);           
             $em->flush();
             
-            return $this->redirectToRoute('admin_roles');
+            return $this->redirectToRoute('roles');
         }
             
         return $this->render('AdminBundle:Role:roles_create.html.twig', [

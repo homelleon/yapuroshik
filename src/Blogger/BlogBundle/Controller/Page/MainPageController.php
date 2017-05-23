@@ -94,12 +94,24 @@ class MainPageController extends Controller {
      * @param type $theme
      */
     public function sortAction($category, $value) {
-        
+        $dorctrine = $this->getDoctrine();
         $a_p_count = $this->getArticlePageCount();
-        $articles = $this->getDoctrine()
+        
+        if($category == 'author') {
+            $user = $dorctrine
+                ->getRepository('UserBundle:User')
+                ->findOneBy([
+                    'username' => $value
+                ]);
+            $newValue = $user;
+        } else {
+            $newValue = $value;
+        }
+        
+        $articles = $dorctrine
             ->getRepository('BlogBundle:Article')
             ->findBy(
-                array($category => $value),
+                array($category => $newValue),
                 array('created' => 'DESC')                
             );
         $a_count = count($articles);
@@ -108,11 +120,16 @@ class MainPageController extends Controller {
             for($i = 1;$i<=$pages_count;$i++){
                 $pages[] = $i;
             }
-            $offset = $pages_count*$a_p_count - $a_p_count;            
-            $artciles = $this->getDoctrine()
+            $offset = $pages_count*$a_p_count - $a_p_count;
+            
+            if($offset <0) {
+                $offset = 0;
+                $pages = 1;
+            }
+            $artciles = $dorctrine
                 ->getRepository('BlogBundle:Article')
                 ->findBy(
-                    array($category => $value),
+                    array($category => $newValue),
                     array('created' => 'DESC'),
                     $a_p_count,
                     $offset

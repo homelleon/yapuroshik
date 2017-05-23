@@ -67,7 +67,7 @@ class User implements \Serializable, AdvancedUserInterface  {
     private $role;
     
     /**
-     * @ORM\OneToOne(targetEntity="UserAccount")
+     * @ORM\OneToOne(targetEntity="UserAccount",inversedBy="user")
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id")
      * @var type     
      */

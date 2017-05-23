@@ -1,6 +1,10 @@
-{# Blogger:BlogBundle namespace #}
+{# --Blogger:BlogBundle:base.html.twig---
+=====================================
+Base template with navigation for pages #}
 
 {% extends ":Main:index.html.twig" %}
+
+{# navigation #}
 {% block navigation %}
     <div class="navigation">                            
         <a href="{{ path('main') }}">
@@ -21,10 +25,9 @@
     </div> 
 {% endblock %}
 
+{# body #}
 {% block body %}   
-    <div class="content">
-        {% block sort %}
-        {% endblock %} 
+    <div class="content">        
         {% block content %}
             <div class="inner">
                 <div class="border">
@@ -36,6 +39,7 @@
     </div>
 {% endblock %}
 
+{# sidebar #}
 {% block sidebar %}
     <div class="sidebar">        
     </div>

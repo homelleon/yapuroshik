@@ -1,8 +1,12 @@
+{# Blogger:BlogBundle:News:news.html.twig
+=========================================
+-----Template to create new article-----#}
+
 {% extends 'BlogBundle::base.html.twig' %}
 
 {% block content %}
     <div class="inner">
-        <a href="{{ path("show_main") }}">
+        <a href="{{ path("main") }}">
             <div class="button inner-orange">Назад</div>
         </a><br>
         {{ form_start(form) }}

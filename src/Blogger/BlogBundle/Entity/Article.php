@@ -28,7 +28,7 @@ class Article {
     private $title;
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\ManyToOne(targetEntity="Blogger\UserBundle\Entity\User")
      */
     private $author;
 

@@ -5,6 +5,7 @@ namespace Blogger\UserBundle\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 use Blogger\UserBundle\Entity\User;
 use Blogger\UserBundle\Entity\UserAccount;
 use Blogger\UserBundle\Form\User\UserType;
@@ -37,6 +38,9 @@ class UserController extends Controller {
                 ->findOneBy([
                     'username' => $username
                 ]);
+        if($this->getUser()->getUsername() != $username) {
+            throw $this->createAccessDeniedException('Wrong user profile!');
+        }
         $userAccount = $user->getUserAccount();
         if(!$userAccount) {
             $userAccount = new UserAccount();

@@ -1,6 +1,13 @@
+{# ----Blogger:BlogBundle:Page:news.html.twig-----
+=================================================
+Template to show page with one article detailed #}
+
 {% extends 'BlogBundle::base.html.twig' %}
 
 {% block content %}
+    
+    <!-- article -->
+    
     <div class="inner">
         <div class="border">
             <a href="{{ path('main') }}">
@@ -19,7 +26,9 @@
                         </a>
                     </div>
                     <div class="author">
-                        Автор: {{ article.author }}                    
+                        <a href="{{ path("user", {username: article.author.username}) }}">
+                            Автор: {{ article.author.username }}
+                        </a>
                     </div>                
                 </div>
                 <div class="date">
@@ -27,8 +36,7 @@
                 </div>
                 <div class="image">
                     <img src="{{ asset('uploads/images/' ~ article.image.path) }}">
-                </div>
-               
+                </div>               
                 <div class="description">
                     {{ article.description }}
                 </div>
@@ -40,22 +48,28 @@
             </div>   
             {% block comment_error %}
             {% endblock %}
+            <!-- foot navigation -->
             <div class="article-navigation">
-                <a href="{{ path("comment_add", {id: article.id}) }}">
-                    <div class="button inner-orange button-comment">
-                        комментировать
-                    </div>
-                </a>
                 {% if is_granted('ROLE_ADMIN') %}
                     <a href="{{ path('news_edit',{id: article.id}) }}">
                         <div class="button inner-orange">
                             Редактировать &#10000;
                         </div>
                     </a>
-                {% endif %}
+                {% else %}
+                    <div></div>
+                {% endif %}                
+                <a href="{{ path("comment_add", {id: article.id}) }}">
+                    <div class="button inner-orange button-comment">
+                        комментировать
+                    </div>
+                </a>                
             </div>
         </div>
     </div>
+                    
+    <!-- comments -->
+    
     {% block comment_form %}        
     {% endblock %}
     {% block comments %}
@@ -64,11 +78,13 @@
                 <div class="border">
                     {% for comment in article.comments %}
                         <div class="article comment">
-                            <div class="author">
-                                {{ comment.author.username }}
-                            </div>
+                            <a href="{{ path("user", {username: comment.author.username}) }}">
+                                <div class="author">
+                                    {{ comment.author.username }}
+                                </div>
+                            </a>
                             <div class="date">
-                                время: {{ comment.created|date }}
+                                {{ comment.created|date }}
                             </div>
                             <div class="description">
                                 {{ comment.content }}
