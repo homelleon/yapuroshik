@@ -50,7 +50,7 @@ Template to show page with one article detailed #}
             {% endblock %}
             <!-- foot navigation -->
             <div class="article-navigation">
-                {% if is_granted('ROLE_ADMIN') %}
+                {% if (is_granted('ROLE_ADMIN')) or (app.user == article.author) %}
                     <a href="{{ path('news_edit',{id: article.id}) }}">
                         <div class="button inner-orange">
                             Редактировать &#10000;

@@ -38,8 +38,8 @@ class UserController extends Controller {
                 ->findOneBy([
                     'username' => $username
                 ]);
-        if($this->getUser()->getUsername() != $username) {
-            throw $this->createAccessDeniedException('Wrong user profile!');
+        if($this->getUser() != $user) {
+            throw $this->createAccessDeniedException('You have no permission to edit other user profile!');
         }
         $userAccount = $user->getUserAccount();
         if(!$userAccount) {

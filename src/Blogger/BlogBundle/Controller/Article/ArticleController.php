@@ -110,6 +110,9 @@ class ArticleController extends Controller {
             ->getRepository('BlogBundle:Article')
             ->find($id);
         
+        if($this->getUser() != $article->getAuthor()) {
+            throw $this->createAccessDeniedException('You are not permitted to edit this article!');
+        }
         if (!$article) {
             throw $this->createNotFoundException(
                 'No article found for id ' . $id

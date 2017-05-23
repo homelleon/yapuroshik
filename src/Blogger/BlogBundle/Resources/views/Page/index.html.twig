@@ -10,7 +10,7 @@
             {% block sort %}
                 Рад вас приветствовать на моем сайте!                
             {% endblock %}
-            {% if is_granted('ROLE_ADMIN') %}
+            {% if is_granted('ROLE_EDITOR') %}
                 <div class="article-add"><a href=" {{ path("article_create") }}">&#10010;</a></div>
             {% endif %}
         </div>
