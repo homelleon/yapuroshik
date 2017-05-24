@@ -1,4 +1,4 @@
-{# ----Blogger:BlogBundle:Page:news.html.twig-----
+{# ----Blogger:BlogBundle:News:news.html.twig-----
 =================================================
 Template to show page with one article detailed #}
 
@@ -10,11 +10,14 @@ Template to show page with one article detailed #}
     
     <div class="inner">
         <div class="border">
-            <a href="{{ path('main') }}">
-                <div class="button inner-orange">
-                    Назад
-                </div>
-            </a><br>
+            <div class="space-between">
+                <a href="{{ path('main') }}">
+                    <div class="button inner-orange article-navigation go-back">
+                        Назад
+                    </div>
+                </a>
+                <div></div>
+            </div>          
             <div class="article">
                 <div class="title">
                     {{ article.title }}

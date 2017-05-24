@@ -1,33 +1,33 @@
 {# --Blogger:BlogBundle:base.html.twig---
-=====================================
+=========================================
 Base template with navigation for pages #}
 
 {% extends ":Main:index.html.twig" %}
 
 {# navigation #}
 {% block navigation %}
-    <div class="navigation">                            
+    <div class="navigation">
         <a href="{{ path('main') }}">
-                <div class="button inner-orange">Главная</div>
+            <div class="button inner-orange">Главная</div>
         </a>
         <a href="{{ path('about') }}">
-                <div class="button inner-orange">Обо мне</div>
+            <div class="button inner-orange">Обо мне</div>
         </a>
         <a href="{{ path('photo') }}">
-                <div class="button inner-orange">Фото</div>
+            <div class="button inner-orange">Фото</div>
         </a>
         <a href="{{ path('video') }}">
-                <div class="button inner-orange">Видео</div>
+            <div class="button inner-orange">Видео</div>
         </a>
         <a href="{{ path('contacts') }}">
-                <div class="button inner-orange">Контакты</div>
+            <div class="button inner-orange">Контакты</div>
         </a>
-    </div> 
+    </div>
 {% endblock %}
 
 {# body #}
-{% block body %}   
-    <div class="content">        
+{% block body %}
+    <div class="content">
         {% block content %}
             <div class="inner">
                 <div class="border">
@@ -41,7 +41,7 @@ Base template with navigation for pages #}
 
 {# sidebar #}
 {% block sidebar %}
-    <div class="sidebar">        
+    <div class="sidebar">
     </div>
 {% endblock %}
 {% block foot_navigation %}
@@ -50,7 +50,7 @@ Base template with navigation for pages #}
         <a href="{{ path('about') }}">Обо мне</a>
         <a href="{{ path('photo') }}">Фото</a>
         <a href="{{ path('video') }}">Видео</a>
-        <a href="{{ path('contacts') }}">Контакты</a>				
+        <a href="{{ path('contacts') }}">Контакты</a>
     </div>
 {% endblock %}
                 

@@ -1,3 +1,4 @@
+/*-------article classes settings-------*/
 .article {
     color: black; 
     padding-left: 10px;
@@ -53,6 +54,10 @@
     font-style: italic;
     padding: 5px;
 }
+
+/*.article .theme:before {
+    content: "\12317";
+}*/
 
 .article .head-info {    
     display: flex;

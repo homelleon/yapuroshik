@@ -34,7 +34,7 @@ class ArticleController extends Controller {
             );
         }
 
-        return $this->render('BlogBundle:Page:news.html.twig', [
+        return $this->render('BlogBundle:News:news.html.twig', [
                 'article' => $article
         ]);
     }

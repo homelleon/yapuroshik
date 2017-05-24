@@ -1,23 +1,26 @@
-{# AppBundle namespace #}
+{#--------AppBundle:base.html.twig---------
+===========================================
+Main basic template with preload settings#}
 
 <!DOCTYPE html>
 <html>
-    {# head #}
+    {# ----->head<------- #}
     <head>
         <meta charset="utf-8">
         <title>{% block title  %}Япрошик{% endblock %}</title> 
         <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">   
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
+        <link rel="stylesheet" href="{{ asset('css/common_styles.css') }}">  
         <link rel="stylesheet" href="{{ asset('css/article_styles.css') }}">  
         <link rel="stylesheet" href="{{ asset('css/form_styles.css') }}">  
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/font-awesome.min.css') }}">        
         {% block stylesheets %}{% endblock %}        
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
-    {# body #}
+    {# ----->body<------ #}
     <body>    
         <div class="upper">
-            {# header #}
+            {# ---------header--------- #}
             <div class="header row">
 
                 <div class="side-container"></div>
@@ -45,7 +48,7 @@
                 <div class="side-container">                    
                 </div>
             </div>
-            {# middle #}
+            {# ----------middle------------ #}
             <div class="wrapper row">	
                 <div class="side-container"></div>	
 
@@ -62,7 +65,7 @@
         </div>
                     
         <div class ="space row"></div>
-        {# footer #}
+        {# -----------footer------------ #}
         <div class="footer row">
             <div class="foot-border row">
                 <div class="side-container"></div>

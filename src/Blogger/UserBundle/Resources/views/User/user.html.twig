@@ -28,13 +28,15 @@
             <div class="button inner-orange article-navigation">
                 Статьи от пользователя
             </div>
-        </a>    
-        {% if (app.user.username == user.username)or(is_granted('ROLE_ADMIN')) %}
-            <a href="{{ path("account_edit", {username: user.username}) }}">
-                <div class="button inner-orange article-navigation">
-                    Добавить информацию
-                </div>
-            </a>        
+        </a>  
+        {% if is_granted('ROLE_USER') %}
+            {% if (app.user.username == user.username)or(is_granted('ROLE_ADMIN')) %}
+                <a href="{{ path("account_edit", {username: user.username}) }}">
+                    <div class="button inner-orange article-navigation">
+                        Добавить информацию
+                    </div>
+                </a>        
+            {% endif %}
         {% endif %}
     </div>   
 {% endblock %}
