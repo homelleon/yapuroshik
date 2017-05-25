@@ -8,22 +8,24 @@ Template to show list of all roles in data base#}
     <p>
         <a href="{{ path("admin") }}">Назад</a>
     </p>
-    <hr>
     <a href="{{ path("roles_create") }}">
-        <div>+</div>
+        <div>&#10010;</div>
     </a>
+    <hr>
     {% for role in roles %}
         <div class="space-between">
             <div>
                 <a href="{{ path("role", {name: role.name}) }}">
                     {{ role.name }}
-                    {{ role.role }}            
+                    {{ role.role }}
                 </a>
             </div>
             <div>
-                <a href="{{ path("role_delete", {id: role.id}) }}">
-                    Х
-                </a>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <a href="{{ path("role_delete", {id: role.id}) }}">
+                        &#10006;
+                    </a>
+                {% endif %}
             </div>
         </div>
         <hr>

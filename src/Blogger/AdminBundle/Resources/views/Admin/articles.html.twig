@@ -8,15 +8,25 @@ Template to show all articles in data base for admins #}
     <p>
         <a href="{{ path("admin") }}">Назад</a>
     </p>
+    <a href="{{ path("article_create") }}"><div>&#10010;</div></a>
     <hr>
     {% for article in articles %}
         {% if article.isDeleted %}
             <s>
         {% endif %}
-        <a href="{{ path("show_news", {id: article.id}) }}">
-            {{ article.title }}
-            {{ article.author }}
-        </a>
+        <div class="space-between">
+            <div>
+                <a href="{{ path("show_news", {id: article.id}) }}">
+                    {{ article.title }}
+                    {{ article.author.username }}
+                </a>
+            </div>
+            <div>
+                <a href="{{ path("article_delete", {id: article.id}) }}">
+                    &#10006;
+                </a>
+            </div>
+        </div>
         {% if article.isDeleted %}
             </s>
         {% endif %}

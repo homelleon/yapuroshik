@@ -129,10 +129,12 @@ class ArticleController extends Controller {
             $article->setUpdated(new DateTime());
             $article->setIsUpdated(true);            
             
-            $em = $doctrine->getManager(); 
+            $em = $doctrine->getManager();            
             
-            if($article->getImage() != NULL) {
-                $file = $article->getImage();
+            $file = $article->getImage();
+            
+            if($file != NULL) {
+                
                 $fileName = md5(uniqid()).'.'.$file->guessExtension();
 
                 $file->move(
@@ -166,28 +168,6 @@ class ArticleController extends Controller {
             'form' => $form->createView(),
             'article' => $article
         ]);
-    }    
-       
-    
-
-    /**
-     * @Route("/news/delete/{title}", name="article_delete")
-     * 
-     * @param type $title
-     * @return type
-     * @throws type
-     */
-    public function deleteAction($title) {
-        $article = $this->getDoctrine()
-            ->getRepository('BlogBundle:Article')
-            ->findOneBy(array('title' => $title));
-
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($article);
-        $em->flush();
-
-        return new Response('Deleted article with title ' . $article->getTitle());
-    }
-    
+    }      
     
 }

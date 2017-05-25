@@ -20,18 +20,27 @@ class UserAccount {
      */
     private $id;
     
-     /**
-     * @ORM\OneToOne(targetEntity="User", mappedBy="userAccount")
-     */
+    /**
+    * @ORM\OneToOne(targetEntity="User",mappedBy="userAccount")
+    * @var type     
+    */
     private $user;
     
-     /**
-     * @ORM\Column(type="string", nullable=true) 
-     * 
+    /**
+     * @ORM\OneToOne(targetEntity="Blogger\FileBundle\Entity\Avatar",
+     * inversedBy="userAccount")
+     * @ORM\JoinColumn(name="avatar_id", referencedColumnName="id")
+     * @var type     
      */
+    private $avatar;
+    
+    /**
+    * @ORM\Column(type="string", nullable=true) 
+    * 
+    */
     private $firstName;
     
-     /**
+    /**
      * @ORM\Column(type="string", nullable=true) 
      */
     private $lastName;
@@ -175,5 +184,29 @@ class UserAccount {
     public function getGender()
     {
         return $this->gender;
+    }
+
+    /**
+     * Set avatar
+     *
+     * @param \Blogger\FileBundle\Entity\Avatar $avatar
+     *
+     * @return UserAccount
+     */
+    public function setAvatar(\Blogger\FileBundle\Entity\Avatar $avatar = null)
+    {
+        $this->avatar = $avatar;
+
+        return $this;
+    }
+
+    /**
+     * Get avatar
+     *
+     * @return \Blogger\FileBundle\Entity\Avatar
+     */
+    public function getAvatar()
+    {
+        return $this->avatar;
     }
 }

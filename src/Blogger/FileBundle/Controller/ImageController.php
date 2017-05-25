@@ -12,7 +12,14 @@ class ImageController extends Controller
      */
     public function imageAction($id)
     {
+        $doctrine = $this->getDoctrine();
+        $image = $doctrine
+            ->getRepository('FileBundle:Image')
+            ->find($id);
         
-        return $this->render('FileBundle:Default:index.html.twig');
+        return $this->render('FileBundle:Image:index.html.twig',[
+            'image' => $image
+        ]);
     }
+    
 }

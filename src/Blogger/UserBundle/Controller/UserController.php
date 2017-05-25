@@ -10,6 +10,7 @@ use Blogger\UserBundle\Entity\User;
 use Blogger\UserBundle\Entity\UserAccount;
 use Blogger\UserBundle\Form\User\UserType;
 use Blogger\UserBundle\Form\User\UserAccountType;
+use Blogger\FileBundle\Entity\Avatar;
 
 class UserController extends Controller {
 
@@ -47,14 +48,43 @@ class UserController extends Controller {
         if(!$userAccount) {
             $userAccount = new UserAccount();
         }
+        
+        $avatar = $userAccount->getAvatar();
         $form = $this->createForm(UserAccountType::class, $userAccount);
         $form->handleRequest($request);
         
         if($form->isSubmitted() && $form->isValid()) {
             $userAccount = $form->getData();
-            $user->setUserAccount($userAccount);
             
             $em = $doctrine->getManager();
+            
+            $file = $userAccount->getAvatar();
+            if($file != NULL) {
+                
+                $fileName = md5(uniqid()).'.'.$file->guessExtension();
+
+                $file->move(
+                    $this->getParameter('user_directory'),
+                    $fileName
+                );
+
+                $height = 800;
+                $width = 600;
+                $format = 'JPG';
+
+                $avatar = new Avatar($fileName);
+                $avatar->setName($fileName);
+                $avatar->setFormat($format);
+                $avatar->setHeight($height);
+                $avatar->setWidth($width);
+
+                
+                $em->persist($avatar);
+            }
+            
+            $userAccount->setAvatar($avatar);            
+            $user->setUserAccount($userAccount);            
+            
             $em->persist($user);
             $em->persist($userAccount);
             $em->flush();

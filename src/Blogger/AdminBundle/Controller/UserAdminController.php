@@ -64,19 +64,17 @@ class UserAdminController extends Controller  {
     }
     
     /**
-     * @Route("/admin/users/delete/{username}", name="admin_users_delete")
+     * @Route("/admin/users/delete/{id}", name="admin_users_delete")
      */
-    public function deleteUserAction($username) {
+    public function deleteUserAction($id) {
         $user = $this->getDoctrine()
             ->getRepository('UserBundle:User')
-            ->findOneBy(array('username' => $username));
+            ->find(id);
 
         $em = $this->getDoctrine()->getManager();
-
         $em->remove($user);
-
         $em->flush();
 
-        return new Response('Deleted user with name ' . $user->getUsername());
+        return $this->redirectToRoute('admin_users');
     }
 }

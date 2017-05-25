@@ -3,6 +3,7 @@
 namespace Blogger\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Blogger\FileBundle\Entity\Avatar;
 
 /**
  * Description of User
@@ -20,18 +21,26 @@ class UserAccount {
      */
     private $id;
     
-     /**
-     * @ORM\OneToOne(targetEntity="User", mappedBy="userAccount")
-     */
+    /**
+    * @ORM\OneToOne(targetEntity="UserAccount",inversedBy="user")
+    * @var type     
+    */
     private $user;
     
-     /**
-     * @ORM\Column(type="string", nullable=true) 
-     * 
+    /**
+     * @ORM\OneToOne(targetEntity="Avatar",inversedBy="userAccount")
+     * @ORM\JoinColumn(name="avatar_id", referencedColumnName="id")
+     * @var type     
      */
+    private $avatar;
+    
+    /**
+    * @ORM\Column(type="string", nullable=true) 
+    * 
+    */
     private $firstName;
     
-     /**
+    /**
      * @ORM\Column(type="string", nullable=true) 
      */
     private $lastName;

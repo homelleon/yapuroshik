@@ -8,13 +8,22 @@ Template to show for admins all users in data base#}
     <p>
         <a href="{{ path("admin") }}">Назад</a>
     </p>
-    <a href="{{ path("admin_users_create") }}"><div>+</div></a>
+    <a href="{{ path("admin_users_create") }}"><div>&#10010;</div></a>
     <hr>
-    {% for user in users %}        
-        <a href="{{ path("user", {username: user.username}) }}">
-            {{ user.username }}
-            {{ user.role.name }}
-        </a>
+    {% for user in users %} 
+        <div class="space-between">
+            <a href="{{ path("user", {username: user.username}) }}">
+                {{ user.username }}
+                {{ user.role.name }}
+            </a>
+            <div>
+                {% if is_granted('ROLE_SUPER_ADMIN') %}
+                    <a href="{{ path("admin_users_delete", {id: user.id}) }}">
+                        &#10006;
+                    </a>
+                {% endif %}
+            </div>
+        </div>
         <hr>
     {% endfor %}
 {% endblock %}

@@ -8,6 +8,7 @@ imports:
 parameters:
     locale: en
     image_directory: '%kernel.root_dir%/../web/uploads/images'
+    user_directory: '%kernel.root_dir%/../web/uploads/users'
 
 framework:
     #esi: ~

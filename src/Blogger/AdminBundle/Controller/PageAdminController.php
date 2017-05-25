@@ -27,6 +27,27 @@ class PageAdminController extends Controller {
        return $this->render('AdminBundle:Admin:articles.html.twig', [
            'articles' => $articles
        ]); 
-    } 
+    }
+    
+    
+
+    /**
+     * @Route("/news/delete/{id}", name="article_delete")
+     * 
+     * @param type $id
+     * @return type
+     * @throws type
+     */
+    public function deleteAction($id) {
+        $article = $this->getDoctrine()
+            ->getRepository('BlogBundle:Article')
+            ->find($id);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($article);
+        $em->flush();
+
+        return $this->redirectToRoute('admin_articles');;
+    }
 
 }
