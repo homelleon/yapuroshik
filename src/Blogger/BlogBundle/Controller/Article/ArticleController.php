@@ -171,21 +171,19 @@ class ArticleController extends Controller {
     
 
     /**
-     * @Route("/news/delete/{title}")
+     * @Route("/news/delete/{title}", name="article_delete")
      * 
      * @param type $title
      * @return type
      * @throws type
      */
-    public function removeAction($title) {
+    public function deleteAction($title) {
         $article = $this->getDoctrine()
             ->getRepository('BlogBundle:Article')
             ->findOneBy(array('title' => $title));
 
         $em = $this->getDoctrine()->getManager();
-
         $em->remove($article);
-
         $em->flush();
 
         return new Response('Deleted article with title ' . $article->getTitle());

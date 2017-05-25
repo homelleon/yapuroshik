@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Blogger\UserBundle\Entity\Role;
-use Blogger\UserBundle\Form\Role\RoleType;
+use Blogger\UserBundle\Form\Role\RoleCreateType;
 
 /**
  * Description of RoleAdminController
@@ -20,7 +20,7 @@ class RoleAdminController extends Controller  {
      */
     public function createRoleAction(Request $request) {
         $role = new Role();
-        $form = $this->createForm(RoleType::class, $role);
+        $form = $this->createForm(RoleCreateType::class, $role);
         $form->handleRequest($request);
         
         if ($form->isSubmitted() && $form->isValid()) {
@@ -40,7 +40,26 @@ class RoleAdminController extends Controller  {
         ]);
     }
     
-      /**
+    /**
+     * @Route("/admin/roles/delete/{id}", name="role_delete")
+     * @param type $id
+     */
+    public function removeRoleAction($id) {
+        $doctrine = $this->getDoctrine();
+        $role = $doctrine
+            ->getRepository('UserBundle:Role')
+            ->find($id);
+        
+        $em = $doctrine->getManager();
+        $em->remove($role);
+        $em->flush();
+
+        return $this->redirectToRoute('roles');        
+        
+    }
+
+
+    /**
      * @Route("/admin/role/{name}", name="role")
      */
     public function showRoleAction($name) {

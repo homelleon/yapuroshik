@@ -7,6 +7,7 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Blogger\UserBundle\Form\Param\GenderType;
 
 /**
  * Description of UserAccountType
@@ -28,7 +29,7 @@ class UserAccountType extends AbstractType {
                 'label' => 'день рождения: ',
                 'required' => false
             ])
-            ->add('gender',TextType::class, [
+            ->add('gender',GenderType::class, [
                 'label' => 'пол: ',
                 'required' => false
             ])           

@@ -41,15 +41,15 @@ security:
                 target: /   
             
                     
-    access_control:
-        # require ROLE_ADMIN for /admin*
-        - { path: ^/admin, roles: ROLE_ADMIN }
+    access_control:      
         - { path: ^/news/edit/, roles: ROLE_EDITOR }
         - { path: ^/news/create, roles: ROLE_EDITOR }
-        - { path: ^/news/delete/, roles: ROLE_ADMIN }
-        
+        - { path: ^/news/delete/, roles: ROLE_MODERATOR } 
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/admin/roles/delete/, roles: ROLE_SUPER_ADMIN }
         
     role_hierarchy:
         ROLE_EDITOR: ROLE_USER
-        ROLE_ADMIN: ROLE_EDITOR
+        ROLE_MODERATOR: ROLE_EDITOR
+        ROLE_ADMIN: ROLE_MODERATOR
         ROLE_SUPER_ADMIN: [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]

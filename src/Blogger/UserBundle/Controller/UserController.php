@@ -37,9 +37,11 @@ class UserController extends Controller {
                 ->getRepository('UserBundle:User')
                 ->findOneBy([
                     'username' => $username
-                ]);
-        if($this->getUser() != $user) {
-            throw $this->createAccessDeniedException('You have no permission to edit other user profile!');
+                ]);        
+        if(!$this->isGranted('ROLE_MODERATOR')) {
+            if(($this->getUser() != $user)) {
+                throw $this->createAccessDeniedException('You have no permission to edit other user profile!');
+            }
         }
         $userAccount = $user->getUserAccount();
         if(!$userAccount) {

@@ -12,11 +12,20 @@ Template to show list of all roles in data base#}
     <a href="{{ path("roles_create") }}">
         <div>+</div>
     </a>
-    {% for role in roles %}        
-        <a href="{{ path("role", {name: role.name}) }}">
-            {{ role.name }}
-            {{ role.role }}
-        </a>
+    {% for role in roles %}
+        <div class="space-between">
+            <div>
+                <a href="{{ path("role", {name: role.name}) }}">
+                    {{ role.name }}
+                    {{ role.role }}            
+                </a>
+            </div>
+            <div>
+                <a href="{{ path("role_delete", {id: role.id}) }}">
+                    Х
+                </a>
+            </div>
+        </div>
         <hr>
     {% endfor %}
 {% endblock %}
