@@ -3,13 +3,13 @@
 namespace AppBundle\Entity\User;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
-use AppBundle\Entity\UserAccount;
+use AppBundle\Entity\User\UserAccount;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
  * Description of User
- * @ORM\Entity(repositoryClass="Blogger\BlogBundle\Repository\UserRepository")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  * @ORM\Table(name="user")
  * 
  * @author homelleon
@@ -272,11 +272,11 @@ class User implements \Serializable, AdvancedUserInterface  {
     /**
      * Set userAccount
      *
-     * @param \Blogger\BlogBundle\Entity\User\UserAccount $userAccount
+     * @param \AppBundle\Entity\User\UserAccount $userAccount
      *
      * @return User
      */
-    public function setUserAccount(\Blogger\BlogBundle\Entity\User\UserAccount $userAccount = null)
+    public function setUserAccount(\AppBundle\Entity\User\UserAccount $userAccount = null)
     {
         $this->userAccount = $userAccount;
 
@@ -286,7 +286,7 @@ class User implements \Serializable, AdvancedUserInterface  {
     /**
      * Get userAccount
      *
-     * @return \Blogger\BlogBundle\Entity\User\UserAccount
+     * @return \AppBundle\Entity\User\UserAccount
      */
     public function getUserAccount()
     {
@@ -321,11 +321,11 @@ class User implements \Serializable, AdvancedUserInterface  {
     /**
      * Set role
      *
-     * @param \Blogger\BlogBundle\Entity\User\Role $role
+     * @param \AppBundle\Entity\User\Role $role
      *
      * @return User
      */
-    public function setRole(\Blogger\BlogBundle\Entity\User\Role $role = null)
+    public function setRole(\AppBundle\Entity\User\Role $role = null)
     {
         $this->role = $role;
 

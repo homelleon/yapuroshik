@@ -5,7 +5,8 @@ namespace AppBundle\Controller\Security;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use AppBundle\Entity\User;
+use AppBundle\Entity\User\User;
+use AppBundle\Entity\User\Role;
 use AppBundle\Form\User\UserType;
 
 class SecurityController extends Controller {
@@ -22,7 +23,7 @@ class SecurityController extends Controller {
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render('UserBundle:Security:login.html.twig', [
+        return $this->render(':Security\User:login.html.twig', [
             'last_username' => $lastUsername,
             'error'         => $error,
         ]);
@@ -39,7 +40,7 @@ class SecurityController extends Controller {
         if ($form->isSubmitted() && $form->isValid()) {                      
             $user = $form->getData();             
             $role = $this->getDoctrine()
-                ->getRepository('UserBundle:Role')
+                ->getRepository(Role::class)
                 ->findOneBy([
                     'name' => 'user'
                 ]);
@@ -55,7 +56,7 @@ class SecurityController extends Controller {
             return $this->redirectToRoute('main');
         }
             
-        return $this->render('AdminBundle:User:users_create.html.twig', [
+        return $this->render(':Security\User:users_create.html.twig', [
             'form' => $form->createView(),
             'user' => $user
         ]);

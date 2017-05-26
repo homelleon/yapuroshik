@@ -86,11 +86,11 @@ class Role implements RoleInterface {
     /**
      * Add user
      *
-     * @param \Blogger\BlogBundle\Entity\User\User $user
+     * @param \AppBundle\Entity\User\User $user
      *
      * @return Role
      */
-    public function addUser(\Blogger\BlogBundle\Entity\User\User $user)
+    public function addUser(\AppBundle\Entity\User\User $user)
     {
         $this->users[] = $user;
 
@@ -100,9 +100,9 @@ class Role implements RoleInterface {
     /**
      * Remove user
      *
-     * @param \Blogger\BlogBundle\Entity\User\User $user
+     * @param \AppBundle\Entity\User\User $user
      */
-    public function removeUser(\Blogger\BlogBundle\Entity\User\User $user)
+    public function removeUser(\AppBundle\Entity\User\User $user)
     {
         $this->users->removeElement($user);
     }

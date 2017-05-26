@@ -5,7 +5,7 @@
 {% extends 'BlogBundle:Blog:Page:nonews.html.twig' %}
 
 {% block text %}
-    <a href="{{ path("user", {username: user.username}) }}">
+    <a href="{{ path('user', { 'username': user.username }) }}">
         <div class="button inner-orange">Назад</div>
     </a><br>
     {{ form_start(form) }}

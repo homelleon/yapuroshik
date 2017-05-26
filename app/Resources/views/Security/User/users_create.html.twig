@@ -2,11 +2,11 @@
 ============================================
 ----------Template to create user----------#}
 
-{% extends "BlogBundle:Admin:base.html.twig" %}
+{% extends ':Security:base.html.twig' %}
 
 {% block content %}
     <div class="inner">
-        <a href="{{ path("admin") }}">
+        <a href="{{ path('admin') }}">
             <div class="button inner-orange">Назад</div>
         </a><br>
         {{ form_start(form) }}

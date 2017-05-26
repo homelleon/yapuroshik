@@ -2,13 +2,13 @@
 =======================================================
 Template to show all articles in data base for admins #}
 
-{% extends "BlogBundle:Admin:base.html.twig" %}
+{% extends ':Security:base.html.twig' %}
 
 {% block content %}
     <p>
-        <a href="{{ path("admin") }}">Назад</a>
+        <a href="{{ path('admin') }}">Назад</a>
     </p>
-    <a href="{{ path("article_create") }}"><div>&#10010;</div></a>
+    <a href="{{ path('article_create') }}"><div>&#10010;</div></a>
     <hr>
     {% for article in articles %}
         {% if article.isDeleted %}
@@ -16,13 +16,13 @@ Template to show all articles in data base for admins #}
         {% endif %}
         <div class="space-between">
             <div>
-                <a href="{{ path("show_news", {id: article.id}) }}">
+                <a href="{{ path('show_news', { 'id': article.id }) }}">
                     {{ article.title }}
                     {{ article.author.username }}
                 </a>
             </div>
             <div>
-                <a href="{{ path("article_delete", {id: article.id}) }}">
+                <a href="{{ path("article_delete", { 'id': article.id}) }}">
                     &#10006;
                 </a>
             </div>

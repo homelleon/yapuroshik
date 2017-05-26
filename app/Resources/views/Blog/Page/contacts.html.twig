@@ -2,14 +2,14 @@
 =============================================
 -----------Simple contacts page-------------#}
 
-{% extends 'BlogBundle:Blog:Page:nonews.html.twig' %}
+{% extends ':Blog/Page:nonews.html.twig' %}
 {% block text %}
     <h3>
         Контактные данные
     </h3>
     <p>
-        <a href="{{ path("vk") }}">Группа Вконтакте</a><br>
-        <a href="{{ path("fb") }}">Группа Facebook</a><br>
+        <a href="{{ path('vk') }}">Группа Вконтакте</a><br>
+        <a href="{{ path('fb') }}">Группа Facebook</a><br>
         Для деловых предложений: {{ asset('ihomelleoni@yandex.ru') }}
     </p>
 {% endblock %}

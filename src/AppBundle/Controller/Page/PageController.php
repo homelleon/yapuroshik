@@ -16,7 +16,7 @@ class PageController extends Controller {
      * @Method("GET")
      */
     public function aboutAction() {
-        return $this->render('BlogBundle:Page:about.html.twig');
+        return $this->render(':Blog\Page:about.html.twig');
     }
 
     /**
@@ -24,7 +24,7 @@ class PageController extends Controller {
      * @Method("GET")
      */
     public function photoAction() {
-        return $this->render('BlogBundle:Page:nonews.html.twig');
+        return $this->render(':Blog\Page:nonews.html.twig');
     }
 
     /**
@@ -32,7 +32,7 @@ class PageController extends Controller {
      * @Method("GET")
      */
     public function videoAction() {
-        return $this->render('BlogBundle:Page:nonews.html.twig');
+        return $this->render(':Blog\Page:nonews.html.twig');
     }
 
     /**
@@ -40,7 +40,7 @@ class PageController extends Controller {
      * @Method("GET")
      */
     public function contactsAction() {
-        return $this->render('BlogBundle:Page:contacts.html.twig');
+        return $this->render(':Blog\Page:contacts.html.twig');
     }
 
 }

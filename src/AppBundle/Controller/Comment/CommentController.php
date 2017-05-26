@@ -9,8 +9,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use DateTime;
 use Symfony\Component\HttpFoundation\Response;
-use AppBundle\Entity\Comment;
-use AppBundle\Form\Comment\CommentType;
+use AppBundle\Entity\User\User;
+use AppBundle\Entity\Blog\Article;
+use AppBundle\Entity\Blog\Comment;
+use AppBundle\Form\Blog\Comment\CommentType;
 
 class CommentController extends Controller {
     
@@ -24,7 +26,7 @@ class CommentController extends Controller {
     public function createCommentAction($id, Request $request) {        
         $doctrine = $this->getDoctrine();
         $article = $doctrine
-            ->getRepository('BlogBundle:Blog:Article')
+            ->getRepository(Article::class)
             ->find($id);
         
         if (!$article) {
@@ -57,7 +59,7 @@ class CommentController extends Controller {
             ]);
         }
         
-        return $this->render('BlogBundle:News:comment_add.html.twig', [
+        return $this->render(':Blog\News:comment_add.html.twig', [
             'form' => $form->createView(),
             'article' => $article
         ]);

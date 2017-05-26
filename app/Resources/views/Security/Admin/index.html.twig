@@ -2,11 +2,11 @@
 ============================================
 -----Template to show admin main page------#}
 
-{% extends "BlogBundle:Admin:base.html.twig" %}
+{% extends ':Security:base.html.twig' %}
 
 {% block content %}    
     Админ-панель
-    <div class='admin-navigation'>
+    <div class="admin-navigation">
         <a href="{{ path('main') }}">Вернуться на сайт</a>
         <a href="{{ path('admin_articles') }}">Администрирование статей</a>
         <a href="{{ path('admin_users') }}">Администрирование пользователей</a>

@@ -6,8 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use Blogger\UserBundle\Entity\User;
-use Blogger\UserBundle\Form\User\UserType;
+use AppBundle\Entity\User\User;
+use AppBundle\Entity\User\Role;
+use AppBundle\Form\User\UserType;
 
 /**
  * Description of UserAdminController
@@ -23,9 +24,9 @@ class UserAdminController extends Controller  {
      */
     public function usersAction() {
        $users = $this->getDoctrine()
-            ->getRepository('User:User')
+            ->getRepository(User::class)
             ->findAll();
-       return $this->render('AdminBundle:User:users.html.twig', [
+       return $this->render(':Security\User:users.html.twig', [
            'users' => $users
        ]); 
     }   
@@ -42,7 +43,7 @@ class UserAdminController extends Controller  {
                       
             $user = $form->getData();             
             $role = $this->getDoctrine()
-                ->getRepository('User:Role')
+                ->getRepository(Role::class)
                 ->findOneBy([
                     'name' => 'user'
                     ]);            
@@ -57,7 +58,7 @@ class UserAdminController extends Controller  {
             return $this->redirectToRoute('admin_users');
         }
             
-        return $this->render('AdminBundle:User:users_create.html.twig', [
+        return $this->render(':Security\User:users_create.html.twig', [
             'form' => $form->createView(),
             'user' => $user
         ]);
@@ -68,7 +69,7 @@ class UserAdminController extends Controller  {
      */
     public function deleteUserAction($id) {
         $user = $this->getDoctrine()
-            ->getRepository('User:User')
+            ->getRepository(User::class)
             ->find(id);
 
         $em = $this->getDoctrine()->getManager();

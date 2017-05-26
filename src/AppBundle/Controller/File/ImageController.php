@@ -4,6 +4,7 @@ namespace AppBundle\Controller\File;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use AppBundle\Entity\File\Image;
 
 class ImageController extends Controller
 {
@@ -14,10 +15,10 @@ class ImageController extends Controller
     {
         $doctrine = $this->getDoctrine();
         $image = $doctrine
-            ->getRepository('FileBundle:Image')
+            ->getRepository(Image::class)
             ->find($id);
         
-        return $this->render('FileBundle:Image:index.html.twig',[
+        return $this->render(':File/Image:index.html.twig',[
             'image' => $image
         ]);
     }

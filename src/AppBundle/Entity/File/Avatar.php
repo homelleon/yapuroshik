@@ -15,7 +15,7 @@ use AppBundle\Entity\File\ImageBase;
 class Avatar extends ImageBase {
     
     /**
-     * @ORM\OneToOne(targetEntity="Blogger\BlogBundle\Entity\User\UserAccount", 
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\User\UserAccount", 
      * mappedBy="avatar")
      */
     private $userAccount;
@@ -23,11 +23,11 @@ class Avatar extends ImageBase {
     /**
      * Set userAccount
      *
-     * @param Blogger\BlogBundle\Entity\User\UserAccount $userAccount
+     * @param AppBundle\Entity\User\UserAccount $userAccount
      *
      * @return Avatar
      */
-    public function setUserAccount(Blogger\BlogBundle\Entity\User\UserAccount $userAccount = null)
+    public function setUserAccount(AppBundle\Entity\User\UserAccount $userAccount = null)
     {
         $this->userAccount = $userAccount;
 
@@ -37,7 +37,7 @@ class Avatar extends ImageBase {
     /**
      * Get userAccount
      *
-     * @return Blogger\BlogBundle\Entity\User\UserAccount
+     * @return AppBundle\Entity\User\UserAccount
      */
     public function getUserAccount()
     {

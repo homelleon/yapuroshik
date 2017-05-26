@@ -5,8 +5,8 @@ namespace AppBundle\Controller\Admin;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Blogger\UserBundle\Entity\Role;
-use Blogger\UserBundle\Form\Role\RoleCreateType;
+use AppBundle\Entity\User\Role;
+use AppBundle\Form\Role\RoleCreateType;
 
 /**
  * Description of RoleAdminController
@@ -34,7 +34,7 @@ class RoleAdminController extends Controller  {
             return $this->redirectToRoute('roles');
         }
             
-        return $this->render('AdminBundle:Role:roles_create.html.twig', [
+        return $this->render(':Security\Role:roles_create.html.twig', [
             'form' => $form->createView(),
             'role' => $role
         ]);
@@ -47,7 +47,7 @@ class RoleAdminController extends Controller  {
     public function removeRoleAction($id) {
         $doctrine = $this->getDoctrine();
         $role = $doctrine
-            ->getRepository('User:Role')
+            ->getRepository(Role::class)
             ->find($id);
         
         $em = $doctrine->getManager();
@@ -64,12 +64,12 @@ class RoleAdminController extends Controller  {
      */
     public function showRoleAction($name) {
         $role = $this->getDoctrine()
-            ->getRepository('User:Role')
+            ->getRepository(Role::class)
             ->findOneBy([
                 'name' => $name
             ]);  
             
-        return $this->render('AdminBundle:Role:role.html.twig', [
+        return $this->render(':Security\Role:role.html.twig', [
             'role' => $role
         ]);
     }
@@ -81,10 +81,10 @@ class RoleAdminController extends Controller  {
      */
     public function showAllAction() {
         $roles = $this->getDoctrine()
-            ->getRepository('User:Role')
+            ->getRepository(Role::class)
             ->findAll();
         
-        return $this->render('AdminBundle:Role:roles.html.twig', [
+        return $this->render(':Security\Role:roles.html.twig', [
             'roles' => $roles
         ]);
     }

@@ -5,6 +5,7 @@ namespace AppBundle\Controller\Admin;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
+use AppBundle\Entity\Blog\Article;
 
 class PageAdminController extends Controller {
 
@@ -12,7 +13,7 @@ class PageAdminController extends Controller {
      * @Route("/admin", name="admin")
      */
     public function indexAction() {
-        return $this->render('Admin:index.html.twig');
+        return $this->render(':Security\Admin:index.html.twig');
     }
     
     /**
@@ -21,9 +22,9 @@ class PageAdminController extends Controller {
      */
     public function articlesAction() {
         $articles = $this->getDoctrine()
-            ->getRepository('Blog:Article')
+            ->getRepository(Article::class)
             ->findAll();
-       return $this->render('Admin:Admin:articles.html.twig', [
+       return $this->render(':Security\Admin:articles.html.twig', [
            'articles' => $articles
        ]); 
     }
@@ -39,7 +40,7 @@ class PageAdminController extends Controller {
      */
     public function deleteAction($id) {
         $article = $this->getDoctrine()
-            ->getRepository('Blog:Article')
+            ->getRepository(Article::class)
             ->find($id);
 
         $em = $this->getDoctrine()->getManager();

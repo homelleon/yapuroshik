@@ -6,11 +6,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
-use AppBundle\Entity\User;
-use AppBundle\Entity\UserAccount;
+use AppBundle\Entity\User\User;
+use AppBundle\Entity\User\UserAccount;
 use AppBundle\Form\User\UserType;
 use AppBundle\Form\User\UserAccountType;
-use AppBundle\Entity\Avatar;
+use AppBundle\Entity\File\Avatar;
 
 class UserController extends Controller {
 
@@ -19,11 +19,11 @@ class UserController extends Controller {
      */
     public function userAction($username) {
         $user = $this->getDoctrine()
-            ->getRepository('UserBundle:User')
+            ->getRepository(User::class)
             ->findOneBy([
                 'username' => $username
                     ]);
-        return $this->render('UserBundle:User:user.html.twig', [
+        return $this->render(':Security\User:user.html.twig', [
             'user' => $user
         ]);
     }  
@@ -35,7 +35,7 @@ class UserController extends Controller {
     public function editAccountAction($username, Request $request) {
         $doctrine = $this->getDoctrine();
         $user = $doctrine
-                ->getRepository('UserBundle:User')
+                ->getRepository(User::class)
                 ->findOneBy([
                     'username' => $username
                 ]);        
@@ -93,7 +93,7 @@ class UserController extends Controller {
                 'username' => $username
             ]);
         }
-        return $this->render('UserBundle:User:account_create.html.twig', [
+        return $this->render(':User:account_create.html.twig', [
             'form' => $form->createView(),
             'user' => $user
         ]);

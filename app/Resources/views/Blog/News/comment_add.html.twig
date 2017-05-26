@@ -2,7 +2,7 @@
 ========================================
 Template for adding comments in article #}
 
-{% extends 'BlogBundle:Blog:News:news.html.twig' %}
+{% extends ':Blog/News:news.html.twig' %}
 
 {% block comment_error %}
     {% if is_granted('ROLE_USER') == false %}

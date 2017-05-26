@@ -23,7 +23,7 @@ class ArticleController extends Controller {
      */
     public function newsAction($id) {
         $article = $this->getDoctrine()
-            ->getRepository('Blog:Article')
+            ->getRepository(Article::class)
             ->find($id);
 
         if (!$article) {
@@ -32,7 +32,7 @@ class ArticleController extends Controller {
             );
         }
 
-        return $this->render('Blog:News:news.html.twig', [
+        return $this->render(':Blog\News:news.html.twig', [
                 'article' => $article
         ]);
     }
@@ -88,7 +88,7 @@ class ArticleController extends Controller {
             return $this->redirectToRoute('main');
         }
             
-        return $this->render('Blog:News:news_create.html.twig', [
+        return $this->render(':Blog\News:news_create.html.twig', [
             'form' => $form->createView(),
             'article' => $article
         ]);
@@ -105,7 +105,7 @@ class ArticleController extends Controller {
         $doctrine = $this->getDoctrine();
         
         $article = $doctrine
-            ->getRepository('Blog:Article')
+            ->getRepository(Article::class)
             ->find($id);
         
         if($this->getUser() != $article->getAuthor()) {
@@ -162,7 +162,7 @@ class ArticleController extends Controller {
             return $this->redirectToRoute('main');
         }
             
-        return $this->render('Blog:News:news_edit.html.twig', [
+        return $this->render(':Blog\News:news_edit.html.twig', [
             'form' => $form->createView(),
             'article' => $article
         ]);

@@ -26,7 +26,7 @@ class Article {
     private $title;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Blogger\BlogBundle\Entity\User\User")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User\User")
      */
     private $author;
 
@@ -36,7 +36,7 @@ class Article {
     private $theme;
     
     /**
-     * @ORM\OneToOne(targetEntity="Blogger\BlogBundle\Entity\File\Image")
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\File\Image")
      * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
      */ 
     private $image;
@@ -67,7 +67,7 @@ class Article {
     private $updated;
     
      /**
-     * @ORM\ManyToMany(targetEntity="Blogger\BlogBundle\Entity\User\User")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User\User")
      * @ORM\JoinTable(name="article_liked_users_id",
      *  joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
      *  inverseJoinColumns={@ORM\JoinColumn(name="user_id", 
@@ -208,16 +208,16 @@ class Article {
         return $this->comments;
     }
     
-    public function addComment(\Blogger\BlogBundle\Entity\Blog\Comment $comment) {
+    public function addComment(\AppBundle\Entity\Blog\Comment $comment) {
         $this->comments[] = $comment;
     }    
     
     /**
      * Remove comment
      *
-     * @param \Blogger\BlogBundle\Entity\Blog\Comment $comment
+     * @param \AppBundle\Entity\Blog\Comment $comment
      */
-    public function removeComment(\Blogger\BlogBundle\Entity\Blog\Comment $comment)
+    public function removeComment(\AppBundle\Entity\Blog\Comment $comment)
     {
         $this->comments->removeElement($comment);
     }
@@ -344,11 +344,11 @@ class Article {
     /**
      * Add liked
      *
-     * @param \Blogger\BlogBundle\Entity\User\User $liked
+     * @param \AppBundle\Entity\User\User $liked
      *
      * @return Article
      */
-    public function addLiked(\Blogger\BlogBundle\Entity\User\User $liked)
+    public function addLiked(\AppBundle\Entity\User\User $liked)
     {
         $this->liked[] = $liked;
 
@@ -358,9 +358,9 @@ class Article {
     /**
      * Remove liked
      *
-     * @param \Blogger\BlogBundle\Entity\User\User $liked
+     * @param \AppBundle\Entity\User\User $liked
      */
-    public function removeLiked(\Blogger\BlogBundle\Entity\User\User $liked)
+    public function removeLiked(\AppBundle\Entity\User\User $liked)
     {
         $this->liked->removeElement($liked);
     }

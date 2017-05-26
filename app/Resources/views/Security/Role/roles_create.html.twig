@@ -2,11 +2,11 @@
 ===================================================
 ---Template for admins to create new user role----#}
 
-{% extends "BlogBundle:Admin:base.html.twig" %}
+{% extends ':Security:base.html.twig' %}
 
 {% block content %}
     <p>
-        <a href="{{ path("roles") }}">Назад</a>
+        <a href="{{ path('roles') }}">Назад</a>
     </p>     
     {{ form_start(form) }}
     {{ form_widget(form) }}

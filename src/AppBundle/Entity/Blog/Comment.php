@@ -22,7 +22,7 @@ class Comment {
     private $id;
     
     /**
-     * @ORM\ManyToOne(targetEntity="Blogger\BlogBundle\Entity\User\User")
+     * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User\User")
      */ 
     private $author;
     
@@ -32,7 +32,7 @@ class Comment {
     private $content;
     
     /**
-     * @ORM\ManyToMany(targetEntity="Blogger\BlogBundle\Entity\User\User")
+     * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User\User")
      * @ORM\JoinTable(name="users_id", 
      *  joinColumns={@ORM\JoinColumn(name="comment_id", referencedColumnName="id")},
      *  inverseJoinColumns={@ORM\JoinColumn(name="user_id", 
@@ -169,11 +169,11 @@ class Comment {
     /**
      * Set author
      *
-     * @param Blogger\BlogBundle\Entity\User\User $author
+     * @param AppBundle\Entity\User\User $author
      *
      * @return Comment
      */
-    public function setAuthor(Blogger\BlogBundle\Entity\User\User $author = null)
+    public function setAuthor(AppBundle\Entity\User\User $author = null)
     {
         $this->author = $author;
 
@@ -183,7 +183,7 @@ class Comment {
     /**
      * Get author
      *
-     * @return Blogger\BlogBundle\Entity\User\User
+     * @return AppBundle\Entity\User\User
      */
     public function getAuthor()
     {
@@ -193,11 +193,11 @@ class Comment {
     /**
      * Add liked
      *
-     * @param Blogger\BlogBundle\Entity\User\User $liked
+     * @param AppBundle\Entity\User\User $liked
      *
      * @return Comment
      */
-    public function addLiked(Blogger\BlogBundle\Entity\User\User $liked)
+    public function addLiked(AppBundle\Entity\User\User $liked)
     {
         $this->liked[] = $liked;
 
@@ -207,9 +207,9 @@ class Comment {
     /**
      * Remove liked
      *
-     * @param Blogger\BlogBundle\Entity\User\User $liked
+     * @param AppBundle\Entity\User\User $liked
      */
-    public function removeLiked(Blogger\BlogBundle\Entity\User\User $liked)
+    public function removeLiked(AppBundle\Entity\User\User $liked)
     {
         $this->liked->removeElement($liked);
     }

@@ -27,7 +27,7 @@ class UserAccount {
     private $user;
     
     /**
-     * @ORM\OneToOne(targetEntity="Blogger\BlogBundle\Entity\File\Avatar",
+     * @ORM\OneToOne(targetEntity="AppBundle\Entity\File\Avatar",
      * inversedBy="userAccount")
      * @ORM\JoinColumn(name="avatar_id", referencedColumnName="id")
      * @var type     
@@ -189,11 +189,11 @@ class UserAccount {
     /**
      * Set avatar
      *
-     * @param \Blogger\BlogBundle\Entity\File\Avatar $avatar
+     * @param \AppBundle\Entity\File\Avatar $avatar
      *
      * @return UserAccount
      */
-    public function setAvatar(\Blogger\BlogBundle\Entity\File\Avatar $avatar = null)
+    public function setAvatar(\AppBundle\Entity\File\Avatar $avatar = null)
     {
         $this->avatar = $avatar;
 
@@ -203,7 +203,7 @@ class UserAccount {
     /**
      * Get avatar
      *
-     * @return \Blogger\BlogBundle\Entity\File\Avatar
+     * @return \AppBundle\Entity\File\Avatar
      */
     public function getAvatar()
     {

@@ -7,6 +7,8 @@ namespace AppBundle\Controller\Page;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
+use AppBundle\Entity\Blog\Article;
+use AppBundle\Entity\User\User;
 
 class MainPageController extends Controller {
     
@@ -26,11 +28,11 @@ class MainPageController extends Controller {
     public function mainAction() {
         $a_p_count = $this->getArticlePageCount();
         $articles = $this->getDoctrine()
-            ->getRepository('AppBundle:Article')
+            ->getRepository(Article::class)
             ->findAll(); 
         $a_count = count($articles);
         $articles = $this->getDoctrine()
-            ->getRepository('AppBundle:Article')
+            ->getRepository(Article::class)
             ->findBy(  
                 array(),
                 array('created' => 'DESC'),
@@ -47,7 +49,7 @@ class MainPageController extends Controller {
             }
         }       
         
-        return $this->render('AppBundle:Blog:Page:index.html.twig', [
+        return $this->render(':Blog\Page:index.html.twig', [
             'articles' => $articles,
             'pages' => $pages
         ]);
@@ -60,7 +62,7 @@ class MainPageController extends Controller {
        
         $a_p_count = $this->getArticlePageCount();
         $articles = $this->getDoctrine()
-            ->getRepository('AppBundle:Blog:Article')
+            ->getRepository(Article::class)
             ->findAll(); 
         $a_count = count($articles);
         $pages_count = ($a_count - 1)/$a_p_count + 1;
@@ -71,7 +73,7 @@ class MainPageController extends Controller {
             }
             $offset = $page*$a_p_count - $a_p_count;
             $articles = $this->getDoctrine()
-            ->getRepository('Blog:Article')
+            ->getRepository(Article::class)
             ->findBy(
                 array(),
                 array('created' => 'DESC'),
@@ -82,7 +84,7 @@ class MainPageController extends Controller {
             $pages[] = 1;
         }
         
-        return $this->render('AppBundle:Page:index.html.twig', [
+        return $this->render(':Page:index.html.twig', [
             'articles' => $articles,
             'pages' => $pages
         ]);
@@ -98,7 +100,7 @@ class MainPageController extends Controller {
         
         if($category == 'author') {
             $user = $dorctrine
-                ->getRepository('AppBundle:User:User')
+                ->getRepository(User::class)
                 ->findOneBy([
                     'username' => $value
                 ]);
@@ -108,7 +110,7 @@ class MainPageController extends Controller {
         }
         
         $articles = $dorctrine
-            ->getRepository('AppBundle:Blog:Article')
+            ->getRepository(Article::class)
             ->findBy(
                 array($category => $newValue),
                 array('created' => 'DESC')                
@@ -126,7 +128,7 @@ class MainPageController extends Controller {
                 $pages = 1;
             }
             $artciles = $dorctrine
-                ->getRepository('AppBundle:Blog:Article')
+                ->getRepository(Article::class)
                 ->findBy(
                     array($category => $newValue),
                     array('created' => 'DESC'),
@@ -137,7 +139,7 @@ class MainPageController extends Controller {
             $pages[] = 1;
         }
         $categoryRus = $this->getSortCategory($category);        
-        return $this->render('AppBundle:News:news_sorted.html.twig', [            
+        return $this->render(':News:news_sorted.html.twig', [            
             'articles' => $articles,
             'pages' => $pages,
             'category' => $categoryRus,
