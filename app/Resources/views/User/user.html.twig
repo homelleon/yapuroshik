@@ -1,0 +1,42 @@
+{# Blogger:UserBundle:User:user.html.twig
+=========================================
+------Template to show user profile-----#}
+
+{% extends 'BlogBundle:Blog:Page:nonews.html.twig' %}
+
+{% block text %}
+    <div class="space-between">   
+        <div>логин: {{ user.username }}</div>
+         {% if is_granted('ROLE_ADMIN') %}           
+        <a href="{{ path('admin') }}">
+            <div class="button inner-orange article-navigation">
+                Админка
+            </div>
+        </a>
+    {% endif %}
+    </div>
+    <div>e-mail: {{ user.email }}</div>
+    <div>роль: {{ user.role.name }}</div>
+    {% if user.userAccount!= null %}
+        <div>имя: {{ user.userAccount.firstName }}</div>
+        <div>Фамилия: {{ user.userAccount.lastName }}</div>
+        <div>День рождения: {{ user.userAccount.birthday|date }}</div>
+        <div>пол: {{ user.userAccount.gender }}</div>
+    {% endif %}
+    <div class="space-between">
+        <a href="{{ path("news_sorted", {category: 'author', value: user.username}) }}">
+            <div class="button inner-orange article-navigation">
+                Статьи от пользователя
+            </div>
+        </a>  
+        {% if is_granted('ROLE_USER') %}
+            {% if (app.user.username == user.username)or(is_granted('ROLE_ADMIN')) %}
+                <a href="{{ path("account_edit", {username: user.username}) }}">
+                    <div class="button inner-orange article-navigation">
+                        Добавить информацию
+                    </div>
+                </a>        
+            {% endif %}
+        {% endif %}
+    </div>   
+{% endblock %}

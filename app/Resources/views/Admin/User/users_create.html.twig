@@ -1,0 +1,16 @@
+{# Blogger:AdminBundle:user_create.html.twig
+============================================
+----------Template to create user----------#}
+
+{% extends "BlogBundle:Admin:base.html.twig" %}
+
+{% block content %}
+    <div class="inner">
+        <a href="{{ path("admin") }}">
+            <div class="button inner-orange">Назад</div>
+        </a><br>
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        {{ form_end(form) }} 
+    </div>
+{% endblock %}

@@ -1,0 +1,21 @@
+{# Blogger:BlogBundle:News:news.html.twig
+=========================================
+-----Template to create new article-----#}
+
+{% extends 'BlogBundle:Blog:base.html.twig' %}
+
+{% block content %}
+    <div class="inner">
+        <div class="border">
+            <div class="space-between">
+                <a href="{{ path("main") }}">
+                    <div class="button inner-orange article-navigation">Назад</div>
+                </a>
+                <div></div>
+            </div>
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }} 
+        </div>
+    </div>
+{% endblock %}

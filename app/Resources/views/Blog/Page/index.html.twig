@@ -1,0 +1,98 @@
+{# Blogger:BlogBundle:Page:index.html.twig
+==========================================
+-----Main page with articles shown-------#}
+
+{% extends 'BlogBundle:Blog:base.html.twig' %}
+
+{% block content %}
+    <div class="inner">
+        <div class="welcome">
+            {% block sort %}
+                Рад вас приветствовать на моем сайте!
+            {% endblock %}
+            {% if is_granted('ROLE_EDITOR') %}
+                <div class="article-add button-add"><a href=" {{ path("article_create") }}">&#10010;</a></div>
+            {% endif %}
+        </div>
+    </div>
+    {% if (articles|length) >0 %}
+        {% for article in articles %}
+            {% if not article.isDeleted %}
+                <div class="inner">
+                    <div class="border">
+                        <div class="article">
+                            <div class="title">
+                                <a href="{{ path("show_news", {id: article.id}) }}">{{ article.title }}</a>
+                            </div>
+                            <div class="head-info">
+                                <div class="theme">
+                                    <a href="{{ path("news_sorted", {category: 'theme', value: article.theme}) }}">
+                                        #{{ article.theme }}
+                                    </a>
+                                </div>
+                                <div class="author">
+                                    <a href="{{ path("user", {username: article.author.username}) }}">
+                                        автор: {{ article.author.username }}
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="date">
+                                создано: {{ article.created|date }}
+                            </div>
+                            <a href="{{ path("show_news", {id: article.id}) }}">
+                                <div class="image">
+                                    <img src="{{ asset('uploads/images/' ~ article.image.path) }}">
+                                </div>
+                            </a>
+                            <div class="description">
+                                {{ article.description }}
+                            </div>
+                            {% if article.isUpdated %}
+                                <div class="date">
+                                    отредактировано: {{ article.updated|date }}
+                                </div>
+                            {% endif %}
+                        </div>
+                        <div class="article-navigation">
+                            <div>
+                                <a href="{{ path("show_news", {id: article.id}) }}">
+                                    <div class="button inner-orange button-detailed">
+                                        подробнее
+                                    </div>
+                                </a>
+                            </div>
+                            <div>
+                            <a href="{{ path("comment_add", {id: article.id}) }}">
+                                <div class="button inner-orange button-comment">
+                                    комментировать
+                                </div>
+                            </a>
+                            </div>
+                        </div>
+                    </div>
+                    <hr>
+                </div>
+            {% endif %}
+        {% endfor %}
+    {% else %}
+        <div class="inner">
+            <div class="border">
+                Нет статей!
+            </div>
+        </div>
+    {% endif %}
+    {% if pages|length > 1 %}
+        {% for page in pages %}
+            <a href="{{ path("show_page", {page: page}) }}">{{ page }}</a>
+        {% endfor %}
+    {% endif %}
+{% endblock %}
+{% block sidebar %}
+<div class="sidebar">
+    <div class="inner">
+        <div class="border">        
+            Sidebar
+        </div>
+    </div>
+</div>
+{% endblock %}
