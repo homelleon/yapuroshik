@@ -23,7 +23,7 @@ class UserAdminController extends Controller  {
      */
     public function usersAction() {
        $users = $this->getDoctrine()
-            ->getRepository('BlogBundle:User:User')
+            ->getRepository('User:User')
             ->findAll();
        return $this->render('AdminBundle:User:users.html.twig', [
            'users' => $users
@@ -42,7 +42,7 @@ class UserAdminController extends Controller  {
                       
             $user = $form->getData();             
             $role = $this->getDoctrine()
-                ->getRepository('BlogBundle:User:Role')
+                ->getRepository('User:Role')
                 ->findOneBy([
                     'name' => 'user'
                     ]);            
@@ -68,7 +68,7 @@ class UserAdminController extends Controller  {
      */
     public function deleteUserAction($id) {
         $user = $this->getDoctrine()
-            ->getRepository('BlogBundle:User:User')
+            ->getRepository('User:User')
             ->find(id);
 
         $em = $this->getDoctrine()->getManager();

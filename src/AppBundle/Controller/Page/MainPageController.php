@@ -26,11 +26,11 @@ class MainPageController extends Controller {
     public function mainAction() {
         $a_p_count = $this->getArticlePageCount();
         $articles = $this->getDoctrine()
-            ->getRepository('BlogBundle:Blog\Article')
+            ->getRepository('AppBundle:Article')
             ->findAll(); 
         $a_count = count($articles);
         $articles = $this->getDoctrine()
-            ->getRepository('BlogBundle:Blog\Article')
+            ->getRepository('AppBundle:Article')
             ->findBy(  
                 array(),
                 array('created' => 'DESC'),
@@ -47,7 +47,7 @@ class MainPageController extends Controller {
             }
         }       
         
-        return $this->render('BlogBundle:Blog:Page\index.html.twig', [
+        return $this->render('AppBundle:Blog:Page:index.html.twig', [
             'articles' => $articles,
             'pages' => $pages
         ]);
@@ -60,7 +60,7 @@ class MainPageController extends Controller {
        
         $a_p_count = $this->getArticlePageCount();
         $articles = $this->getDoctrine()
-            ->getRepository('BlogBundle:Blog\Article')
+            ->getRepository('AppBundle:Blog:Article')
             ->findAll(); 
         $a_count = count($articles);
         $pages_count = ($a_count - 1)/$a_p_count + 1;
@@ -71,7 +71,7 @@ class MainPageController extends Controller {
             }
             $offset = $page*$a_p_count - $a_p_count;
             $articles = $this->getDoctrine()
-            ->getRepository('BlogBundle:Blog\Article')
+            ->getRepository('Blog:Article')
             ->findBy(
                 array(),
                 array('created' => 'DESC'),
@@ -82,7 +82,7 @@ class MainPageController extends Controller {
             $pages[] = 1;
         }
         
-        return $this->render('BlogBundle:Page:index.html.twig', [
+        return $this->render('AppBundle:Page:index.html.twig', [
             'articles' => $articles,
             'pages' => $pages
         ]);
@@ -98,7 +98,7 @@ class MainPageController extends Controller {
         
         if($category == 'author') {
             $user = $dorctrine
-                ->getRepository('BlogBundle:User\User')
+                ->getRepository('AppBundle:User:User')
                 ->findOneBy([
                     'username' => $value
                 ]);
@@ -108,7 +108,7 @@ class MainPageController extends Controller {
         }
         
         $articles = $dorctrine
-            ->getRepository('BlogBundle:Blog\Article')
+            ->getRepository('AppBundle:Blog:Article')
             ->findBy(
                 array($category => $newValue),
                 array('created' => 'DESC')                
@@ -126,7 +126,7 @@ class MainPageController extends Controller {
                 $pages = 1;
             }
             $artciles = $dorctrine
-                ->getRepository('BlogBundle:Blog\Article')
+                ->getRepository('AppBundle:Blog:Article')
                 ->findBy(
                     array($category => $newValue),
                     array('created' => 'DESC'),
@@ -137,7 +137,7 @@ class MainPageController extends Controller {
             $pages[] = 1;
         }
         $categoryRus = $this->getSortCategory($category);        
-        return $this->render('BlogBundle:News:news_sorted.html.twig', [            
+        return $this->render('AppBundle:News:news_sorted.html.twig', [            
             'articles' => $articles,
             'pages' => $pages,
             'category' => $categoryRus,

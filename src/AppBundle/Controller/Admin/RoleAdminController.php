@@ -47,7 +47,7 @@ class RoleAdminController extends Controller  {
     public function removeRoleAction($id) {
         $doctrine = $this->getDoctrine();
         $role = $doctrine
-            ->getRepository('BlogBundle:User:Role')
+            ->getRepository('User:Role')
             ->find($id);
         
         $em = $doctrine->getManager();
@@ -64,7 +64,7 @@ class RoleAdminController extends Controller  {
      */
     public function showRoleAction($name) {
         $role = $this->getDoctrine()
-            ->getRepository('BlogBundle:User:Role')
+            ->getRepository('User:Role')
             ->findOneBy([
                 'name' => $name
             ]);  
@@ -81,7 +81,7 @@ class RoleAdminController extends Controller  {
      */
     public function showAllAction() {
         $roles = $this->getDoctrine()
-            ->getRepository('BlogBundle:User:Role')
+            ->getRepository('User:Role')
             ->findAll();
         
         return $this->render('AdminBundle:Role:roles.html.twig', [

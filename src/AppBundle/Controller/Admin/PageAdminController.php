@@ -12,7 +12,7 @@ class PageAdminController extends Controller {
      * @Route("/admin", name="admin")
      */
     public function indexAction() {
-        return $this->render(':Admin:index.html.twig');
+        return $this->render('Admin:index.html.twig');
     }
     
     /**
@@ -21,9 +21,9 @@ class PageAdminController extends Controller {
      */
     public function articlesAction() {
         $articles = $this->getDoctrine()
-            ->getRepository(':Blog:Article')
+            ->getRepository('Blog:Article')
             ->findAll();
-       return $this->render(':Admin:Admin:articles.html.twig', [
+       return $this->render('Admin:Admin:articles.html.twig', [
            'articles' => $articles
        ]); 
     }
@@ -39,14 +39,14 @@ class PageAdminController extends Controller {
      */
     public function deleteAction($id) {
         $article = $this->getDoctrine()
-            ->getRepository(':Blog:Article')
+            ->getRepository('Blog:Article')
             ->find($id);
 
         $em = $this->getDoctrine()->getManager();
         $em->remove($article);
         $em->flush();
 
-        return $this->redirectToRoute('admin_articles');;
+        return $this->redirectToRoute('admin_articles');
     }
 
 }
