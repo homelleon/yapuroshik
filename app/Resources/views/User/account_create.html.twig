@@ -2,7 +2,7 @@
 ===================================================
 ------Template to create account for users--------#}
 
-{% extends 'BlogBundle:Blog:Page:nonews.html.twig' %}
+{% extends ':Blog/Page:nonews.html.twig' %}
 
 {% block text %}
     <a href="{{ path('user', { 'username': user.username }) }}">

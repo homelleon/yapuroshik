@@ -49,7 +49,7 @@ class MainPageController extends Controller {
             }
         }       
         
-        return $this->render(':Blog\Page:index.html.twig', [
+        return $this->render(':Blog/Page:index.html.twig', [
             'articles' => $articles,
             'pages' => $pages
         ]);
@@ -84,7 +84,7 @@ class MainPageController extends Controller {
             $pages[] = 1;
         }
         
-        return $this->render(':Page:index.html.twig', [
+        return $this->render(':Blog/Page:index.html.twig', [
             'articles' => $articles,
             'pages' => $pages
         ]);
@@ -139,7 +139,7 @@ class MainPageController extends Controller {
             $pages[] = 1;
         }
         $categoryRus = $this->getSortCategory($category);        
-        return $this->render(':News:news_sorted.html.twig', [            
+        return $this->render(':Blog/News:news_sorted.html.twig', [            
             'articles' => $articles,
             'pages' => $pages,
             'category' => $categoryRus,

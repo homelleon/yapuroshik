@@ -23,7 +23,7 @@ class UserController extends Controller {
             ->findOneBy([
                 'username' => $username
                     ]);
-        return $this->render(':Security\User:user.html.twig', [
+        return $this->render(':User:user.html.twig', [
             'user' => $user
         ]);
     }  
