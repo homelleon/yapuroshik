@@ -30,12 +30,6 @@ class ImageBase {
     protected $format;
     
     /**
-     * @ORM\Column(type="string", length=10)
-     * @var type 
-     */
-    protected $type;
-    
-    /**
      * @ORM\Column(type="string", length=100)
      */
     protected $path;

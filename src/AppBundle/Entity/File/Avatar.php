@@ -27,7 +27,7 @@ class Avatar extends ImageBase {
      *
      * @return Avatar
      */
-    public function setUserAccount(AppBundle\Entity\User\UserAccount $userAccount = null)
+    public function setUserAccount($userAccount = null)
     {
         $this->userAccount = $userAccount;
 

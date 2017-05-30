@@ -50,9 +50,8 @@ class UserController extends Controller {
         }
         
         $avatar = $userAccount->getAvatar();
-        $form = $this->createForm(UserAccountType::class, $userAccount);
+        $form = $this->createForm(UserAccountType::class, $userAccount);       
         $form->handleRequest($request);
-        
         if($form->isSubmitted() && $form->isValid()) {
             $userAccount = $form->getData();
             

@@ -4,12 +4,26 @@
 
 {% block login %}
     <div class="login">
-        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}            
             <a href="{{ path('user', {username: app.user.username}) }}">
-               <div class="button inner-orange">
-                    {{ app.user.username }}
-                </div>
-            </a>
+                {% if app.user.userAccount != null %}
+                    {% if app.user.userAccount.avatar != null %}  
+                        <div class="user button inner-orange">
+                            <div class="avatar">
+                                <img src="{{ asset('uploads/users/' ~ app.user.userAccount.avatar.name) }}"></img>
+                            </div>
+                        </div>
+                    {% else %}
+                        <div class="button inner-orange">
+                            {{ app.user.username }}
+                        </div>
+                    {% endif %}                        
+                {% else %}                        
+                    <div class="button inner-orange">
+                        {{ app.user.username }}
+                    </div>                        
+                {% endif %}
+            </a>           
         {% else %}
             {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
                 <a href="{{ path('login') }}">

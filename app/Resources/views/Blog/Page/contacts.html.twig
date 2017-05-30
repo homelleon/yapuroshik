@@ -7,9 +7,19 @@
     <h3>
         Контактные данные
     </h3>
-    <p>
-        <a href="{{ path('vk') }}">Группа Вконтакте</a><br>
-        <a href="{{ path('fb') }}">Группа Facebook</a><br>
-        Для деловых предложений: {{ asset('ihomelleoni@yandex.ru') }}
+    <p>        
+        <div class="row">
+            <a href="{{ path('vk') }}">
+                <div class="sign-img">
+                    <img src=" {{ asset('images/vk.png') }}"></img>
+                </div>
+            </a><br>
+            <a href="{{ path('fb') }}">
+                <div class="sign-img">
+                    <img src=" {{ asset('images/fb.png') }}"></img>
+                </div>
+            </a><br>
+        </div>
+        Для деловых предложений: ihomelleoni@yandex.ru
     </p>
 {% endblock %}

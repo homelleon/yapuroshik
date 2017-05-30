@@ -23,16 +23,16 @@ Template to show page with one article detailed #}
                     {{ article.title }}
                 </div>
                 <div class="head-info">
-                    <div class="theme">
-                        <a href="{{ path('news_sorted', { 'category': 'theme', 'value': article.theme }) }}">
-                            #{{ article.theme }}
-                        </a>
-                    </div>
-                    <div class="author">
-                        <a href="{{ path('user', { 'username': article.author.username }) }}">
-                            Автор: {{ article.author.username }}
-                        </a>
-                    </div>
+                    <a href="{{ path('news_sorted', { 'category': 'theme', 'value': article.theme }) }}">
+                        <div class="theme button">                        
+                            #{{ article.theme }}                        
+                        </div>
+                    </a>
+                    <a href="{{ path('user', { 'username': article.author.username }) }}">
+                        <div class="author button">                        
+                            Автор: {{ article.author.username }}                        
+                        </div>
+                    </a>
                 </div>
                 <div class="date">
                     создано: {{ article.created|date }}

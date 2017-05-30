@@ -189,11 +189,11 @@ class UserAccount {
     /**
      * Set avatar
      *
-     * @param \AppBundle\Entity\File\Avatar $avatar
+     * @param $avatar
      *
      * @return UserAccount
      */
-    public function setAvatar(\AppBundle\Entity\File\Avatar $avatar = null)
+    public function setAvatar($avatar = null)
     {
         $this->avatar = $avatar;
 
