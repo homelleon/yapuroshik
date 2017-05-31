@@ -1,0 +1,14 @@
+{# Blogger:UserBundle:User:account_create.html.twig
+===================================================
+------Template to create account for users--------#}
+
+{% extends ':Blog/Page:nonews.html.twig' %}
+
+{% block text %}
+    <a href="{{ path('user', { 'username': user.username }) }}">
+        <div class="button inner-orange">Назад</div>
+    </a><br>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    {{ form_end(form) }} 
+{% endblock %}

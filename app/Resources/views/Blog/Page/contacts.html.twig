@@ -1,0 +1,25 @@
+{# Blogger:BlogBundle:Page:contacts.html.twig 
+=============================================
+-----------Simple contacts page-------------#}
+
+{% extends ':Blog/Page:nonews.html.twig' %}
+{% block text %}
+    <h3>
+        Контактные данные
+    </h3>
+    <p>        
+        <div class="row">
+            <a href="{{ path('vk') }}">
+                <div class="sign-img">
+                    <img src=" {{ asset('images/vk.png') }}"></img>
+                </div>
+            </a><br>
+            <a href="{{ path('fb') }}">
+                <div class="sign-img">
+                    <img src=" {{ asset('images/fb.png') }}"></img>
+                </div>
+            </a><br>
+        </div>
+        Для деловых предложений: ihomelleoni@yandex.ru
+    </p>
+{% endblock %}

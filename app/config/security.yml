@@ -2,7 +2,7 @@
 # http://symfony.com/doc/current/security.html
 security:    
     encoders:
-        Blogger\UserBundle\Entity\User: plaintext
+        AppBundle\Entity\User\User: plaintext
 
     # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
     providers:
@@ -11,7 +11,7 @@ security:
 
         our_db_provider:
             entity:
-                class: UserBundle:User
+                class: AppBundle\Entity\User\User
                 property: username
  
         

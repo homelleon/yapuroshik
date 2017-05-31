@@ -1,20 +1,5 @@
-file:
-    resource: "@FileBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-admin:
-    resource: "@AdminBundle/Controller/"
-    type:     annotation
-    prefix:   /
-
-blog:
-    resource: "@BlogBundle/Controller/"
-    type:     annotation
-    prefix:   /
-    
-user:
-    resource: "@UserBundle/Controller/"
+main:
+    resource: "@AppBundle/Controller/"
     type:     annotation
     prefix:   /
 

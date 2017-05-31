@@ -1,0 +1,25 @@
+{# BlogBundle:News:comment_add.html.twig
+========================================
+Template for adding comments in article #}
+
+{% extends ':Blog/News:news.html.twig' %}
+
+{% block comment_error %}
+    {% if is_granted('ROLE_USER') == false %}
+        <div class="error">
+            Войдите в аккаунт, чтобы оставлять комменатрии!
+        </div>      
+    {% endif %} 
+{% endblock %}
+
+{% block comment_form %}
+    {% if is_granted('ROLE_USER') %}
+        <div class="inner">
+            <div class="border">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }} 
+            </div>
+        </div>   
+    {% endif %}    
+{% endblock %}
