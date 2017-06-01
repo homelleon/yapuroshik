@@ -173,7 +173,7 @@ class Comment {
      *
      * @return Comment
      */
-    public function setAuthor(AppBundle\Entity\User\User $author = null)
+    public function setAuthor($author = null)
     {
         $this->author = $author;
 
