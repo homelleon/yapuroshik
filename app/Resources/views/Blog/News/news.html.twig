@@ -79,11 +79,13 @@ Template to show page with one article detailed #}
         {% if article.comments!= null %}
             <div class="inner">
                 <div class="border">
+                    {% set comment_number = 0 %}
                     {% for comment in article.comments %}
+                        {% set comment_number = comment_number + 1 %}
                         <div class="article comment">
                             <a href="{{ path('user', { 'username': comment.author.username }) }}">
                                 <div class="author">
-                                    {{ comment.author.username }}
+                                    #{{ comment_number }} {{ comment.author.username }}
                                 </div>
                             </a>
                             <div class="date">

@@ -22,7 +22,7 @@ class RoleAdminController extends Controller  {
         $role = new Role();
         $form = $this->createForm(RoleCreateType::class, $role);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
                       
             $role = $form->getData();                 
