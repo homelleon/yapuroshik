@@ -10,11 +10,13 @@ Main basic template with preload settings#}
         <title>{% block title  %}Япрошик{% endblock %}</title> 
         <link rel="stylesheet" href="{{ asset('vendor/bootstrap/css/bootstrap.min.css') }}">
         <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
-        <link rel="stylesheet" href="{{ asset('css/common_styles.css') }}">  
-        <link rel="stylesheet" href="{{ asset('css/article_styles.css') }}">  
-        <link rel="stylesheet" href="{{ asset('css/form_styles.css') }}">  
+        <link rel="stylesheet" href="{{ asset('css/common_styles.css') }}">
         <link rel="stylesheet" href="{{ asset('vendor/fontawesome/css/font-awesome.min.css') }}">        
-        {% block stylesheets %}{% endblock %}        
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset('css/article_styles.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/form_styles.css') }}">
+            <link rel="stylesheet" href="{{ asset('css/user_styles.css') }}">  
+        {% endblock %}        
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     {# ----->body<------ #}
