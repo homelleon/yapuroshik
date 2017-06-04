@@ -6,12 +6,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\File\Image;
 
+/**
+ * Images controller.
+ */
 class ImageController extends Controller
 {
     /**
+     * Renders page with image with setted id parameter.
+     * 
      * @Route("/image/{id}")
      */
-    public function imageAction($id)
+    public function showAction($id)
     {
         $doctrine = $this->getDoctrine();
         $image = $doctrine

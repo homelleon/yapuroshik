@@ -12,39 +12,32 @@ use AppBundle\Entity\User\User;
 
 class MainPageController extends Controller {
     
-    private $article_page_count = 5;
-    
-    /**
-     * @Route("/test")     
-     */
-    public function testAction() {
-        return $this->render('test.html.twig');
-    }
+    const ARTICLES_PER_PAGE = 5;
 
     /**
      * @Route("/", name="main")
      * @Method("GET")
      */
     public function mainAction() {
-        $a_p_count = $this->getArticlePageCount();
+        $articlePerPageCount = self::ARTICLES_PER_PAGE;
         $articles = $this->getDoctrine()
             ->getRepository(Article::class)
             ->findAll(); 
-        $a_count = count($articles);
+        $articleCount = count($articles);
         $articles = $this->getDoctrine()
             ->getRepository(Article::class)
             ->findBy(  
                 array(),
                 array('created' => 'DESC'),
-                $a_p_count,
+                $articlePerPageCount,
                 0
              ); 
                 
-        $pages_count = ($a_count - 1)/$a_p_count + 1;         
-        if($pages_count <= 1) {
+        $pageCount = ($articleCount - 1) / $articlePerPageCount + 1;         
+        if($pageCount <= 1) {
             $pages[] = 0;
         } else {
-            for($i = 1;$i<=$pages_count;$i++){
+            for($i = 1; $i <= $pageCount; $i++){
                 $pages[] = $i;
             }
         }       
@@ -60,24 +53,24 @@ class MainPageController extends Controller {
      */
     public function pageAction($page) {
        
-        $a_p_count = $this->getArticlePageCount();
+        $articlePerPageCount = self::ARTICLES_PER_PAGE;
         $articles = $this->getDoctrine()
             ->getRepository(Article::class)
             ->findAll(); 
-        $a_count = count($articles);
-        $pages_count = ($a_count - 1)/$a_p_count + 1;
+        $articleCount = count($articles);
+        $pageCount = ($articleCount - 1) / $articlePerPageCount + 1;
         
-        if($pages_count != 1) {
-            for($i = 1;$i<=$pages_count;$i++){
+        if($pageCount != 1) {
+            for($i = 1; $i <= $pageCount; $i++){
                 $pages[] = $i;
             }
-            $offset = $page*$a_p_count - $a_p_count;
+            $offset = $page * $articlePerPageCount - $articlePerPageCount;
             $articles = $this->getDoctrine()
             ->getRepository(Article::class)
             ->findBy(
                 array(),
                 array('created' => 'DESC'),
-                $a_p_count,
+                $articlePerPageCount,
                 $offset                   
             );
         } else {
@@ -91,12 +84,16 @@ class MainPageController extends Controller {
     }
     
     /**
+     * Renders page of sorted articles depending on category and value
+     * parameters.
+     * 
      * @Route("/sort/news/{category}/{value}", name="news_sorted")
-     * @param type $theme
+     * @param string $category
+     * @param string $value
      */
     public function sortAction($category, $value) {
         $dorctrine = $this->getDoctrine();
-        $a_p_count = $this->getArticlePageCount();
+        $articlePerPageCount = self::ARTICLES_PER_PAGE;
         
         if($category == 'author') {
             $user = $dorctrine
@@ -115,13 +112,13 @@ class MainPageController extends Controller {
                 array($category => $newValue),
                 array('created' => 'DESC')                
             );
-        $a_count = count($articles);
-        $pages_count = ($a_count - 1)/$a_p_count + 1;       
-        if($pages_count != 1) {
-            for($i = 1;$i<=$pages_count;$i++){
+        $articleCount = count($articles);
+        $pageCount = ($articleCount - 1) / $articlePerPageCount + 1;       
+        if($pageCount != 1) {
+            for($i = 1; $i <= $pageCount; $i++){
                 $pages[] = $i;
             }
-            $offset = $pages_count*$a_p_count - $a_p_count;
+            $offset = $pageCount * $articlePerPageCount - $articlePerPageCount;
             
             if($offset <0) {
                 $offset = 0;
@@ -132,13 +129,13 @@ class MainPageController extends Controller {
                 ->findBy(
                     array($category => $newValue),
                     array('created' => 'DESC'),
-                    $a_p_count,
+                    $articlePerPageCount,
                     $offset
                 );
         } else {
             $pages[] = 1;
         }
-        $categoryRus = $this->getSortCategory($category);        
+        $categoryRus = $this->getSortCategoryRus($category);        
         return $this->render(':Blog/News:news_sorted.html.twig', [            
             'articles' => $articles,
             'pages' => $pages,
@@ -146,13 +143,8 @@ class MainPageController extends Controller {
             'value' => $value
         ]);
     }
-
-
-    private function getArticlePageCount() {
-        return $this->article_page_count;
-    }
     
-    private function getSortCategory($category) {
+    private function getSortCategoryRus($category) {
         switch ($category) {
             case 'theme':
                 $category = 'теме';

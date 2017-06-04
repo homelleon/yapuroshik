@@ -14,6 +14,8 @@ use Doctrine\ORM\Mapping as ORM;
 class Article {
 
     /**
+     * Identification number.
+     * 
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -21,32 +23,44 @@ class Article {
     private $id;
 
     /**
+     * Article name.
+     * 
      * @ORM\Column(type="string", length=100)
      */
     private $title;
 
     /**
+     * Entity object of author of that article.
+     * 
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User\User")
      */
     private $author;
 
     /**
+     * Article theme category.
+     * 
      * @ORM\Column(type="string", length=100)
      */
     private $theme;
     
     /**
+     * Image chosen for article.
+     * 
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\File\Image")
      * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
      */ 
     private $image;
 
     /**
+     * Article description.
+     * 
      * @ORM\Column(type="text")
      */
     private $description;
     
     /**
+     * Article comments array.
+     * 
      * @ORM\ManyToMany(targetEntity="Comment")
      * @ORM\JoinTable(name="comments_id", 
      *  joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
@@ -57,16 +71,22 @@ class Article {
     private $comments;
     
     /**
+     * Date when that article was created.
+     * 
      * @ORM\Column(type="datetime")
      */
     private $created;
     
     /**
+     * Date when that article was last time updated.
+     * 
      * @ORM\Column(type="datetime")
      */
     private $updated;
     
-     /**
+    /**
+     * Array of users who liked that article.
+     * 
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User\User")
      * @ORM\JoinTable(name="article_liked_users_id",
      *  joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
@@ -76,20 +96,28 @@ class Article {
     private $liked;
     
     /**
+     * Number of usrers that had seen that article.
+     * 
      * @ORM\Column(type="integer")
      * @var type 
      */
     private $watched;
     
     /**
+     * Marker for deleted article.
+     * <p>NOTE: that comment is not deleted from data base.<br>
+     * Use correct method to do these.
+     * 
      * @ORM\Column(type="boolean", nullable=false)
      */
-    private $is_deleted;
+    private $isDeleted;
     
-     /**
+    /**
+     * Marker for updated article.
+     * 
      * @ORM\Column(type="boolean", nullable=false)
      */
-    private $is_updated;
+    private $isUpdated;
     
     public function __construct() {
         $this->is_deleted = false;
@@ -253,7 +281,7 @@ class Article {
      */
     public function setIsDeleted($isDeleted)
     {
-        $this->is_deleted = $isDeleted;
+        $this->isDeleted = $isDeleted;
 
         return $this;
     }
@@ -265,7 +293,7 @@ class Article {
      */
     public function getIsDeleted()
     {
-        return $this->is_deleted;
+        return $this->isDeleted;
     }
 
     /**
@@ -301,7 +329,7 @@ class Article {
      */
     public function setIsUpdated($isUpdated)
     {
-        $this->is_updated = $isUpdated;
+        $this->isUpdated = $isUpdated;
 
         return $this;
     }
@@ -313,7 +341,7 @@ class Article {
      */
     public function getIsUpdated()
     {
-        return $this->is_updated;
+        return $this->isUpdated;
     }
 
 

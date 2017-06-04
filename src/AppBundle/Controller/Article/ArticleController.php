@@ -6,22 +6,25 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use DateTime;
-use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\Blog\Article;
 use AppBundle\Entity\File\Image;
 use AppBundle\Form\Blog\Article\ArticleType;
 use AppBundle\Form\Blog\Article\EditArticleType;
 
+/**
+ * Articles and news controller.
+ */
 class ArticleController extends Controller {
     
     /**
+     * Renders page with article with setted id parameter.
+     * 
      * @Route("/news/{id}", requirements={"id" = "\d+"}, name="show_news")
      * 
-     * @param type $id
-     * @return type
-     * @throws type
+     * @param integer $id
+     * @return html.twig page
      */
-    public function newsAction($id) {
+    public function showAction($id) {
         $article = $this->getDoctrine()
             ->getRepository(Article::class)
             ->find($id);
@@ -38,11 +41,13 @@ class ArticleController extends Controller {
     }
     
     /**
+     * Renders form page to create new article.<br>After submit redirects to 
+     * main page.
+     * 
      * @Route("/news/create", name="article_create");
      *      
-     * @param type 
-     * @return type
-     * @throws type
+     * @param Request $request 
+     * @return html.twig page
      */
     public function createAction(Request $request) {
         
@@ -80,10 +85,10 @@ class ArticleController extends Controller {
             $article->setCreated($created);
             $article->setUpdated($created); 
             
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($image);
-            $em->persist($article);            
-            $em->flush();
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($image);
+            $manager->persist($article);            
+            $manager->flush();
             
             return $this->redirectToRoute('main');
         }
@@ -95,10 +100,13 @@ class ArticleController extends Controller {
     }   
     
     /**
+     * Renders form page to edit existed article.<br>After submit redirects to
+     * main page.
+     * 
      * @Route("/news/edit/{id}", name="news_edit");
      * 
-     * @param type $id
-     * @return type
+     * @param integer $id
+     * @return html.twig page
      * @throws type
      */
     public function editAction($id, Request $request) {
@@ -127,7 +135,7 @@ class ArticleController extends Controller {
             $article->setUpdated(new DateTime());
             $article->setIsUpdated(true);            
             
-            $em = $doctrine->getManager();            
+            $manager = $doctrine->getManager();            
             
             $file = $article->getImage();
             
@@ -150,14 +158,14 @@ class ArticleController extends Controller {
                 $image->setHeight($height);
                 $image->setWidth($width);                
                 
-                $em->persist($image);
+                $manager->persist($image);
             } 
             
             $article->setImage($image);
                                  
-            $em->persist($article);
+            $manager->persist($article);
             
-            $em->flush();
+            $manager->flush();
             
             return $this->redirectToRoute('main');
         }

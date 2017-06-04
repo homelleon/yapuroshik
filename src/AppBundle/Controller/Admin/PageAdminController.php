@@ -4,12 +4,16 @@ namespace AppBundle\Controller\Admin;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\Blog\Article;
 
+/**
+ * Admin page controller.
+ */
 class PageAdminController extends Controller {
 
     /**
+     * Renders admin main page.
+     * 
      * @Route("/admin", name="admin")
      */
     public function indexAction() {
@@ -17,6 +21,8 @@ class PageAdminController extends Controller {
     }
     
     /**
+     * Renders artcile list page for admins.
+     * 
      * @Route("/admin/articles", name="admin_articles")
      * @return type
      */
@@ -32,20 +38,21 @@ class PageAdminController extends Controller {
     
 
     /**
+     * Deletes article from data base with setted id parameter.
+     * 
      * @Route("/news/delete/{id}", name="article_delete")
      * 
-     * @param type $id
-     * @return type
-     * @throws type
+     * @param integer $id Article's id.
+     * @return article list html.twig page.
      */
     public function deleteAction($id) {
         $article = $this->getDoctrine()
             ->getRepository(Article::class)
             ->find($id);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($article);
-        $em->flush();
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($article);
+        $entityManager->flush();
 
         return $this->redirectToRoute('admin_articles');
     }

@@ -5,17 +5,21 @@ namespace AppBundle\Controller\User;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\User\User;
 use AppBundle\Entity\User\UserAccount;
-use AppBundle\Form\User\UserType;
 use AppBundle\Form\User\UserAccountType;
 use AppBundle\Entity\File\Avatar;
 
+/**
+ * Users account controller.
+ */
 class UserController extends Controller {
 
     /**
+     * Renders page with user and user account data.
+     * 
      * @Route("/user/{username}", name="user")
+     * @param string username
      */
     public function userAction($username) {
         $user = $this->getDoctrine()
@@ -29,7 +33,10 @@ class UserController extends Controller {
     }  
     
     /**
+     * Renders user account edit form page.<br>On submit redirect to user page.
+     * 
      * @Route("/user/{username}/account/edit", name="account_edit")
+     * @param string username
      * @param Request $request
      */
     public function editAccountAction($username, Request $request) {

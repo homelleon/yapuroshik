@@ -6,11 +6,15 @@ namespace AppBundle\Controller\Page;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
+/**
+ * Controller that redirect user to web pages shown at the contacts page.
+ */
 class ContactsRedirectController extends Controller {
 
     /**
+     * Redirects to vkontake web page.
+     * 
      * @Route("/goToVkontakte", name="vk")
      * @return type
      */
@@ -18,16 +22,14 @@ class ContactsRedirectController extends Controller {
         return $this->redirect("https://vk.com/yaproshik");
     }
     
-      /**
+    /**
+     * Redirects to facebook web page.
+     * 
      * @Route("goToFacebook", name="fb")
      * @return type
      */
     public function facebookAction() {
         return $this->redirect("https://www.facebook.com/yaproshik/");
     } 
-    
-    public function getArticleCount() {
-        return $this->article_count;
-    }
 
 }

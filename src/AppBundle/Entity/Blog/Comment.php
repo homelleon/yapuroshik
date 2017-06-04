@@ -7,7 +7,8 @@ use Doctrine\ORM\Mapping as ORM;
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * Description of Comment
+ * Article comment entity.
+ * 
  * @ORM\Entity
  * @ORM\Table(name="comment") 
  * @author homelleon
@@ -15,6 +16,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Comment {
     
     /**
+     * Identification number.
+     * 
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
@@ -22,16 +25,22 @@ class Comment {
     private $id;
     
     /**
+     * Entity object of author of that comment.
+     * 
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User\User")
      */ 
     private $author;
     
     /**
+     * Typed text in comment.
+     * 
      * @ORM\Column(type="text")
      */
     private $content;
     
     /**
+     * Array of users who liked that comment.
+     * 
      * @ORM\ManyToMany(targetEntity="AppBundle\Entity\User\User")
      * @ORM\JoinTable(name="users_id", 
      *  joinColumns={@ORM\JoinColumn(name="comment_id", referencedColumnName="id")},
@@ -41,23 +50,31 @@ class Comment {
     private $liked;
     
     /**
+     * Date when that comment was created.
+     * 
      * @ORM\Column(type="datetime")   
      */
     private $created;
     
     /**
+     * Date when that comment was last time updated.
+     * 
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updated;
     
-     /**
+    /**
+     * Marker for deleted article.
+     * <p>NOTE: that comment is not deleted from data base.<br>
+     * Use correct method to do these.
+     * 
      * @ORM\Column(type="boolean", nullable=false)
      */
-    private $is_deleted;
+    private $isDeleted;
     
     public function __construct() {
         $this->liked = new ArrayCollection();
-        $this->is_deleted = false;
+        $this->isDeleted = false;
     }
 
     /**
@@ -151,7 +168,7 @@ class Comment {
      */
     public function setIsDeleted($isDeleted)
     {
-        $this->is_deleted = $isDeleted;
+        $this->isDeleted = $isDeleted;
 
         return $this;
     }
@@ -163,7 +180,7 @@ class Comment {
      */
     public function getIsDeleted()
     {
-        return $this->is_deleted;
+        return $this->isDeleted;
     }
 
     /**

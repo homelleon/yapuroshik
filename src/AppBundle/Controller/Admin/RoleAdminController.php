@@ -9,16 +9,18 @@ use AppBundle\Entity\User\Role;
 use AppBundle\Form\Role\RoleCreateType;
 
 /**
- * Description of RoleAdminController
+ * Role controller for admin page.
  *
  * @author homelleon
  */
 class RoleAdminController extends Controller  {
     
-     /**
+    /**
+     * Renders page with form to create new role.
+     * 
      * @Route("/admin/roles/create", name="roles_create")
      */
-    public function createRoleAction(Request $request) {
+    public function createAction(Request $request) {
         $role = new Role();
         $form = $this->createForm(RoleCreateType::class, $role);
         $form->handleRequest($request);
@@ -27,9 +29,9 @@ class RoleAdminController extends Controller  {
                       
             $role = $form->getData();                 
             
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($role);           
-            $em->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($role);           
+            $entityManager->flush();
             
             return $this->redirectToRoute('roles');
         }
@@ -41,18 +43,20 @@ class RoleAdminController extends Controller  {
     }
     
     /**
+     * Deletes role with setted id parameter and redirects to role list page. 
+     * 
      * @Route("/admin/roles/delete/{id}", name="role_delete")
-     * @param type $id
+     * @param integer $id Role's id
      */
-    public function removeRoleAction($id) {
+    public function deleteAction($id) {
         $doctrine = $this->getDoctrine();
         $role = $doctrine
             ->getRepository(Role::class)
             ->find($id);
         
-        $em = $doctrine->getManager();
-        $em->remove($role);
-        $em->flush();
+        $entityManager = $doctrine->getManager();
+        $entityManager->remove($role);
+        $entityManager->flush();
 
         return $this->redirectToRoute('roles');        
         
@@ -60,9 +64,11 @@ class RoleAdminController extends Controller  {
 
 
     /**
+     * Renders page with role description with setted name parameter.
+     * 
      * @Route("/admin/role/{name}", name="role")
      */
-    public function showRoleAction($name) {
+    public function showAction($name) {
         $role = $this->getDoctrine()
             ->getRepository(Role::class)
             ->findOneBy([
@@ -76,10 +82,12 @@ class RoleAdminController extends Controller  {
  
     
     /**
+     * Renders page with list of roles.
+     * 
      * @Route("admin/roles", name="roles")
      * @return type
      */
-    public function showAllAction() {
+    public function showListAction() {
         $roles = $this->getDoctrine()
             ->getRepository(Role::class)
             ->findAll();

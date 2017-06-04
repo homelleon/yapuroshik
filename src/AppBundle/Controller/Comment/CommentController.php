@@ -8,22 +8,26 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use DateTime;
-use Symfony\Component\HttpFoundation\Response;
-use AppBundle\Entity\User\User;
 use AppBundle\Entity\Blog\Article;
 use AppBundle\Entity\Blog\Comment;
 use AppBundle\Form\Blog\Comment\CommentType;
 
+/**
+ * Comments controller.
+ */
 class CommentController extends Controller {
     
     /**
+     * Renders form page to create a new comment. 
+     * 
      * @Route("/news/{id}/comment/add", name="comment_add")
-     * @param type $id
+     * 
+     * @param integer $id
      * @param Request $request
-     * @return type
+     * @return html.twig page
      * @throws type
      */
-    public function createCommentAction($id, Request $request) {        
+    public function createAction($id, Request $request) {        
         $doctrine = $this->getDoctrine();
         $article = $doctrine
             ->getRepository(Article::class)
@@ -49,10 +53,10 @@ class CommentController extends Controller {
             $comment->setCreated($created);
             $article->addComment($comment);          
             
-            $em = $doctrine->getManager();
-            $em->persist($comment);
-            $em->persist($article);            
-            $em->flush();
+            $manager = $doctrine->getManager();
+            $manager->persist($comment);
+            $manager->persist($article);            
+            $manager->flush();
             
             return $this->redirectToRoute('show_news',[
                 'id' => $id
