@@ -4,7 +4,7 @@ namespace Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DefaultControllerTest extends WebTestCase
+class MainPageControllerTest extends WebTestCase
 {
     public function testIndex()
     {
@@ -15,8 +15,8 @@ class DefaultControllerTest extends WebTestCase
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         
         $link = $crawler
-            ->filter('a:contains("about")')
-            ->eq(1)
+            ->filter('a:contains("Обо мне")')
+            ->eq(0)
             ->link()
         ;
         
@@ -24,6 +24,7 @@ class DefaultControllerTest extends WebTestCase
         
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
         
-        $this->assertContains('Welcome to Symfony', $crawler->filter('#container h1')->text());
+        $this->assertContains('Здравствуйте, меня зовут Сергей "Япрошик"!', 
+                $crawler->filter('h3')->text());
     }
 }
