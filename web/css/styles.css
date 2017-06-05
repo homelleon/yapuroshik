@@ -183,10 +183,3 @@ a {
 .go-up {
     position: fixed;
 }
-
-.user .avatar img {
-    max-width: 150px;
-    max-height: 150px;
-    justify-content: space-between;
-    border-radius: 2px 2px 2px 2px;
-}
