@@ -63,6 +63,20 @@
    align-items: flex-end;
 }
 
+.column-center {
+    align-self: center;
+}
+
+.sticked-first {
+    display: flex; 
+    justify-content: flex-start;
+}
+
+.sticked-last {
+    display: flex; 
+    justify-content: flex-end;
+}
+
 /*--------symbols----------*/
 .button-comment:after {
     content: "\2709";
