@@ -29,9 +29,9 @@ class RoleAdminController extends Controller  {
                       
             $role = $form->getData();                 
             
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($role);           
-            $entityManager->flush();
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($role);           
+            $manager->flush();
             
             return $this->redirectToRoute('roles');
         }
@@ -54,9 +54,9 @@ class RoleAdminController extends Controller  {
             ->getRepository(Role::class)
             ->find($id);
         
-        $entityManager = $doctrine->getManager();
-        $entityManager->remove($role);
-        $entityManager->flush();
+        $manager = $doctrine->getManager();
+        $manager->remove($role);
+        $manager->flush();
 
         return $this->redirectToRoute('roles');        
         
