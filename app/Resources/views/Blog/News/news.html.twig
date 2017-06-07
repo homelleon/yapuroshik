@@ -82,12 +82,26 @@ Template to show page with one article detailed #}
                     {% set comment_number = 0 %}
                     {% for comment in article.comments %}
                         {% set comment_number = comment_number + 1 %}
-                        <div class="article comment">
-                            <a href="{{ path('user', { 'username': comment.author.username }) }}">
-                                <div class="author">
-                                    #{{ comment_number }} {{ comment.author.username }}
+                        <div class="article comment">                                                                                    
+                            <a href="{{ path('user', { 'username': comment.author.username }) }}">                                
+                                <div class="author row">
+                                    <div class="left row">
+                                        {% if comment.author.userAccount != null %}
+                                            {% if comment.author.userAccount.avatar != null %}
+                                                <div class="avatar">                                    
+                                                    <img src="{{ asset('uploads/users/' ~ app.user.userAccount.avatar.name) }}"></img>
+                                                </div>
+                                            {% endif %}
+                                        {% endif %}                                    
+                                        {{ comment.author.username }}
+                                    </div>
+                                    <div class="right">
+                                        <div class="">
+                                            #{{ comment_number }}
+                                        </div>
+                                    </div>
                                 </div>
-                            </a>
+                            </a>                          
                             <div class="date">
                                 {{ comment.created|date }}
                             </div>

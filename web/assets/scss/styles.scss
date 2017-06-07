@@ -190,9 +190,32 @@ a {
     position: fixed;
 }
 
-.user__avatar img {
-    max-width: 150px;
-    max-height: 150px;
-    justify-content: space-between;
+/*-----comments------*/
+
+.comment .author {
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.comment .avatar {
+    margin-right: 10px;
+}
+
+.comment .avatar img {
+    max-height: 20px;
     border-radius: 2px 2px 2px 2px;
+}
+
+.comment .author .left {
+    widows: 90%;
+}
+
+.comment .author .right {
+    widows: 10%;
+}
+
+.comment .date {
+    font-size: 15px;
+    font-style: italic;
 }
