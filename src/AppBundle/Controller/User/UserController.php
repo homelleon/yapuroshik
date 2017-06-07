@@ -22,8 +22,8 @@ class UserController extends Controller {
      * @param string username
      */
     public function userAction($username) {
-        $user = $this->getDoctrine()
-            ->getRepository(User::class)
+        $doctrine = $this->getDoctrine();
+        $user = $doctrine->getRepository(User::class)
             ->findOneBy([
                 'username' => $username
                     ]);
@@ -41,8 +41,7 @@ class UserController extends Controller {
      */
     public function editAccountAction($username, Request $request) {
         $doctrine = $this->getDoctrine();
-        $user = $doctrine
-                ->getRepository(User::class)
+        $user = $doctrine->getRepository(User::class)
                 ->findOneBy([
                     'username' => $username
                 ]);        
@@ -62,7 +61,7 @@ class UserController extends Controller {
         if($form->isSubmitted() && $form->isValid()) {
             $userAccount = $form->getData();
             
-            $em = $doctrine->getManager();
+            $manager = $doctrine->getManager();
             
             $file = $userAccount->getAvatar();
             if($file != NULL) {
@@ -85,15 +84,15 @@ class UserController extends Controller {
                 $avatar->setWidth($width);
 
                 
-                $em->persist($avatar);
+                $manager->persist($avatar);
             }
             
             $userAccount->setAvatar($avatar);            
             $user->setUserAccount($userAccount);            
             
-            $em->persist($user);
-            $em->persist($userAccount);
-            $em->flush();
+            $manager->persist($user);
+            $manager->persist($userAccount);
+            $manager->flush();
             
             return $this->redirectToRoute('user',[
                 'username' => $username
