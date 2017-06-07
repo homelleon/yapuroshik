@@ -1,14 +1,9 @@
 {# Styles Twig template #}
-{% stylesheets  'vendor/bootstrap/css/bootstrap.min.css'
+{% stylesheets  filter='scssphp' output='css/app.css'
+                'vendor/bootstrap/css/bootstrap.min.css'
                 'vendor/fontawesome/css/font-awesome.min.css'
-                'css/*.css'
-                'sass/*.sass'
-filter='cssrewrite'
-%}
-    <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
-{% endstylesheets %}
-
-{% stylesheets filter="cssrewrite" 'sass/styles.sass'
+                'assets/css/*.css'
+                'assets/scss/*.scss'
 %}
     <link rel="stylesheet" type="text/css" href="{{ asset_url }}" />
 {% endstylesheets %}
