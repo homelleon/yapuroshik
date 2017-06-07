@@ -15,7 +15,7 @@
     border-radius: 2px 2px 2px 2px;
 }
 
-.login .user .avatar img {
+.login .user__avatar img {
     max-height: 100px;
 }
 
