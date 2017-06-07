@@ -9,9 +9,14 @@ use AppBundle\Entity\User\User;
 use AppBundle\Entity\User\Role;
 use AppBundle\Form\User\UserType;
 
+/**
+ * Securtiy contoller for authorisation.
+ */
 class SecurityController extends Controller {
 
     /**
+     * Renders login-in page form.
+     * 
      * @Route("/login", name="login")
      */
     public function loginAction(Request $request) {
@@ -30,6 +35,8 @@ class SecurityController extends Controller {
     } 
     
     /**
+     * Renders registration form page.<br>On submit redirects to the main page.
+     * 
      * @Route("/registration", name="registration")
      */
     public function registrationAction(Request $request) {

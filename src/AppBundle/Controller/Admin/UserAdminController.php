@@ -5,13 +5,12 @@ namespace AppBundle\Controller\Admin;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\Response;
 use AppBundle\Entity\User\User;
 use AppBundle\Entity\User\Role;
 use AppBundle\Form\User\UserType;
 
 /**
- * Description of UserAdminController
+ * User contoller for admin page.
  *
  * @author homelleon
  */
@@ -19,10 +18,12 @@ class UserAdminController extends Controller  {
     
         
     /**
+     * Renders page with users' list.
+     * 
      * @Route("/admin/users", name="admin_users")
-     * @return type
+     * @return twig.html page
      */
-    public function usersAction() {
+    public function showListAction() {
        $users = $this->getDoctrine()
             ->getRepository(User::class)
             ->findAll();
@@ -31,10 +32,13 @@ class UserAdminController extends Controller  {
        ]); 
     }   
     
-     /**
+    /**
+     * Renders page with form to create new user. <br>Redirects to users' list
+     * page.
+     * 
      * @Route("/admin/users/create", name="admin_users_create")
      */
-    public function createUserAction(Request $request) {
+    public function createAction(Request $request) {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
@@ -48,12 +52,12 @@ class UserAdminController extends Controller  {
                     'name' => 'user'
                     ]);            
             
-            $user->setSalt($salt);
+            //$user->setSalt($salt);
             $user->setRole($role);           
             
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($user);       
-            $em->flush();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($user);       
+            $entityManager->flush();
             
             return $this->redirectToRoute('admin_users');
         }
@@ -65,9 +69,12 @@ class UserAdminController extends Controller  {
     }
     
     /**
+     * Deletes user from data base. Redirects to users' list page.
+     * <p>NOTE: Use it cearfully! Can't turn user back after deleting.
+     * 
      * @Route("/admin/users/delete/{id}", name="admin_users_delete")
      */
-    public function deleteUserAction($id) {
+    public function deleteAction($id) {
         $user = $this->getDoctrine()
             ->getRepository(User::class)
             ->find(id);

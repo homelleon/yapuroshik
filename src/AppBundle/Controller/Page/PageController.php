@@ -8,10 +8,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
+/**
+ * Controller for base pages.
+ */
 class PageController extends Controller {
     
     
     /**
+     * Renders "about" page.
+     * 
      * @Route("/about", name="about")
      * @Method("GET")
      */
@@ -20,6 +25,8 @@ class PageController extends Controller {
     }
 
     /**
+     * Renders "photo" page.
+     * 
      * @Route("/photo", name="photo")
      * @Method("GET")
      */
@@ -28,6 +35,8 @@ class PageController extends Controller {
     }
 
     /**
+     * Renders "video" page.
+     * 
      * @Route("/video", name="video")
      * @Method("GET")
      */
@@ -36,6 +45,8 @@ class PageController extends Controller {
     }
 
     /**
+     * Renders "contacts" page.
+     * 
      * @Route("/contacts", name="contacts")
      * @Method("GET")
      */

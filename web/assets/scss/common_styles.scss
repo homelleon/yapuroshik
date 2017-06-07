@@ -1,5 +1,9 @@
 /*--------common class settings---------*/
 
+$white-color: #ffffff;
+$orange-color: #c89600;
+$transparent-red: rgba(125, 75, 0, 0.99);
+
 .row {
     display: flex;
     width: 100%;
@@ -18,7 +22,7 @@
 }
 
 .inner {    
-    background-color: rgba(125, 75, 0, 0.99);
+    background-color: $transparent-red;
     height: auto;
     padding: 6px;
     margin: 5px; 
@@ -28,14 +32,14 @@
 }
 
 .border {
-    background-color: #ffffff;
+    background-color: $white-color; 
     border-radius: 2px 2px 2px 2px;
     padding: 5px;
 }
 
 .inner-orange {
     color: white;
-    background-color: #c89600;
+    background-color: $orange-color;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
     border-radius: 2px 2px 2px 2px;
     text-align: center;
@@ -61,6 +65,20 @@
    display: flex;  
    justify-content: space-between;
    align-items: flex-end;
+}
+
+.column-center {
+    align-self: center;
+}
+
+.sticked-first {
+    display: flex; 
+    justify-content: flex-start;
+}
+
+.sticked-last {
+    display: flex; 
+    justify-content: flex-end;
 }
 
 /*--------symbols----------*/

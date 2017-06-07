@@ -9,7 +9,7 @@
                 {% if app.user.userAccount != null %}
                     {% if app.user.userAccount.avatar != null %}  
                         <div class="user button inner-orange">
-                            <div class="avatar">
+                            <div class="user__avatar">
                                 <img src="{{ asset('uploads/users/' ~ app.user.userAccount.avatar.name) }}"></img>
                             </div>
                         </div>
