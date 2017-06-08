@@ -32,7 +32,8 @@ class MainPageController extends Controller {
                 0
              ); 
                 
-        $pageCount = ($articleCount - 1) / $articlePerPageCount + 1;         
+        $pageCount = ($articleCount - 1) / $articlePerPageCount + 1; 
+        $pages = array();
         if($pageCount <= 1) {
             $pages[] = 0;
         } else {
@@ -57,7 +58,7 @@ class MainPageController extends Controller {
             ->findAll(); 
         $articleCount = count($articles);
         $pageCount = ($articleCount - 1) / $articlePerPageCount + 1;
-        
+        $pages = array();
         if($pageCount != 1) {
             for($i = 1; $i <= $pageCount; $i++){
                 $pages[] = $i;
@@ -108,6 +109,7 @@ class MainPageController extends Controller {
                 array('created' => 'DESC')                
             );
         $articleCount = count($articles);
+        $pages = array();
         $pageCount = ($articleCount - 1) / $articlePerPageCount + 1;       
         if($pageCount != 1) {
             for($i = 1; $i <= $pageCount; $i++){
