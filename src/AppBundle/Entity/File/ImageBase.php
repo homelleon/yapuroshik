@@ -178,27 +178,4 @@ class ImageBase {
         return $this->height;
     }
 
-    /**
-     * Set type
-     *
-     * @param string $type
-     *
-     * @return Image
-     */
-    public function setType($type)
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
-    /**
-     * Get type
-     *
-     * @return string
-     */
-    public function getType()
-    {
-        return $this->type;
-    }
 }

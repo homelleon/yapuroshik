@@ -22,7 +22,7 @@ class ArticleController extends Controller {
      * @Route("/news/{id}", requirements={"id" = "\d+"}, name="show_news")
      * 
      * @param integer $id
-     * @return html.twig page
+     * @return string html.twig page
      */
     public function showAction($id) {
         $article = $this->getDoctrine()
@@ -47,7 +47,7 @@ class ArticleController extends Controller {
      * @Route("/news/create", name="article_create");
      *      
      * @param Request $request 
-     * @return html.twig page
+     * @return string html.twig page
      */
     public function createAction(Request $request) {
         
@@ -106,7 +106,7 @@ class ArticleController extends Controller {
      * @Route("/news/edit/{id}", name="news_edit");
      * 
      * @param integer $id
-     * @return html.twig page
+     * @return string html.twig page
      * @throws type
      */
     public function editAction($id, Request $request) {
