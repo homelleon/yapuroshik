@@ -119,7 +119,7 @@ class MainPageController extends Controller {
                 $offset = 0;
                 $pages = 1;
             }
-            $artciles = $dorctrine->getRepository(Article::class)
+            $articles = $dorctrine->getRepository(Article::class)
                 ->findBy(
                     array($category => $newValue),
                     array('created' => 'DESC'),

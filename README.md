@@ -3,6 +3,7 @@
 [![Code Climate](https://codeclimate.com/github/homelleon/yapuroshik/badges/gpa.svg)](https://codeclimate.com/github/homelleon/yapuroshik)
 [![Test Coverage](https://codeclimate.com/github/homelleon/yapuroshik/badges/coverage.svg)](https://codeclimate.com/github/homelleon/yapuroshik/coverage)
 [![Issue Count](https://codeclimate.com/github/homelleon/yapuroshik/badges/issue_count.svg)](https://codeclimate.com/github/homelleon/yapuroshik)
+
 [![Build Status](https://travis-ci.org/homelleon/yapuroshik.svg?branch=master)](https://travis-ci.org/homelleon/yapuroshik)
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/homelleon/yapuroshik/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/homelleon/yapuroshik/?branch=master)

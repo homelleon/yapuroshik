@@ -81,7 +81,7 @@ Main basic template with preload settings#}
         </div>                    
         {% block javascripts %}
             <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
-            <script src="{{ asset('js/main.js') }}"></script>
+            {% include 'javascripts.html.twig' %}
         {% endblock %}
     </body>
 </html>
