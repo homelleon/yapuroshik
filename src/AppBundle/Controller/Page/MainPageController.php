@@ -20,12 +20,11 @@ class MainPageController extends Controller {
      */
     public function mainAction() {
         $articlePerPageCount = self::ARTICLES_PER_PAGE;
-        $articles = $this->getDoctrine()
-            ->getRepository(Article::class)
+        $doctrine = $this->getDoctrine();
+        $articles = $doctrine->getRepository(Article::class)
             ->findAll(); 
         $articleCount = count($articles);
-        $articles = $this->getDoctrine()
-            ->getRepository(Article::class)
+        $articles = $doctrine->getRepository(Article::class)
             ->findBy(  
                 array(),
                 array('created' => 'DESC'),
@@ -52,10 +51,9 @@ class MainPageController extends Controller {
      * @Route("/page/{page}", name="show_page")
      */
     public function pageAction($page) {
-       
+        $doctrine = $this->getDoctrine();
         $articlePerPageCount = self::ARTICLES_PER_PAGE;
-        $articles = $this->getDoctrine()
-            ->getRepository(Article::class)
+        $articles = $doctrine->getRepository(Article::class)
             ->findAll(); 
         $articleCount = count($articles);
         $pageCount = ($articleCount - 1) / $articlePerPageCount + 1;
@@ -65,8 +63,7 @@ class MainPageController extends Controller {
                 $pages[] = $i;
             }
             $offset = $page * $articlePerPageCount - $articlePerPageCount;
-            $articles = $this->getDoctrine()
-            ->getRepository(Article::class)
+            $articles = $doctrine->getRepository(Article::class)
             ->findBy(
                 array(),
                 array('created' => 'DESC'),
@@ -96,8 +93,7 @@ class MainPageController extends Controller {
         $articlePerPageCount = self::ARTICLES_PER_PAGE;
         
         if($category == 'author') {
-            $user = $dorctrine
-                ->getRepository(User::class)
+            $user = $dorctrine->getRepository(User::class)
                 ->findOneBy([
                     'username' => $value
                 ]);
@@ -106,8 +102,7 @@ class MainPageController extends Controller {
             $newValue = $value;
         }
         
-        $articles = $dorctrine
-            ->getRepository(Article::class)
+        $articles = $dorctrine->getRepository(Article::class)
             ->findBy(
                 array($category => $newValue),
                 array('created' => 'DESC')                
@@ -124,8 +119,7 @@ class MainPageController extends Controller {
                 $offset = 0;
                 $pages = 1;
             }
-            $artciles = $dorctrine
-                ->getRepository(Article::class)
+            $artciles = $dorctrine->getRepository(Article::class)
                 ->findBy(
                     array($category => $newValue),
                     array('created' => 'DESC'),

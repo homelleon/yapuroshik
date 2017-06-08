@@ -163,8 +163,7 @@ class ArticleController extends Controller {
             
             $article->setImage($image);
                                  
-            $manager->persist($article);
-            
+            $manager->persist($article);            
             $manager->flush();
             
             return $this->redirectToRoute('main');

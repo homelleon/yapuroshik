@@ -50,9 +50,9 @@ class PageAdminController extends Controller {
             ->getRepository(Article::class)
             ->find($id);
 
-        $entityManager = $this->getDoctrine()->getManager();
-        $entityManager->remove($article);
-        $entityManager->flush();
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($article);
+        $manager->flush();
 
         return $this->redirectToRoute('admin_articles');
     }

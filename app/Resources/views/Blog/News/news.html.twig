@@ -89,7 +89,7 @@ Template to show page with one article detailed #}
                                         {% if comment.author.userAccount != null %}
                                             {% if comment.author.userAccount.avatar != null %}
                                                 <div class="avatar">                                    
-                                                    <img src="{{ asset('uploads/users/' ~ app.user.userAccount.avatar.name) }}"></img>
+                                                    <img src="{{ asset('uploads/users/' ~ comment.author.userAccount.avatar.name) }}"></img>
                                                 </div>
                                             {% endif %}
                                         {% endif %}                                    

@@ -55,9 +55,9 @@ class UserAdminController extends Controller  {
             //$user->setSalt($salt);
             $user->setRole($role);           
             
-            $entityManager = $this->getDoctrine()->getManager();
-            $entityManager->persist($user);       
-            $entityManager->flush();
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($user);       
+            $manager->flush();
             
             return $this->redirectToRoute('admin_users');
         }
@@ -79,9 +79,9 @@ class UserAdminController extends Controller  {
             ->getRepository(User::class)
             ->find(id);
 
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($user);
-        $em->flush();
+        $manager = $this->getDoctrine()->getManager();
+        $manager->remove($user);
+        $manager->flush();
 
         return $this->redirectToRoute('admin_users');
     }
