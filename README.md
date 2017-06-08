@@ -7,6 +7,7 @@
 [![Build Status](https://travis-ci.org/homelleon/yapuroshik.svg?branch=master)](https://travis-ci.org/homelleon/yapuroshik)
 
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/homelleon/yapuroshik/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/homelleon/yapuroshik/?branch=master)
+[![Build Status](https://scrutinizer-ci.com/g/homelleon/yapuroshik/badges/build.png?b=master)](https://scrutinizer-ci.com/g/homelleon/yapuroshik/build-status/master)
 
 This is a project to create web-page using article-base system with ability to add comments and images and user authorisation. 
 I make this project for studying php language and Symfony framework, but also I'm going to use it in production as my personal traveling blog.
