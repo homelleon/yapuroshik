@@ -73,7 +73,7 @@ a {
 
 .logo-container {
     padding: 5px;
-    display: box;
+    display: block;
     width: auto;
     color: white;
 }
@@ -208,11 +208,11 @@ a {
 }
 
 .comment .author .left {
-    widows: 90%;
+    width: 90%;
 }
 
 .comment .author .right {
-    widows: 10%;
+    width: 10%;
 }
 
 .comment .date {
