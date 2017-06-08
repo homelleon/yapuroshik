@@ -99,7 +99,6 @@ class Article {
      * Number of usrers that had seen that article.
      * 
      * @ORM\Column(type="integer")
-     * @var type 
      */
     private $watched;
     
@@ -120,8 +119,8 @@ class Article {
     private $isUpdated;
     
     public function __construct() {
-        $this->is_deleted = false;
-        $this->is_updated = false;
+        $this->isDeleted = false;
+        $this->isUpdated = false;
         $this->watched = 0;
     }
 
@@ -376,7 +375,7 @@ class Article {
      *
      * @return Article
      */
-    public function addLiked(\AppBundle\Entity\User\User $liked)
+    public function addLiked($liked)
     {
         $this->liked[] = $liked;
 
@@ -388,7 +387,7 @@ class Article {
      *
      * @param \AppBundle\Entity\User\User $liked
      */
-    public function removeLiked(\AppBundle\Entity\User\User $liked)
+    public function removeLiked($liked)
     {
         $this->liked->removeElement($liked);
     }

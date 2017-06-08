@@ -22,7 +22,7 @@ class UserAccount {
     
     /**
     * @ORM\OneToOne(targetEntity="User",mappedBy="userAccount")
-    * @var type     
+    * @var \User     
     */
     private $user;
     
@@ -69,7 +69,7 @@ class UserAccount {
     /**
      * Set user
      *
-     * @param string $user
+     * @param \User $user
      *
      * @return UserAccount
      */
@@ -83,7 +83,7 @@ class UserAccount {
     /**
      * Get user
      *
-     * @return string
+     * @return \User
      */
     public function getUser()
     {

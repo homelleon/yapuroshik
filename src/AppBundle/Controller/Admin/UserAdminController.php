@@ -21,7 +21,7 @@ class UserAdminController extends Controller  {
      * Renders page with users' list.
      * 
      * @Route("/admin/users", name="admin_users")
-     * @return twig.html page
+     * @return string
      */
     public function showListAction() {
        $users = $this->getDoctrine()
@@ -77,7 +77,7 @@ class UserAdminController extends Controller  {
     public function deleteAction($id) {
         $user = $this->getDoctrine()
             ->getRepository(User::class)
-            ->find(id);
+            ->find($id);
 
         $manager = $this->getDoctrine()->getManager();
         $manager->remove($user);

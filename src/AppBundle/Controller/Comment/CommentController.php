@@ -24,7 +24,7 @@ class CommentController extends Controller {
      * 
      * @param integer $id
      * @param Request $request
-     * @return html.twig page
+     * @return string html.twig page
      * @throws type
      */
     public function createAction($id, Request $request) {        
