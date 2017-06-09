@@ -66,23 +66,11 @@ class UserController extends Controller {
             $file = $userAccount->getAvatar();
             if($file != NULL) {
                 
-                $fileName = md5(uniqid()).'.'.$file->guessExtension();
-
-                $file->move(
-                    $this->getParameter('user_directory'),
-                    $fileName
+                $fileConfigurator = $this->get('file_configurator');            
+                $avatar = $fileConfigurator->getAvatar(
+                    $file,
+                    $this->getParameter('user_directory')
                 );
-
-                $height = 800;
-                $width = 600;
-                $format = 'JPG';
-
-                $avatar = new Avatar($fileName);
-                $avatar->setName($fileName);
-                $avatar->setFormat($format);
-                $avatar->setHeight($height);
-                $avatar->setWidth($width);
-
                 
                 $manager->persist($avatar);
             }

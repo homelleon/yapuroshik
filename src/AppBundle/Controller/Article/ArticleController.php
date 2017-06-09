@@ -7,7 +7,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use DateTime;
 use AppBundle\Entity\Blog\Article;
-use AppBundle\Entity\File\Image;
 use AppBundle\Form\Blog\Article\ArticleType;
 use AppBundle\Form\Blog\Article\EditArticleType;
 
@@ -61,24 +60,12 @@ class ArticleController extends Controller {
             $created = new DateTime();
             $author = $this->getUser();
             
-            /** @var Symfony\Component\HttpFoundation\File\UploadedFile $file */
             $file = $article->getImage();
-            $fileName = md5(uniqid()).'.'.$file->guessExtension();
-
-            $file->move(
-                $this->getParameter('image_directory'),
-                $fileName
+            $fileConfigurator = $this->get('file_configurator');            
+            $image = $fileConfigurator->getImage(
+                    $file,
+                    $this->getParameter('image_directory')
             );
-            
-            $height = 800;
-            $width = 600;
-            $format = 'JPG';
-                 
-            $image = new Image($fileName);
-            $image->setName($fileName);
-            $image->setFormat($format);
-            $image->setHeight($height);
-            $image->setWidth($width);
                                                 
             $article->setAuthor($author);
             $article->setImage($image);
@@ -139,24 +126,12 @@ class ArticleController extends Controller {
             
             $file = $article->getImage();
             
-            if($file != NULL) {
-                
-                $fileName = md5(uniqid()).'.'.$file->guessExtension();
-
-                $file->move(
-                    $this->getParameter('image_directory'),
-                    $fileName
-                );
-
-                $height = 800;
-                $width = 600;
-                $format = 'JPG';
-
-                $image = new Image($fileName);
-                $image->setName($fileName);
-                $image->setFormat($format);
-                $image->setHeight($height);
-                $image->setWidth($width);                
+            if($file != NULL) {                
+                $fileConfigurator = $this->get('file_configurator');
+                $image = $fileConfigurator->getImage(
+                    $file,
+                    $this->getParameter('image_directory')
+                );             
                 
                 $manager->persist($image);
             } 
