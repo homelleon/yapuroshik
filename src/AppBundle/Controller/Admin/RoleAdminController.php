@@ -13,8 +13,8 @@ use AppBundle\Form\Role\RoleCreateType;
  *
  * @author homelleon
  */
-class RoleAdminController extends Controller  {
-    
+class RoleAdminController extends Controller {
+
     /**
      * Renders page with form to create new role.
      * 
@@ -26,22 +26,22 @@ class RoleAdminController extends Controller  {
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
-                      
-            $role = $form->getData();                 
-            
+
+            $role = $form->getData();
+
             $manager = $this->getDoctrine()->getManager();
-            $manager->persist($role);           
+            $manager->persist($role);
             $manager->flush();
-            
+
             return $this->redirectToRoute('roles');
         }
-            
+
         return $this->render(':Security\Role:roles_create.html.twig', [
-            'form' => $form->createView(),
-            'role' => $role
+                    'form' => $form->createView(),
+                    'role' => $role
         ]);
     }
-    
+
     /**
      * Deletes role with setted id parameter and redirects to role list page. 
      * 
@@ -51,17 +51,15 @@ class RoleAdminController extends Controller  {
     public function deleteAction($id) {
         $doctrine = $this->getDoctrine();
         $role = $doctrine
-            ->getRepository(Role::class)
-            ->find($id);
-        
+                ->getRepository(Role::class)
+                ->find($id);
+
         $manager = $doctrine->getManager();
         $manager->remove($role);
         $manager->flush();
 
-        return $this->redirectToRoute('roles');        
-        
+        return $this->redirectToRoute('roles');
     }
-
 
     /**
      * Renders page with role description with setted name parameter.
@@ -70,17 +68,16 @@ class RoleAdminController extends Controller  {
      */
     public function showAction($name) {
         $role = $this->getDoctrine()
-            ->getRepository(Role::class)
-            ->findOneBy([
-                'name' => $name
-            ]);  
-            
+                ->getRepository(Role::class)
+                ->findOneBy([
+            'name' => $name
+        ]);
+
         return $this->render(':Security\Role:role.html.twig', [
-            'role' => $role
+                    'role' => $role
         ]);
     }
- 
-    
+
     /**
      * Renders page with list of roles.
      * 
@@ -89,11 +86,12 @@ class RoleAdminController extends Controller  {
      */
     public function showListAction() {
         $roles = $this->getDoctrine()
-            ->getRepository(Role::class)
-            ->findAll();
-        
+                ->getRepository(Role::class)
+                ->findAll();
+
         return $this->render(':Security\Role:roles.html.twig', [
-            'roles' => $roles
+                    'roles' => $roles
         ]);
     }
+
 }

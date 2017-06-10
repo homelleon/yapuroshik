@@ -29,11 +29,11 @@ class SecurityController extends Controller {
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render(':Security\User:login.html.twig', [
-            'last_username' => $lastUsername,
-            'error'         => $error,
+                    'last_username' => $lastUsername,
+                    'error' => $error,
         ]);
-    } 
-    
+    }
+
     /**
      * Renders registration form page.<br>On submit redirects to the main page.
      * 
@@ -43,29 +43,29 @@ class SecurityController extends Controller {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()) {                      
-            $user = $form->getData();             
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            $user = $form->getData();
             $role = $this->getDoctrine()
-                ->getRepository(Role::class)
-                ->findOneBy([
-                    'name' => 'user'
-                ]);
-            
+                    ->getRepository(Role::class)
+                    ->findOneBy([
+                'name' => 'user'
+            ]);
+
             $salt = "a";
             $user->setSalt($salt);
-            $user->setRole($role); 
-            
+            $user->setRole($role);
+
             $manager = $this->getDoctrine()->getManager();
-            $manager->persist($user); 
+            $manager->persist($user);
             $manager->flush();
-            
+
             return $this->redirectToRoute('main');
         }
-            
+
         return $this->render(':Security\User:users_create.html.twig', [
-            'form' => $form->createView(),
-            'user' => $user
+                    'form' => $form->createView(),
+                    'user' => $user
         ]);
     }
 

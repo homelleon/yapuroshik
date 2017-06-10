@@ -13,7 +13,7 @@ use AppBundle\Entity\File\ImageBase;
  * @author Админ
  */
 class Avatar extends ImageBase {
-    
+
     /**
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\User\UserAccount", 
      * mappedBy="avatar")
@@ -27,8 +27,7 @@ class Avatar extends ImageBase {
      *
      * @return Avatar
      */
-    public function setUserAccount($userAccount = null)
-    {
+    public function setUserAccount($userAccount = null) {
         $this->userAccount = $userAccount;
 
         return $this;
@@ -39,8 +38,8 @@ class Avatar extends ImageBase {
      *
      * @return AppBundle\Entity\User\UserAccount
      */
-    public function getUserAccount()
-    {
+    public function getUserAccount() {
         return $this->userAccount;
     }
+
 }

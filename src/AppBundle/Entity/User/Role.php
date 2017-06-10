@@ -12,39 +12,39 @@ use Doctrine\ORM\Mapping as ORM;
  *
  */
 class Role implements RoleInterface {
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @ORM\Column(type="string", unique=true) 
      */
     private $name;
-    
+
     /**
      *
      * @ORM\Column(type="string", unique=true) 
      */
     private $role;
-    
+
     /**
      * @var \Doctine\Common\Collections\ArrayCollection
      * @ORM\OneToMany(targetEntity="User", mappedBy="role")
      */
     private $users;
-    
+
     public function __construct() {
         $this->users = new ArrayCollection();
     }
 
-
     public function getRole() {
         return $this->role;
     }
-    
+
     public function setRole($role) {
         $this->role = $role;
     }
@@ -54,8 +54,7 @@ class Role implements RoleInterface {
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -66,8 +65,7 @@ class Role implements RoleInterface {
      *
      * @return Role
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -78,8 +76,7 @@ class Role implements RoleInterface {
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -90,8 +87,7 @@ class Role implements RoleInterface {
      *
      * @return Role
      */
-    public function addUser(\AppBundle\Entity\User\User $user)
-    {
+    public function addUser(\AppBundle\Entity\User\User $user) {
         $this->users[] = $user;
 
         return $this;
@@ -102,8 +98,7 @@ class Role implements RoleInterface {
      *
      * @param \AppBundle\Entity\User\User $user
      */
-    public function removeUser(\AppBundle\Entity\User\User $user)
-    {
+    public function removeUser(\AppBundle\Entity\User\User $user) {
         $this->users->removeElement($user);
     }
 
@@ -112,8 +107,8 @@ class Role implements RoleInterface {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getUsers()
-    {
+    public function getUsers() {
         return $this->users;
     }
+
 }

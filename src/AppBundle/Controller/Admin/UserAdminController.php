@@ -14,9 +14,8 @@ use AppBundle\Form\User\UserType;
  *
  * @author homelleon
  */
-class UserAdminController extends Controller  {
-    
-        
+class UserAdminController extends Controller {
+
     /**
      * Renders page with users' list.
      * 
@@ -24,14 +23,14 @@ class UserAdminController extends Controller  {
      * @return string
      */
     public function showListAction() {
-       $users = $this->getDoctrine()
-            ->getRepository(User::class)
-            ->findAll();
-       return $this->render(':Security\User:users.html.twig', [
-           'users' => $users
-       ]); 
-    }   
-    
+        $users = $this->getDoctrine()
+                ->getRepository(User::class)
+                ->findAll();
+        return $this->render(':Security\User:users.html.twig', [
+                    'users' => $users
+        ]);
+    }
+
     /**
      * Renders page with form to create new user. <br>Redirects to users' list
      * page.
@@ -42,32 +41,32 @@ class UserAdminController extends Controller  {
         $user = new User();
         $form = $this->createForm(UserType::class, $user);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
-                      
-            $user = $form->getData();             
+
+            $user = $form->getData();
             $role = $this->getDoctrine()
-                ->getRepository(Role::class)
-                ->findOneBy([
-                    'name' => 'user'
-                    ]);            
-            
+                    ->getRepository(Role::class)
+                    ->findOneBy([
+                'name' => 'user'
+            ]);
+
             //$user->setSalt($salt);
-            $user->setRole($role);           
-            
+            $user->setRole($role);
+
             $manager = $this->getDoctrine()->getManager();
-            $manager->persist($user);       
+            $manager->persist($user);
             $manager->flush();
-            
+
             return $this->redirectToRoute('admin_users');
         }
-            
+
         return $this->render(':Security\User:users_create.html.twig', [
-            'form' => $form->createView(),
-            'user' => $user
+                    'form' => $form->createView(),
+                    'user' => $user
         ]);
     }
-    
+
     /**
      * Deletes user from data base. Redirects to users' list page.
      * <p>NOTE: Use it cearfully! Can't turn user back after deleting.
@@ -76,8 +75,8 @@ class UserAdminController extends Controller  {
      */
     public function deleteAction($id) {
         $user = $this->getDoctrine()
-            ->getRepository(User::class)
-            ->find($id);
+                ->getRepository(User::class)
+                ->find($id);
 
         $manager = $this->getDoctrine()->getManager();
         $manager->remove($user);
@@ -85,4 +84,5 @@ class UserAdminController extends Controller  {
 
         return $this->redirectToRoute('admin_users');
     }
+
 }

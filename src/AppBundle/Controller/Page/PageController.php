@@ -12,8 +12,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
  * Controller for base pages.
  */
 class PageController extends Controller {
-    
-    
+
     /**
      * Renders "about" page.
      * 

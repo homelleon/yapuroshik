@@ -3,7 +3,6 @@
 namespace AppBundle\Entity\Blog;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use Doctrine\Common\Collections\ArrayCollection;
 
 /**
@@ -14,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @author homelleon
  */
 class Comment {
-    
+
     /**
      * Identification number.
      * 
@@ -23,21 +22,21 @@ class Comment {
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * Entity object of author of that comment.
      * 
      * @ORM\ManyToOne(targetEntity="AppBundle\Entity\User\User")
-     */ 
+     */
     private $author;
-    
+
     /**
      * Typed text in comment.
      * 
      * @ORM\Column(type="text")
      */
     private $content;
-    
+
     /**
      * Array of users who liked that comment.
      * 
@@ -46,23 +45,23 @@ class Comment {
      *  joinColumns={@ORM\JoinColumn(name="comment_id", referencedColumnName="id")},
      *  inverseJoinColumns={@ORM\JoinColumn(name="user_id", 
      *  referencedColumnName="id",unique=false)})
-     */ 
+     */
     private $liked;
-    
+
     /**
      * Date when that comment was created.
      * 
      * @ORM\Column(type="datetime")   
      */
     private $created;
-    
+
     /**
      * Date when that comment was last time updated.
      * 
      * @ORM\Column(type="datetime", nullable=true)
      */
     private $updated;
-    
+
     /**
      * Marker for deleted article.
      * <p>NOTE: that comment is not deleted from data base.<br>
@@ -71,7 +70,7 @@ class Comment {
      * @ORM\Column(type="boolean", nullable=false)
      */
     private $isDeleted;
-    
+
     public function __construct() {
         $this->liked = new ArrayCollection();
         $this->isDeleted = false;
@@ -82,8 +81,7 @@ class Comment {
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -94,8 +92,7 @@ class Comment {
      *
      * @return Comment
      */
-    public function setContent($content)
-    {
+    public function setContent($content) {
         $this->content = $content;
 
         return $this;
@@ -106,8 +103,7 @@ class Comment {
      *
      * @return string
      */
-    public function getContent()
-    {
+    public function getContent() {
         return $this->content;
     }
 
@@ -118,8 +114,7 @@ class Comment {
      *
      * @return Comment
      */
-    public function setCreated($created)
-    {
+    public function setCreated($created) {
         $this->created = $created;
 
         return $this;
@@ -130,8 +125,7 @@ class Comment {
      *
      * @return \DateTime
      */
-    public function getCreated()
-    {
+    public function getCreated() {
         return $this->created;
     }
 
@@ -142,8 +136,7 @@ class Comment {
      *
      * @return Comment
      */
-    public function setUpdated($updated)
-    {
+    public function setUpdated($updated) {
         $this->updated = $updated;
 
         return $this;
@@ -154,8 +147,7 @@ class Comment {
      *
      * @return \DateTime
      */
-    public function getUpdated()
-    {
+    public function getUpdated() {
         return $this->updated;
     }
 
@@ -166,8 +158,7 @@ class Comment {
      *
      * @return Comment
      */
-    public function setIsDeleted($isDeleted)
-    {
+    public function setIsDeleted($isDeleted) {
         $this->isDeleted = $isDeleted;
 
         return $this;
@@ -178,8 +169,7 @@ class Comment {
      *
      * @return boolean
      */
-    public function getIsDeleted()
-    {
+    public function getIsDeleted() {
         return $this->isDeleted;
     }
 
@@ -190,8 +180,7 @@ class Comment {
      *
      * @return Comment
      */
-    public function setAuthor($author = null)
-    {
+    public function setAuthor($author = null) {
         $this->author = $author;
 
         return $this;
@@ -202,8 +191,7 @@ class Comment {
      *
      * @return AppBundle\Entity\User\User
      */
-    public function getAuthor()
-    {
+    public function getAuthor() {
         return $this->author;
     }
 
@@ -214,8 +202,7 @@ class Comment {
      *
      * @return Comment
      */
-    public function addLiked(AppBundle\Entity\User\User $liked)
-    {
+    public function addLiked(AppBundle\Entity\User\User $liked) {
         $this->liked[] = $liked;
 
         return $this;
@@ -226,8 +213,7 @@ class Comment {
      *
      * @param AppBundle\Entity\User\User $liked
      */
-    public function removeLiked(AppBundle\Entity\User\User $liked)
-    {
+    public function removeLiked(AppBundle\Entity\User\User $liked) {
         $this->liked->removeElement($liked);
     }
 
@@ -236,8 +222,8 @@ class Comment {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getLiked()
-    {
+    public function getLiked() {
         return $this->liked;
     }
+
 }

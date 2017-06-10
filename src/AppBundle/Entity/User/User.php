@@ -14,111 +14,106 @@ use Doctrine\ORM\Mapping as ORM;
  * 
  * @author homelleon
  */
-class User implements \Serializable, AdvancedUserInterface  {
-    
+class User implements \Serializable, AdvancedUserInterface {
+
     /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
      * @ORM\Column(type="string", unique=true) 
      */
     private $username;
-    
+
     /**
      * @ORM\Column(type="string", unique=true) 
      */
     private $email;
-    
+
     /**
      * @ORM\Column(type="string", length=100) 
      */
     private $password;
-    
+
     /**
      * @ORM\Column(type="string") 
      */
     private $salt;
-    
+
     /**
      * @ORM\Column(type="datetime") 
      */
     private $created;
-    
-     /**
+
+    /**
      * @ORM\Column(type="datetime") 
      */
-    private $updated;  
-    
+    private $updated;
+
     /**
      * @ORM\Column(type="boolean", nullable=false)
      */
     private $isActive;
- 
-    
-     /**
+
+    /**
      *
      * @ORM\ManyToOne(targetEntity="Role",inversedBy="users")
      * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
      */
     private $role;
-    
+
     /**
      * @ORM\OneToOne(targetEntity="UserAccount",inversedBy="user")
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id")
      * @var type     
      */
-    private $userAccount;  
-    
+    private $userAccount;
+
     public function __construct() {
         $this->role = 'ROLE_USER';
         $this->created = new \DateTime();
         $this->updated = new \DateTime();
         $this->isActive = true;
         $this->salt = "a";
-    }   
-    
-     public function isAccountNonExpired()
-    {
+    }
+
+    public function isAccountNonExpired() {
         return true;
     }
 
-    public function isAccountNonLocked()
-    {
+    public function isAccountNonLocked() {
         return true;
     }
 
-    public function isCredentialsNonExpired()
-    {
+    public function isCredentialsNonExpired() {
         return true;
     }
 
-    public function isEnabled()
-    {
+    public function isEnabled() {
         return $this->isActive;
     }
-    
+
     public function serialize() {
         return serialize([
             $this->id,
             $this->username,
             $this->password,
             $this->isActive
-            ]);
+        ]);
     }
-    
+
     public function unserialize($serialized) {
         list(
-            $this->id,
-            $this->username,
-            $this->password,
-            $this->isActive
-        ) = unserialize($serialized);
+                $this->id,
+                $this->username,
+                $this->password,
+                $this->isActive
+                ) = unserialize($serialized);
     }
-    
+
     public function getRoles() {
         return [$this->role->getRole()];
     }
@@ -126,31 +121,29 @@ class User implements \Serializable, AdvancedUserInterface  {
     public function getRole() {
         return $this->role;
     }
-    
+
     public function getPassword() {
         return $this->password;
     }
-    
+
     public function getSalt() {
         return null;
     }
-    
+
     public function getUsername() {
         return $this->username;
-    }  
-    
+    }
+
     public function eraseCredentials() {
         
     }
-    
 
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -161,8 +154,7 @@ class User implements \Serializable, AdvancedUserInterface  {
      *
      * @return User
      */
-    public function setUsername($username)
-    {
+    public function setUsername($username) {
         $this->username = $username;
 
         return $this;
@@ -175,8 +167,7 @@ class User implements \Serializable, AdvancedUserInterface  {
      *
      * @return User
      */
-    public function setEmail($email)
-    {
+    public function setEmail($email) {
         $this->email = $email;
 
         return $this;
@@ -187,8 +178,7 @@ class User implements \Serializable, AdvancedUserInterface  {
      *
      * @return string
      */
-    public function getEmail()
-    {
+    public function getEmail() {
         return $this->email;
     }
 
@@ -199,8 +189,7 @@ class User implements \Serializable, AdvancedUserInterface  {
      *
      * @return User
      */
-    public function setPassword($password)
-    {
+    public function setPassword($password) {
         $this->password = $password;
 
         return $this;
@@ -213,8 +202,7 @@ class User implements \Serializable, AdvancedUserInterface  {
      *
      * @return User
      */
-    public function setSalt($salt)
-    {
+    public function setSalt($salt) {
         $this->salt = $salt;
 
         return $this;
@@ -227,8 +215,7 @@ class User implements \Serializable, AdvancedUserInterface  {
      *
      * @return User
      */
-    public function setCreated(\DateTime $created)
-    {
+    public function setCreated(\DateTime $created) {
         $this->created = $created;
 
         return $this;
@@ -239,8 +226,7 @@ class User implements \Serializable, AdvancedUserInterface  {
      *
      * @return \DateTime
      */
-    public function getCreated()
-    {
+    public function getCreated() {
         return $this->created;
     }
 
@@ -251,8 +237,7 @@ class User implements \Serializable, AdvancedUserInterface  {
      *
      * @return User
      */
-    public function setUpdated(\DateTime $updated)
-    {
+    public function setUpdated(\DateTime $updated) {
         $this->updated = $updated;
 
         return $this;
@@ -263,11 +248,9 @@ class User implements \Serializable, AdvancedUserInterface  {
      *
      * @return \DateTime
      */
-    public function getUpdated()
-    {
+    public function getUpdated() {
         return $this->updated;
     }
-
 
     /**
      * Set userAccount
@@ -276,8 +259,7 @@ class User implements \Serializable, AdvancedUserInterface  {
      *
      * @return User
      */
-    public function setUserAccount(\AppBundle\Entity\User\UserAccount $userAccount = null)
-    {
+    public function setUserAccount(\AppBundle\Entity\User\UserAccount $userAccount = null) {
         $this->userAccount = $userAccount;
 
         return $this;
@@ -288,11 +270,9 @@ class User implements \Serializable, AdvancedUserInterface  {
      *
      * @return \AppBundle\Entity\User\UserAccount
      */
-    public function getUserAccount()
-    {
+    public function getUserAccount() {
         return $this->userAccount;
     }
-
 
     /**
      * Set isActive
@@ -301,8 +281,7 @@ class User implements \Serializable, AdvancedUserInterface  {
      *
      * @return User
      */
-    public function setIsActive($isActive)
-    {
+    public function setIsActive($isActive) {
         $this->isActive = $isActive;
 
         return $this;
@@ -313,8 +292,7 @@ class User implements \Serializable, AdvancedUserInterface  {
      *
      * @return boolean
      */
-    public function getIsActive()
-    {
+    public function getIsActive() {
         return $this->isActive;
     }
 
@@ -325,10 +303,10 @@ class User implements \Serializable, AdvancedUserInterface  {
      *
      * @return User
      */
-    public function setRole(\AppBundle\Entity\User\Role $role = null)
-    {
+    public function setRole(\AppBundle\Entity\User\Role $role = null) {
         $this->role = $role;
 
         return $this;
     }
+
 }

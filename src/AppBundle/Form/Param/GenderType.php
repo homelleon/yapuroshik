@@ -7,11 +7,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 /**
- * Description of GenderType
+ * Choice box form for choosing gender.
  *
  * @author Админ
  */
 class GenderType extends AbstractType {
+
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults([
             'choices' => [
@@ -20,8 +21,9 @@ class GenderType extends AbstractType {
             ]
         ]);
     }
-    
+
     public function getParent() {
         return ChoiceType::class;
     }
+
 }

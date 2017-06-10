@@ -9,23 +9,22 @@ use AppBundle\Entity\File\Image;
 /**
  * Images controller.
  */
-class ImageController extends Controller
-{
+class ImageController extends Controller {
+
     /**
      * Renders page with image with setted id parameter.
      * 
      * @Route("/image/{id}")
      */
-    public function showAction($id)
-    {
+    public function showAction($id) {
         $doctrine = $this->getDoctrine();
         $image = $doctrine
-            ->getRepository(Image::class)
-            ->find($id);
-        
-        return $this->render(':File/Image:index.html.twig',[
-            'image' => $image
+                ->getRepository(Image::class)
+                ->find($id);
+
+        return $this->render(':File/Image:index.html.twig', [
+                    'image' => $image
         ]);
     }
-    
+
 }

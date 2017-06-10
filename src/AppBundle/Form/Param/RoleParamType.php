@@ -7,11 +7,12 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 /**
- * Description of RoleType
+ * Choice box form for choosing role.
  *
  * @author Админ
  */
 class RoleParamType extends AbstractType {
+
     public function configureOptions(OptionsResolver $resolver) {
         $resolver->setDefaults([
             'choices' => [
@@ -22,8 +23,9 @@ class RoleParamType extends AbstractType {
             ]
         ]);
     }
-    
+
     public function getParent() {
         return ChoiceType::class;
     }
+
 }

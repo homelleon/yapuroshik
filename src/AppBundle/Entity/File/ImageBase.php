@@ -11,29 +11,29 @@ use Doctrine\ORM\Mapping as ORM;
  * @author Админ
  */
 class ImageBase {
-     
-    /**       
+
+    /**
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     protected $id;
-    
+
     /**
      * @ORM\Column(type="string", length=100)
      */
     protected $name;
-    
+
     /**
      * @ORM\Column(type="string", length=4)
      */
     protected $format;
-    
+
     /**
      * @ORM\Column(type="string", length=100)
      */
     protected $path;
-    
+
     public function __construct($path) {
         $this->setPath($path);
     }
@@ -43,8 +43,7 @@ class ImageBase {
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -55,8 +54,7 @@ class ImageBase {
      *
      * @return Image
      */
-    public function setName($name)
-    {
+    public function setName($name) {
         $this->name = $name;
 
         return $this;
@@ -67,8 +65,7 @@ class ImageBase {
      *
      * @return string
      */
-    public function getName()
-    {
+    public function getName() {
         return $this->name;
     }
 
@@ -79,8 +76,7 @@ class ImageBase {
      *
      * @return Image
      */
-    public function setFormat($format)
-    {
+    public function setFormat($format) {
         $this->format = $format;
 
         return $this;
@@ -91,8 +87,7 @@ class ImageBase {
      *
      * @return string
      */
-    public function getFormat()
-    {
+    public function getFormat() {
         return $this->format;
     }
 
@@ -103,8 +98,7 @@ class ImageBase {
      *
      * @return Image
      */
-    public function setPath($path)
-    {
+    public function setPath($path) {
         $this->path = $path;
 
         return $this;
@@ -115,8 +109,8 @@ class ImageBase {
      *
      * @return string
      */
-    public function getPath()
-    {
+    public function getPath() {
         return $this->path;
     }
+
 }

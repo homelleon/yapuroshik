@@ -16,7 +16,7 @@ use AppBundle\Form\Blog\Comment\CommentType;
  * Comments controller.
  */
 class CommentController extends Controller {
-    
+
     /**
      * Renders form page to create a new comment. 
      * 
@@ -27,23 +27,23 @@ class CommentController extends Controller {
      * @return string html.twig page
      * @throws type
      */
-    public function createAction($id, Request $request) {        
+    public function createAction($id, Request $request) {
         $doctrine = $this->getDoctrine();
         $article = $doctrine
-            ->getRepository(Article::class)
-            ->find($id);
-        
+                ->getRepository(Article::class)
+                ->find($id);
+
         if (!$article) {
             throw $this->createNotFoundException(
-                'No article found for id ' . $id
+                    'No article found for id ' . $id
             );
         }
-        
+
         $comment = new Comment();
-        
+
         $form = $this->createForm(CommentType::class, $comment);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $comment = $form->getData();
             $created = new DateTime();
@@ -51,22 +51,22 @@ class CommentController extends Controller {
 
             $comment->setAuthor($author);
             $comment->setCreated($created);
-            $article->addComment($comment);          
-            
+            $article->addComment($comment);
+
             $manager = $doctrine->getManager();
             $manager->persist($comment);
-            $manager->persist($article);            
+            $manager->persist($article);
             $manager->flush();
-            
-            return $this->redirectToRoute('show_news',[
-                'id' => $id
+
+            return $this->redirectToRoute('show_news', [
+                        'id' => $id
             ]);
         }
-        
+
         return $this->render(':Blog\News:comment_add.html.twig', [
-            'form' => $form->createView(),
-            'article' => $article
+                    'form' => $form->createView(),
+                    'article' => $article
         ]);
     }
-    
+
 }

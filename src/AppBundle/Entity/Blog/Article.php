@@ -197,8 +197,7 @@ class Article {
      * @param $image
      * 
      */
-    public function setImage($image) 
-    {
+    public function setImage($image = null) {
         $this->image = $image;
     }
 
@@ -207,8 +206,7 @@ class Article {
      *
      * @return \AppBundle\Entity\File\Image
      */
-    public function getImage() 
-    {
+    public function getImage() {
         return $this->image;
     }
 

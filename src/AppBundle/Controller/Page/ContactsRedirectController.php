@@ -21,7 +21,7 @@ class ContactsRedirectController extends Controller {
     public function vkAction() {
         return $this->redirect("https://vk.com/yaproshik");
     }
-    
+
     /**
      * Redirects to facebook web page.
      * 
@@ -30,6 +30,6 @@ class ContactsRedirectController extends Controller {
      */
     public function facebookAction() {
         return $this->redirect("https://www.facebook.com/yaproshik/");
-    } 
+    }
 
 }

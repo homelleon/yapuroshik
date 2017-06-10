@@ -23,14 +23,14 @@ class UserController extends Controller {
     public function userAction($username) {
         $doctrine = $this->getDoctrine();
         $user = $doctrine->getRepository(User::class)
-            ->findOneBy([
-                'username' => $username
-                    ]);
-        return $this->render(':User:user.html.twig', [
-            'user' => $user
+                ->findOneBy([
+            'username' => $username
         ]);
-    }  
-    
+        return $this->render(':User:user.html.twig', [
+                    'user' => $user
+        ]);
+    }
+
     /**
      * Renders user account edit form page.<br>On submit redirect to user page.
      * 
@@ -42,53 +42,51 @@ class UserController extends Controller {
         $doctrine = $this->getDoctrine();
         $user = $doctrine->getRepository(User::class)
                 ->findOneBy([
-                    'username' => $username
-                ]);        
-        if(!$this->isGranted('ROLE_MODERATOR')) {
-            if(($this->getUser() != $user)) {
+            'username' => $username
+        ]);
+        if (!$this->isGranted('ROLE_MODERATOR')) {
+            if (($this->getUser() != $user)) {
                 throw $this->createAccessDeniedException('You have no permission to edit other user profile!');
             }
         }
         $userAccount = $user->getUserAccount();
-        if(!$userAccount) {
+        if (!$userAccount) {
             $userAccount = new UserAccount();
         }
-        
+
         $avatar = $userAccount->getAvatar();
-        $form = $this->createForm(UserAccountType::class, $userAccount);       
+        $form = $this->createForm(UserAccountType::class, $userAccount);
         $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
             $userAccount = $form->getData();
-            
+
             $manager = $doctrine->getManager();
-            
+
             $file = $userAccount->getAvatar();
-            if($file != NULL) {
-                $fileConfigurator = $this->get('file_configurator');            
+            if ($file != NULL) {
+                $fileConfigurator = $this->get('file_configurator');
                 $avatar = $fileConfigurator->getAvatar(
-                    $file,
-                    $this->getParameter('user_directory')
+                        $file, $this->getParameter('user_directory')
                 );
-                
+
                 $manager->persist($avatar);
             }
-            
-            $userAccount->setAvatar($avatar);            
-            $user->setUserAccount($userAccount);            
-            
+
+            $userAccount->setAvatar($avatar);
+            $user->setUserAccount($userAccount);
+
             $manager->persist($user);
             $manager->persist($userAccount);
             $manager->flush();
-            
-            return $this->redirectToRoute('user',[
-                'username' => $username
+
+            return $this->redirectToRoute('user', [
+                        'username' => $username
             ]);
         }
         return $this->render(':User:account_create.html.twig', [
-            'form' => $form->createView(),
-            'user' => $user
+                    'form' => $form->createView(),
+                    'user' => $user
         ]);
     }
-    
 
 }

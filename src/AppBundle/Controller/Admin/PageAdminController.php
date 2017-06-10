@@ -19,7 +19,7 @@ class PageAdminController extends Controller {
     public function indexAction() {
         return $this->render(':Security\Admin:index.html.twig');
     }
-    
+
     /**
      * Renders artcile list page for admins.
      * 
@@ -28,14 +28,12 @@ class PageAdminController extends Controller {
      */
     public function articlesAction() {
         $articles = $this->getDoctrine()
-            ->getRepository(Article::class)
-            ->findAll();
-       return $this->render(':Security\Admin:articles.html.twig', [
-           'articles' => $articles
-       ]); 
+                ->getRepository(Article::class)
+                ->findAll();
+        return $this->render(':Security\Admin:articles.html.twig', [
+                    'articles' => $articles
+        ]);
     }
-    
-    
 
     /**
      * Deletes article from data base with setted id parameter.
@@ -47,8 +45,8 @@ class PageAdminController extends Controller {
      */
     public function deleteAction($id) {
         $article = $this->getDoctrine()
-            ->getRepository(Article::class)
-            ->find($id);
+                ->getRepository(Article::class)
+                ->find($id);
 
         $manager = $this->getDoctrine()->getManager();
         $manager->remove($article);

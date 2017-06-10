@@ -14,7 +14,7 @@ use AppBundle\Form\Blog\Article\EditArticleType;
  * Articles and news controller.
  */
 class ArticleController extends Controller {
-    
+
     /**
      * Renders page with article with setted id parameter.
      * 
@@ -25,20 +25,20 @@ class ArticleController extends Controller {
      */
     public function showAction($id) {
         $article = $this->getDoctrine()
-            ->getRepository(Article::class)
-            ->find($id);
+                ->getRepository(Article::class)
+                ->find($id);
 
         if (!$article) {
             throw $this->createNotFoundException(
-                'No article found for id ' . $id
+                    'No article found for id ' . $id
             );
         }
 
         return $this->render(':Blog\News:news.html.twig', [
-                'article' => $article
+                    'article' => $article
         ]);
     }
-    
+
     /**
      * Renders form page to create new article.<br>After submit redirects to 
      * main page.
@@ -49,43 +49,42 @@ class ArticleController extends Controller {
      * @return string html.twig page
      */
     public function createAction(Request $request) {
-        
+
         $article = new Article();
         $form = $this->createForm(ArticleType::class, $article);
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
-                      
-            $article = $form->getData(); 
+
+            $article = $form->getData();
             $created = new DateTime();
             $author = $this->getUser();
-            
+
             $file = $article->getImage();
-            $fileConfigurator = $this->get('file_configurator');            
+            $fileConfigurator = $this->get('file_configurator');
             $image = $fileConfigurator->getImage(
-                    $file,
-                    $this->getParameter('image_directory')
+                    $file, $this->getParameter('image_directory')
             );
-                                                
+
             $article->setAuthor($author);
             $article->setImage($image);
             $article->setCreated($created);
-            $article->setUpdated($created); 
-            
+            $article->setUpdated($created);
+
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($image);
-            $manager->persist($article);            
+            $manager->persist($article);
             $manager->flush();
-            
+
             return $this->redirectToRoute('main');
         }
-            
+
         return $this->render(':Blog\News:news_create.html.twig', [
-            'form' => $form->createView(),
-            'article' => $article
+                    'form' => $form->createView(),
+                    'article' => $article
         ]);
-    }   
-    
+    }
+
     /**
      * Renders form page to edit existed article.<br>After submit redirects to
      * main page.
@@ -98,55 +97,55 @@ class ArticleController extends Controller {
      */
     public function editAction($id, Request $request) {
         $doctrine = $this->getDoctrine();
-        
+
         $article = $doctrine
-            ->getRepository(Article::class)
-            ->find($id);
-        
-        if($this->getUser() != $article->getAuthor()) {
+                ->getRepository(Article::class)
+                ->find($id);
+
+        if ($this->getUser() != $article->getAuthor()) {
             throw $this->createAccessDeniedException('You are not permitted to edit this article!');
         }
         if (!$article) {
             throw $this->createNotFoundException(
-                'No article found for id ' . $id
+                    'No article found for id ' . $id
             );
-        }        
-        
+        }
+
         $image = $article->getImage();
-        $form = $this->createForm(EditArticleType::class, $article); ;        
+        $form = $this->createForm(EditArticleType::class, $article);
+        ;
         $form->handleRequest($request);
-        
+
         if ($form->isSubmitted() && $form->isValid()) {
             $article = $form->getData();
-            
+
             $article->setUpdated(new DateTime());
-            $article->setIsUpdated(true);            
-            
-            $manager = $doctrine->getManager();            
-            
+            $article->setIsUpdated(true);
+
+            $manager = $doctrine->getManager();
+
             $file = $article->getImage();
-            if($file != NULL) {
+            if ($file != NULL) {
                 $fileConfigurator = $this->get('file_configurator');
                 $image = $fileConfigurator->getImage(
-                    $file,
-                    $this->getParameter('image_directory')
-                );             
-                
+                        $file, $this->getParameter('image_directory')
+                );
+
                 $manager->persist($image);
-            } 
-            
+            }
+
             $article->setImage($image);
-                                 
-            $manager->persist($article);            
+
+            $manager->persist($article);
             $manager->flush();
-            
+
             return $this->redirectToRoute('main');
         }
-            
+
         return $this->render(':Blog\News:news_edit.html.twig', [
-            'form' => $form->createView(),
-            'article' => $article
+                    'form' => $form->createView(),
+                    'article' => $article
         ]);
-    }      
-    
+    }
+
 }
