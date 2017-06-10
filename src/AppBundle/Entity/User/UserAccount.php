@@ -5,64 +5,76 @@ namespace AppBundle\Entity\User;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * Description of User
+ * User account that describe user information.
+ * 
  * @ORM\Entity
  * @ORM\Table(name="user_account")
  * 
  * @author homelleon
  */
 class UserAccount {
-   
+
     /**
+     * Indetification number.
+     * 
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
-    
+
     /**
-    * @ORM\OneToOne(targetEntity="User",mappedBy="userAccount")
-    * @var \User     
-    */
+     * User linked to that account.
+     * 
+     * @ORM\OneToOne(targetEntity="User",mappedBy="userAccount")
+     * @var \User     
+     */
     private $user;
-    
+
     /**
+     * User image.
+     * 
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\File\Avatar",
      * inversedBy="userAccount")
      * @ORM\JoinColumn(name="avatar_id", referencedColumnName="id")
      * @var type     
      */
     private $avatar;
-    
+
     /**
-    * @ORM\Column(type="string", nullable=true) 
-    * 
-    */
+     * User's first name.
+     * 
+     * @ORM\Column(type="string", nullable=true)
+     */
     private $firstName;
-    
+
     /**
+     * User's last name.
+     * 
      * @ORM\Column(type="string", nullable=true) 
      */
     private $lastName;
-    
+
     /**
+     * User's day  of birth.
+     * 
      * @ORM\Column(type="datetime", nullable=true) 
      */
     private $birthday;
-    
+
     /**
+     * User's gender.
+     * 
      * @ORM\Column(type="string", nullable=true) 
      */
     private $gender;
-    
 
     /**
      * Get id
      *
      * @return integer
      */
-    public function getId()
-    {
+    public function getId() {
         return $this->id;
     }
 
@@ -73,8 +85,7 @@ class UserAccount {
      *
      * @return UserAccount
      */
-    public function setUser($user)
-    {
+    public function setUser($user) {
         $this->user = $user;
 
         return $this;
@@ -85,8 +96,7 @@ class UserAccount {
      *
      * @return \User
      */
-    public function getUser()
-    {
+    public function getUser() {
         return $this->user;
     }
 
@@ -97,8 +107,7 @@ class UserAccount {
      *
      * @return UserAccount
      */
-    public function setFirstName($firstName)
-    {
+    public function setFirstName($firstName) {
         $this->firstName = $firstName;
 
         return $this;
@@ -109,8 +118,7 @@ class UserAccount {
      *
      * @return string
      */
-    public function getFirstName()
-    {
+    public function getFirstName() {
         return $this->firstName;
     }
 
@@ -121,8 +129,7 @@ class UserAccount {
      *
      * @return UserAccount
      */
-    public function setLastName($lastName)
-    {
+    public function setLastName($lastName) {
         $this->lastName = $lastName;
 
         return $this;
@@ -133,8 +140,7 @@ class UserAccount {
      *
      * @return string
      */
-    public function getLastName()
-    {
+    public function getLastName() {
         return $this->lastName;
     }
 
@@ -145,8 +151,7 @@ class UserAccount {
      *
      * @return UserAccount
      */
-    public function setBirthday($birthday)
-    {
+    public function setBirthday($birthday) {
         $this->birthday = $birthday;
 
         return $this;
@@ -157,8 +162,7 @@ class UserAccount {
      *
      * @return \DateTime
      */
-    public function getBirthday()
-    {
+    public function getBirthday() {
         return $this->birthday;
     }
 
@@ -169,8 +173,7 @@ class UserAccount {
      *
      * @return UserAccount
      */
-    public function setGender($gender)
-    {
+    public function setGender($gender) {
         $this->gender = $gender;
 
         return $this;
@@ -181,8 +184,7 @@ class UserAccount {
      *
      * @return string
      */
-    public function getGender()
-    {
+    public function getGender() {
         return $this->gender;
     }
 
@@ -193,8 +195,7 @@ class UserAccount {
      *
      * @return UserAccount
      */
-    public function setAvatar($avatar = null)
-    {
+    public function setAvatar($avatar = null) {
         $this->avatar = $avatar;
 
         return $this;
@@ -205,8 +206,8 @@ class UserAccount {
      *
      * @return \AppBundle\Entity\File\Avatar
      */
-    public function getAvatar()
-    {
+    public function getAvatar() {
         return $this->avatar;
     }
+
 }

@@ -19,15 +19,11 @@ class FileConfigurator {
     public function getImage($file, $directory) {
             $format = $file->guessExtension();
             $fileName = $this->moveFile($file, $format, $directory);            
-            $height = 800;
-            $width = 600;
-                 
+
             $image = new Image($fileName);
             $image->setName($fileName);
             $image->setFormat($format);
-            $image->setHeight($height);
-            $image->setWidth($width);
-            
+
             return $image;
     }
     
@@ -39,14 +35,11 @@ class FileConfigurator {
     public function getAvatar($file, $directory) {
             $format = $file->guessExtension();
             $fileName = $this->moveFile($file, $format, $directory);
-            $height = 800;
-            $width = 600;                
+
             $avatar = new Avatar($fileName);
             $avatar->setName($fileName);
             $avatar->setFormat($format);
-            $avatar->setHeight($height);
-            $avatar->setWidth($width);
-            
+
             return $avatar;
     }
     

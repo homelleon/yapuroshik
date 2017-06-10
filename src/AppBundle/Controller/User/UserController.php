@@ -8,7 +8,6 @@ use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Entity\User\User;
 use AppBundle\Entity\User\UserAccount;
 use AppBundle\Form\User\UserAccountType;
-use AppBundle\Entity\File\Avatar;
 
 /**
  * Users account controller.
@@ -65,7 +64,6 @@ class UserController extends Controller {
             
             $file = $userAccount->getAvatar();
             if($file != NULL) {
-                
                 $fileConfigurator = $this->get('file_configurator');            
                 $avatar = $fileConfigurator->getAvatar(
                     $file,

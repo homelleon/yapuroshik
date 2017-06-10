@@ -125,8 +125,7 @@ class ArticleController extends Controller {
             $manager = $doctrine->getManager();            
             
             $file = $article->getImage();
-            
-            if($file != NULL) {                
+            if($file != NULL) {
                 $fileConfigurator = $this->get('file_configurator');
                 $image = $fileConfigurator->getImage(
                     $file,

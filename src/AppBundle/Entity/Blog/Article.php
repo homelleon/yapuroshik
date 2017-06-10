@@ -42,13 +42,13 @@ class Article {
      * @ORM\Column(type="string", length=100)
      */
     private $theme;
-    
+
     /**
      * Image chosen for article.
      * 
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\File\Image")
      * @ORM\JoinColumn(name="image_id", referencedColumnName="id")
-     */ 
+     */
     private $image;
 
     /**
@@ -57,7 +57,7 @@ class Article {
      * @ORM\Column(type="text")
      */
     private $description;
-    
+
     /**
      * Article comments array.
      * 
@@ -69,21 +69,21 @@ class Article {
      * @var type 
      */
     private $comments;
-    
+
     /**
      * Date when that article was created.
      * 
      * @ORM\Column(type="datetime")
      */
     private $created;
-    
+
     /**
      * Date when that article was last time updated.
      * 
      * @ORM\Column(type="datetime")
      */
     private $updated;
-    
+
     /**
      * Array of users who liked that article.
      * 
@@ -92,16 +92,16 @@ class Article {
      *  joinColumns={@ORM\JoinColumn(name="article_id", referencedColumnName="id")},
      *  inverseJoinColumns={@ORM\JoinColumn(name="user_id", 
      *  referencedColumnName="id",unique=false)})
-     */ 
+     */
     private $liked;
-    
+
     /**
      * Number of usrers that had seen that article.
      * 
      * @ORM\Column(type="integer")
      */
     private $watched;
-    
+
     /**
      * Marker for deleted article.
      * <p>NOTE: that comment is not deleted from data base.<br>
@@ -110,14 +110,14 @@ class Article {
      * @ORM\Column(type="boolean", nullable=false)
      */
     private $isDeleted;
-    
+
     /**
      * Marker for updated article.
      * 
      * @ORM\Column(type="boolean", nullable=false)
      */
     private $isUpdated;
-    
+
     public function __construct() {
         $this->isDeleted = false;
         $this->isUpdated = false;
@@ -132,16 +132,15 @@ class Article {
     public function getId() {
         return $this->id;
     }
-    
-        /**
+
+    /**
      * Set title
      *
      * @param string $title
      *
      * @return Article
      */
-    public function setTitle($title)
-    {
+    public function setTitle($title) {
         $this->title = $title;
     }
 
@@ -150,8 +149,7 @@ class Article {
      *
      * @return string
      */
-    public function getTitle()
-    {
+    public function getTitle() {
         return $this->title;
     }
 
@@ -196,19 +194,21 @@ class Article {
     /**
      * Set image
      *
-     * @param integer $image
+     * @param $image
      * 
      */
-    public function setImage($image) {
+    public function setImage($image) 
+    {
         $this->image = $image;
     }
 
     /**
      * Get image
      *
-     * @return integer
+     * @return \AppBundle\Entity\File\Image
      */
-    public function getImage() {
+    public function getImage() 
+    {
         return $this->image;
     }
 
@@ -234,18 +234,17 @@ class Article {
     public function getComments() {
         return $this->comments;
     }
-    
+
     public function addComment(\AppBundle\Entity\Blog\Comment $comment) {
         $this->comments[] = $comment;
-    }    
-    
+    }
+
     /**
      * Remove comment
      *
      * @param \AppBundle\Entity\Blog\Comment $comment
      */
-    public function removeComment(\AppBundle\Entity\Blog\Comment $comment)
-    {
+    public function removeComment(\AppBundle\Entity\Blog\Comment $comment) {
         $this->comments->removeElement($comment);
     }
 
@@ -255,8 +254,7 @@ class Article {
      * @param \DateTime $created
      *
      */
-    public function setCreated($created)
-    {
+    public function setCreated($created) {
         $this->created = $created;
     }
 
@@ -265,11 +263,9 @@ class Article {
      *
      * @return \DateTime
      */
-    public function getCreated()
-    {
+    public function getCreated() {
         return $this->created;
     }
-
 
     /**
      * Set isDeleted
@@ -278,8 +274,7 @@ class Article {
      *
      * @return Article
      */
-    public function setIsDeleted($isDeleted)
-    {
+    public function setIsDeleted($isDeleted) {
         $this->isDeleted = $isDeleted;
 
         return $this;
@@ -290,8 +285,7 @@ class Article {
      *
      * @return boolean
      */
-    public function getIsDeleted()
-    {
+    public function getIsDeleted() {
         return $this->isDeleted;
     }
 
@@ -302,8 +296,7 @@ class Article {
      *
      * @return Article
      */
-    public function setUpdated($updated)
-    {
+    public function setUpdated($updated) {
         $this->updated = $updated;
 
         return $this;
@@ -314,8 +307,7 @@ class Article {
      *
      * @return \DateTime
      */
-    public function getUpdated()
-    {
+    public function getUpdated() {
         return $this->updated;
     }
 
@@ -326,8 +318,7 @@ class Article {
      *
      * @return Article
      */
-    public function setIsUpdated($isUpdated)
-    {
+    public function setIsUpdated($isUpdated) {
         $this->isUpdated = $isUpdated;
 
         return $this;
@@ -338,11 +329,9 @@ class Article {
      *
      * @return boolean
      */
-    public function getIsUpdated()
-    {
+    public function getIsUpdated() {
         return $this->isUpdated;
     }
-
 
     /**
      * Set watched
@@ -351,8 +340,7 @@ class Article {
      *
      * @return Article
      */
-    public function setWatched($watched)
-    {
+    public function setWatched($watched) {
         $this->watched = $watched;
 
         return $this;
@@ -363,8 +351,7 @@ class Article {
      *
      * @return integer
      */
-    public function getWatched()
-    {
+    public function getWatched() {
         return $this->watched;
     }
 
@@ -375,8 +362,7 @@ class Article {
      *
      * @return Article
      */
-    public function addLiked($liked)
-    {
+    public function addLiked($liked) {
         $this->liked[] = $liked;
 
         return $this;
@@ -387,8 +373,7 @@ class Article {
      *
      * @param \AppBundle\Entity\User\User $liked
      */
-    public function removeLiked($liked)
-    {
+    public function removeLiked($liked) {
         $this->liked->removeElement($liked);
     }
 
@@ -397,8 +382,8 @@ class Article {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getLiked()
-    {
+    public function getLiked() {
         return $this->liked;
     }
+
 }
