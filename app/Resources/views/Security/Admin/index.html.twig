@@ -1,16 +1,28 @@
-{# Blogger:AdminBundle:Admin:index.html.twig
+{# AppBundle:Security:Admin:index.html.twig
 ============================================
 -----Template to show admin main page------#}
 
-{% extends ':Security:base.html.twig' %}
+{% extends ':Security:admin_base.html.twig' %}
 
 {% block content %}    
     Админ-панель
-    <div class="admin-navigation">
-        <a href="{{ path('main') }}">Вернуться на сайт</a>
-        <a href="{{ path('admin_articles') }}">Администрирование статей</a>
-        <a href="{{ path('admin_users') }}">Администрирование пользователей</a>
-        <a href="{{ path('roles') }}">Администрирование ролей</a>
+    <div class="admin__navigation">
+        <a class="admin__row button button_orange" 
+           href="{{ path('main') }}">
+            Вернуться на сайт
+        </a>
+        <a class="admin__row button button_service" 
+           href="{{ path('admin_articles') }}">
+            Администрирование статей
+        </a>
+        <a class="admin__row button button_service" 
+           href="{{ path('admin_users') }}">
+            Администрирование пользователей
+        </a>
+        <a class="admin__row button button_service"
+           href="{{ path('roles') }}">
+            Администрирование ролей
+        </a>
     </div>    
 {% endblock %}
 

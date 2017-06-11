@@ -1,6 +1,54 @@
+/* color */
+
+$colorMain: #c89600;
+$colorMainUnderside: #ffffff;
+$colorBackground: #ababab;
+$colorCover: rgba(125, 75, 0, 0.99);
+
+$colorFont: black;
+$colorFontFooter: black;
+$colorFontMain: #333333;
+$colorFontLogo: #ffffff;
+$colorCoverFooter: #373737;
+$colorFontCopyright: #7d7d7d;
+$colorFontAttention: #ff0033;
+$colorFontService: blue;
+
+/* import */
+@import "account/account.scss";
+@import "admin/admin.scss";
+@import "admin-list/admin-list.scss";
+@import "article/article.scss";
+@import "button/button.scss";
+@import "common/common.scss";
+@import "comment/comment.scss";
+@import "container/container.scss";
+@import "content/content.scss";
+@import "error/error.scss";
+@import "footer/footer.scss";
+@import "form/form.scss";
+@import "header/header.scss";
+@import "inner/inner.scss";
+@import "logo/logo.scss";
+@import "navigation/navigation.scss";
+@import "page/page.scss";
+@import "sidebar/sidebar.scss";
+@import "user/user.scss";
+
+
+
+
+input {
+    background-color: #ababab;  
+}
+
+textarea {
+    background-color: #ababab; 
+}
+
 /*-----indiviual class settings------*/
 
-$white-color: #ffffff;
+/*$white-color: #ffffff;
 $font-grey-color: #333333;
 $grey-color: #ababab;
 $white-grey-color: #7d7d7d;
@@ -92,14 +140,6 @@ a {
     font-size: 100px;
 }
 
-.navigation {
-    display: flex;
-    align-content: flex-start;
-    margin-top: 5px;
-    padding: 5px;
-    height: auto;
-}
-
 .side-container {
     width: 5px;
     flex-direction: row;
@@ -136,15 +176,8 @@ a {
     display: flex;
     justify-content: space-between;
 }
-.content {
-    float: left;
-    width: 70%;
-}
 
-.sidebar {
-    padding-left: 12px;
-    width: 30%;
-}
+
 
 .sidebar .inner {
     position: fixed;
@@ -152,70 +185,8 @@ a {
     margin-top: 0px;
 }
 
-.footer {
-    background-color: $dark-color;
-    box-shadow: inset 5px 5px 50px rgba(0, 0, 0, 0.5);
-    min-height: 80px;
-    display: block;
-    width: 100%;
-    padding: 10px;
-}
-
-.foot-border {
-    padding: 10px;
-    border: 2px solid black;  
-    display: flex;  
-    justify-content: space-between;
-}
-
-.foot-navigation {
-    text-align: center;
-}
-
-.footer a {
-    color: black;
-    text-decoration: none;
-    border: 2px solid black;
-    padding: 5px;
-    cursor: pointer;
-}
-
-.copyright {
-    color: $white-grey-color;
-    text-align: right;
-    width: 100%;
-}
-
 .go-up {
     position: fixed;
 }
+*/
 
-/*-----comments------*/
-
-.comment .author {
-    width: 100%;
-    justify-content: flex-start;
-    align-items: center;
-}
-
-.comment .avatar {
-    margin-right: 10px;
-}
-
-.comment .avatar img {
-    max-height: 20px;
-    border-radius: 2px 2px 2px 2px;
-}
-
-.comment .author .left {
-    width: 90%;
-}
-
-.comment .author .right {
-    width: 10%;
-}
-
-.comment .date {
-    font-size: 15px;
-    font-style: italic;
-}

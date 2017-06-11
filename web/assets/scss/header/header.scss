@@ -1,0 +1,46 @@
+/* header.scss "header" block */
+
+/* block */
+.header {
+    background: url(/images/wallpaper.JPG) 100% 100% no-repeat;
+    background-size: cover;
+    background-position: top;   
+    padding: 0px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-end;
+    flex-grow: 1;
+    width: 100%;
+}
+
+.header-left {
+    width: 80%;
+}
+
+/* elements */
+.header__row {
+    height: 1%;
+    display: flex;
+    width: 100%;
+}
+
+.header__row:after {
+    visibility: hidden;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.header__title {
+    
+}
+
+.header__logo {
+    
+}
+
+.header__navigation {
+    
+}

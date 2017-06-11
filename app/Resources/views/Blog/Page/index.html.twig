@@ -1,98 +1,90 @@
-{# Blogger:BlogBundle:Page:index.html.twig
+{# AppBundle:Blog:Page:index.html.twig
 ==========================================
------Main page with articles shown-------#}
+-------authorisation information---------#}
+{% extends ":Blog:blog_base.html.twig" %}
 
-{% extends ':Blog:base.html.twig' %}
-
+{# ----->content<------- #}
 {% block content %}
-    <div class="inner">
-        <div class="welcome">
-            {% block sort %}
-                Рад вас приветствовать на моем сайте!
-            {% endblock %}
-            {% if is_granted('ROLE_EDITOR') %}
-                <div class="article-add button-add"><a href=" {{ path('article_create') }}">&#10010;</a></div>
-            {% endif %}
-        </div>
-    </div>
-    {% if (articles|length) >0 %}
-        {% for article in articles %}
-            {% if not article.isDeleted %}
-                <div class="inner">
-                    <div class="border">
-                        <div class="article">
-                            <div class="title">
-                                <a href="{{ path('show_news', { 'id': article.id}) }}">{{ article.title }}</a>
-                            </div>
-                            <div class="head-info">
-                                <a href="{{ path('news_sorted', { 'category': 'theme', 'value': article.theme }) }}">
-                                    <div class="theme button">                                    
-                                        #{{ article.theme }}                                    
-                                    </div>
-                                </a>
-                                <a href="{{ path('user', { 'username': article.author.username }) }}">
-                                    <div class="author button">                                    
-                                        автор: {{ article.author.username }}                                    
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="date">
-                                создано: {{ article.created|date }}
-                            </div>
-                            <a href="{{ path('show_news', { 'id': article.id }) }}">
-                                <div class="image">
-                                    <img src="{{ asset('uploads/images/' ~ article.image.path) }}">
-                                </div>
-                            </a>
-                            <div class="description">
-                                {{ article.description }}
-                            </div>
-                            {% if article.isUpdated %}
-                                <div class="date">
-                                    отредактировано: {{ article.updated|date }}
-                                </div>
-                            {% endif %}
-                        </div>
-                        <div class="article-navigation">
-                            <div>
-                                <a href="{{ path('show_news', { 'id': article.id }) }}">
-                                    <div class="button inner-orange button-detailed">
-                                        подробнее
-                                    </div>
-                                </a>
-                            </div>
-                            <div>
-                            <a href="{{ path('comment_add', { 'id': article.id }) }}">
-                                <div class="button inner-orange button-comment">
-                                    комментировать
-                                </div>
-                            </a>
-                            </div>
-                        </div>
-                    </div>
-                    <hr>
-                </div>
-            {% endif %}
-        {% endfor %}
-    {% else %}
-        <div class="inner">
-            <div class="border">
-                Нет статей!
+    <div class="content">
+        <div class="inner inner_red">
+            <div class="page__welcome inner__border">
+                {% block sort %}
+                    Рад вас приветствовать на моем сайте!
+                {% endblock %}
+                {% if is_granted('ROLE_EDITOR') %}
+                    <a class="button button_add" href=" {{ path('article_create') }}">&#10010;</a>
+                {% endif %}
             </div>
         </div>
-    {% endif %}
-    {% if pages|length > 1 %}
-        {% for page in pages %}
-            <a href="{{ path('show_page', { 'page': page }) }}">{{ page }}</a>
-        {% endfor %}
-    {% endif %}
-{% endblock %}
-{% block sidebar %}
-<div class="sidebar">
-    <div class="inner">
-        <div class="border">        
-            Sidebar
-        </div>
+        {% if (articles|length) >0 %}
+            {% for article in articles %}
+                {% if not article.isDeleted %}
+                    <div class="inner inner_red">
+                        <div class="inner__border">
+                            <div class="article">
+                                <a class="article__row article__title article__title_to-detail" 
+                                   href="{{ path('show_news', { 'id': article.id}) }}">
+                                    {{ article.title }}
+                                </a>
+                                <div class="article__row article__head-info">
+                                    <a class="article__theme button button_orange button_small"
+                                       href="{{ path('news_sorted', { 'category': 'theme', 'value': article.theme }) }}">                                 
+                                        #{{ article.theme }}
+                                    </a>
+                                    <a class="article__author button button_orange button_small" 
+                                       href="{{ path('user', { 'username': article.author.username }) }}">                           
+                                        автор: {{ article.author.username }}
+                                    </a>
+                                </div>
+                                <div class="article__row article__date">
+                                    создано: {{ article.created|date }}
+                                </div>
+                                <a class="article__row article__image-container" href="{{ path('show_news', { 'id': article.id }) }}">
+                                    <img class="article__image" 
+                                         src="{{ asset('uploads/images/' ~ article.image.path) }}">
+                                </a>
+                                <div class="article__row article__description">
+                                    {{ article.description }}
+                                </div>
+                                {% if article.isUpdated %}
+                                    <div class="article__row article__date">
+                                        отредактировано: {{ article.updated|date }}
+                                    </div>
+                                {% endif %}
+                            </div>
+                            <div class="article__row article__navigation">
+                                <div>
+                                    <a class="button button_orange button_to-detail button_small" href="{{ path('show_news', { 'id': article.id }) }}">
+                                        подробнее
+                                    </a>
+                                </div>
+                                <div>
+                                <a class="button button_orange button_to-comment button_small" href="{{ path('comment_add', { 'id': article.id }) }}">
+                                    комментировать
+                                </a>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        {% else %}
+            <div class="inner inner_red">
+                <div class="inner__border">
+                    Нет статей!
+                </div>
+            </div>
+        {% endif %}
+        {% if pages|length > 1 %}
+            {% for page in pages %}
+                <a href="{{ path('show_page', { 'page': page }) }}">{{ page }}</a>
+            {% endfor %}
+        {% endif %}
     </div>
-</div>
+{% endblock %}
+
+{# ----->sidebar<------- #}
+{% block sidebar %}
+    {% include 'sidebar.html.twig' %}
 {% endblock %}

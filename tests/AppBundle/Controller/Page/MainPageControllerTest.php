@@ -13,7 +13,7 @@ class MainPageControllerTest extends WebTestCase {
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
 
-        $this->assertContains('Рад вас приветствовать на моем сайте!', $crawler->filter('div.welcome')->text());
+        $this->assertContains('Рад вас приветствовать на моем сайте!', $crawler->filter('div.page__welcome')->text());
     }
 
 }

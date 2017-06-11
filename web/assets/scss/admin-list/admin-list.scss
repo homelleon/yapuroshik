@@ -1,0 +1,21 @@
+/* admin-list.scss "admin-list" block */
+
+/* block */
+.admin-list {
+    
+}
+/* elemets */
+.admin-list__row {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;    
+}
+
+.admin-list__item {
+    text-decoration: none;
+    color: $colorFontService;
+}
+
+.admin-list__item_red {
+    color: $colorFontAttention;
+}

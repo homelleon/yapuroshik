@@ -1,18 +1,18 @@
-{# Blogger:AdminBundle:base.html.twig
+{# AppBundle:Security:admin_base.html.twig
 =====================================
 -Template for base admin page style-#}
 
-{% extends ':Main:index.html.twig' %}
+{% extends 'base.html.twig' %}
 
 {% block stylesheets %}
     {{ parent() }}
     <link rel="stylesheet" href="{{ asset('css/admin_styles.css') }}">
 {% endblock %}
 {% block body %}
-    <div class='admin-main'>
+    <div class='admin__main'>
         {% block content %}{% endblock %}
     </div>
-    <div class='admin-side'>
+    <div class='admin__side'>
         {%block admin_side %}{% endblock %}
     </div>
 {% endblock %}

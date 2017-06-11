@@ -1,0 +1,30 @@
+/* admin.scss "admin" block */
+
+/* block */
+.admin {
+    
+}
+
+/* elements */
+.admin__main {
+    width: 70%;
+    float: left;
+}
+
+.admin__side {
+    width: 30%;
+    float: left;
+}
+
+.admin__row {
+    display: flex;
+    width: 100%;
+}
+
+.admin__row:after {
+    visibility: hidden;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}

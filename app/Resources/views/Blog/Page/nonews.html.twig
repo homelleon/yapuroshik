@@ -1,8 +1,13 @@
-{# Blogger:BlogBundle:Page:base.html.twig
+{# AppBundle:Blog:Page:base.html.twig
 ========================================
 Template to show pages without articles #}
 
-{% extends ':Blog:base.html.twig' %}
+{% extends ':Blog:blog_base.html.twig' %}
 
-{% block text %}{% endblock %}
-
+{% block content %}
+    <div class="inner inner_red">
+        <div class="inner__border">
+            {% block text %}{% endblock %}
+        </div>
+    </div>
+{% endblock %}

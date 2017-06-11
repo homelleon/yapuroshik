@@ -1,0 +1,30 @@
+/* user.scss "user" block */
+
+/* block */
+.user {
+  display: flex;
+  flex-flow: column;
+  justify-content: flex-end;
+}
+
+/* elements */
+.user__row {
+    height: 1%;
+    display: flex;
+    width: 100%;
+}
+
+.user__row:after {
+    visibility: hidden;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.user__avatar {
+   width: 150px;
+   max-height: 150px;
+   justify-content: space-between;
+   border-radius: 2px 2px 2px 2px;
+}

@@ -1,0 +1,25 @@
+/* navigation.scss */
+
+/* block */
+.navigation {
+    display: flex;
+    align-content: flex-start;
+    flex-wrap: wrap;
+    margin-top: 5px;
+    padding: 5px;
+    height: auto;
+}
+
+/* elemets */
+navigation__row {
+    display: flex;
+    width: 100%;
+}
+
+navigation__row:after {
+    visibility: hidden;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}

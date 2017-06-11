@@ -1,4 +1,4 @@
-{# BlogBundle:News:comment_add.html.twig
+{# AppBundle:Blog:News:comment_add.html.twig
 ========================================
 Template for adding comments in article #}
 
@@ -14,8 +14,8 @@ Template for adding comments in article #}
 
 {% block comment_form %}
     {% if is_granted('ROLE_USER') %}
-        <div class="inner">
-            <div class="border">
+        <div class="inner inner_red">
+            <div class="inner__border">
                 {{ form_start(form) }}
                 {{ form_widget(form) }}
                 {{ form_end(form) }} 

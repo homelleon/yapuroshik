@@ -1,0 +1,40 @@
+{# AppBundle namespace #}
+
+{% block login %}
+    <div class="user">
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}            
+            <a class="button button_orange" 
+               href="{{ path('user', {username: app.user.username}) }}">
+                {% if app.user.userAccount != null %}
+                    {% if app.user.userAccount.avatar != null %}
+                        <img class="user__avatar"
+                            src="{{ asset('uploads/users/' ~ app.user.userAccount.avatar.name) }}"
+                            alt="avatar">
+                    {% else %}
+                        {{ app.user.username }}
+                    {% endif %}                        
+                {% else %}
+                    {{ app.user.username }}
+                {% endif %}
+            </a>           
+        {% else %}
+            {% if is_granted('IS_AUTHENTICATED_ANONYMOUSLY') %}
+            <a class="button button_orange"
+               href="{{ path('login') }}">
+                войти
+            </a>
+            <a class="button button_orange" 
+               href="{{ path('registration') }}">
+                регистрация
+            </a>
+            {% endif %}
+        {% endif %}
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <a class="button button_orange" 
+               href="{{ path('logout') }}">
+                выйти
+            </a>
+        {% endif %}
+    </div>
+{% endblock %}
+  

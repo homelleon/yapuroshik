@@ -1,0 +1,53 @@
+{# --Blogger:Blog:blo_base.html.twig---
+=========================================
+Base template with navigation for pages #}
+
+{% extends 'base.html.twig' %}
+
+{# navigation #}
+{% block navigation %}
+    <div class="navigation">
+        <a class="button button_orange" href="{{ path('main') }}">
+            Главная
+        </a>
+        <a class="button button_orange" id="about" href="{{ path('about') }}">
+            Обо мне
+        </a>
+        <a class="button button_orange" href="{{ path('photo') }}">
+            Фото
+        </a>
+        <a class="button button_orange" href="{{ path('video') }}">
+            Видео
+        </a>
+        <a class="button button_orange" href="{{ path('contacts') }}">
+            Контакты
+        </a>
+    </div>
+{% endblock %}
+
+{# body #}
+{% block body %}    
+    {% block content %}
+        <div class="content">
+            <div class="inner inner_red">
+                <div class="inner__border">
+                    {% block text %}
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}
+
+{# sidebar #}
+{% block sidebar %}{% endblock %}
+{% block footer_navigation %}
+    <div class="footer__navigation">
+        <a class="button button_black" href="{{ path('main') }}">Главная</a>
+        <a class="button button_black" href="{{ path('about') }}">Обо мне</a>
+        <a class="button button_black" href="{{ path('photo') }}">Фото</a>
+        <a class="button button_black" href="{{ path('video') }}">Видео</a>
+        <a class="button button_black" href="{{ path('contacts') }}">Контакты</a>
+    </div>
+{% endblock %}
+                

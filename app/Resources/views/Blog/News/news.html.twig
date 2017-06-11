@@ -1,118 +1,107 @@
-{# ----Blogger:BlogBundle:News:news.html.twig----
+{# ----AppBundle:Blog:News:news.html.twig----
 =================================================
 Template to show page with one article detailed #}
 
-{% extends ':Blog:base.html.twig' %}
+{% extends ':Blog:blog_base.html.twig' %}
 
 {% block content %}
-
     <!-- article -->
-
-    <div class="inner">
-        <div class="border">
-            <div class="space-between">
-                <a href="{{ path('main') }}">
-                    <div class="button inner-orange article-navigation go-back">
-                        Назад
-                    </div>
+    <div class="content">
+        <div class="inner inner_red">
+            <div class="inner__border">
+                <a class="button button_orange button_small button_to-return" href="{{ path('main') }}">                    
+                    Назад
                 </a>
-                <div></div>
-            </div>
-            <div class="article">
-                <div class="title">
-                    {{ article.title }}
-                </div>
-                <div class="head-info">
-                    <a href="{{ path('news_sorted', { 'category': 'theme', 'value': article.theme }) }}">
-                        <div class="theme button">                        
-                            #{{ article.theme }}                        
-                        </div>
-                    </a>
-                    <a href="{{ path('user', { 'username': article.author.username }) }}">
-                        <div class="author button">                        
-                            Автор: {{ article.author.username }}                        
-                        </div>
-                    </a>
-                </div>
-                <div class="date">
-                    создано: {{ article.created|date }}
-                </div>
-                <div class="image">
-                    <img src="{{ asset('uploads/images/' ~ article.image.path) }}">
-                </div>
-                <div class="description">
-                    {{ article.description }}
-                </div>
-                {% if article.isUpdated %}
-                    <div class="date">
-                        отредактировано: {{ article.updated|date }}
+                <div class="article">
+                    <div class="article__row article__title">
+                        {{ article.title }}
                     </div>
-                {% endif %}
-            </div>
-            {% block comment_error %}
-            {% endblock %}
-            <!-- foot navigation -->
-            <div class="article-navigation">
-                {% if (is_granted('ROLE_MODERATOR')) or (app.user == article.author) %}
-                    <a href="{{ path('news_edit',{ 'id': article.id }) }}">
-                        <div class="button inner-orange">
-                            Редактировать &#10000;
+                    <div class="article__row article__head-info">
+                        <a class="article__theme button button_orange button_small"
+                           href="{{ path('news_sorted', { 'category': 'theme', 'value': article.theme }) }}">                       
+                            #{{ article.theme }}
+                        </a>
+                        <a class="article__author button button_orange button_small" 
+                           href="{{ path('user', { 'username': article.author.username }) }}">                      
+                            Автор: {{ article.author.username }}
+                        </a>
+                    </div>
+                    <div class="article__row article__date">
+                        создано: {{ article.created|date }}
+                    </div>
+                    <div class="article__row article__image-container">
+                        <img class="article__image"src="{{ asset('uploads/images/' ~ article.image.path) }}">
+                    </div>
+                    <div class="article__row article__description">
+                        {{ article.description }}
+                    </div>
+                    {% if article.isUpdated %}
+                        <div class="article__row article__date">
+                            отредактировано: {{ article.updated|date }}
                         </div>
-                    </a>
-                {% else %}
-                    <div></div>
-                {% endif %}
-                <a href="{{ path('comment_add', { 'id': article.id }) }}">
-                    <div class="button inner-orange button-comment">
+                    {% endif %}
+                </div>
+                {% block comment_error %}
+                {% endblock %}
+                <!-- foot navigation -->
+                <div class="article__row article__navigation">
+                    {% if (is_granted('ROLE_MODERATOR')) or (app.user == article.author) %}
+                        <a class="button button_orange button_small button_to-edit" href="{{ path('news_edit',{ 'id': article.id }) }}">
+                            редактировать &#10000;
+                        </a>
+                    {% else %}
+                        <div></div>
+                    {% endif %}
+                    <a class="button button_orange button_small button_to-comment" href="{{ path('comment_add', { 'id': article.id }) }}">
                         комментировать
-                    </div>
-                </a>
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <!-- comments -->
+        <!-- comments -->
 
-    {% block comment_form %}
-    {% endblock %}
-    {% block comments %}
-        {% if article.comments!= null %}
-            <div class="inner">
-                <div class="border">
-                    {% set comment_number = 0 %}
-                    {% for comment in article.comments %}
-                        {% set comment_number = comment_number + 1 %}
-                        <div class="article comment">                                                                                    
-                            <a href="{{ path('user', { 'username': comment.author.username }) }}">                                
-                                <div class="author row">
-                                    <div class="left row">
-                                        {% if comment.author.userAccount != null %}
-                                            {% if comment.author.userAccount.avatar != null %}
-                                                <div class="avatar">                                    
-                                                    <img src="{{ asset('uploads/users/' ~ comment.author.userAccount.avatar.name) }}"></img>
-                                                </div>
+        {% block comment_form %}
+        {% endblock %}
+        {% block comments %}
+            {% if article.comments!= null %}
+                <div class="inner inner_red">
+                    <div class="inner__border">
+                        {% set comment_number = 0 %}
+                        {% for comment in article.comments %}
+                            {% set comment_number = comment_number + 1 %}
+                            <div class="comment">                            
+                                <a href="{{ path('user', { 'username': comment.author.username }) }}">
+                                    <div class="comment__head">
+                                        <div class="comment__author">
+                                            {% if comment.author.userAccount != null %}
+                                                {% if comment.author.userAccount.avatar != null %}                                                
+                                                    <img class="comment__avatar" src="{{ asset('uploads/users/' ~ comment.author.userAccount.avatar.name) }}">
+                                                {% endif %}
                                             {% endif %}
-                                        {% endif %}                                    
-                                        {{ comment.author.username }}
-                                    </div>
-                                    <div class="right">
-                                        <div class="">
-                                            #{{ comment_number }}
                                         </div>
+                                        {{ comment.author.username }}
+                                        <div class="comment__number">
+                                            #{{ comment_number }}
+                                        </div>                                    
                                     </div>
+                                </a>                          
+                                <div class="comment__date">
+                                    {{ comment.created|date }}
                                 </div>
-                            </a>                          
-                            <div class="date">
-                                {{ comment.created|date }}
+                                <div class="comment__description">
+                                    {{ comment.content }}
+                                </div>
                             </div>
-                            <div class="description">
-                                {{ comment.content }}
-                            </div>
-                        </div>
-                        <hr>
-                    {% endfor %}
+                            <hr>
+                        {% endfor %}
+                    </div>
                 </div>
-            </div>
-        {% endif %}
-    {% endblock %}
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block sidebar %}
+    {% include 'sidebar.html.twig' %}
 {% endblock %}

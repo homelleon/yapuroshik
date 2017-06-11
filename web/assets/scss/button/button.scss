@@ -1,0 +1,87 @@
+/* button.scss "button" block */
+
+/* block */
+.button {
+    border-radius: 2px 2px 2px 2px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: auto;
+    box-sizing: content-box;
+    padding: 5px 10px;
+    margin: 5px;
+    text-align: center;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+/* button elemets */
+
+/* block modificators */
+.button_orange {
+    background-color: $colorMain;    
+    color: $colorMainUnderside;  
+}
+
+.button_orange:hover {
+    background-color: blue;
+    color: #cc0033;
+}
+
+.button_black {
+    border-radius: 0 0 0 0;
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.5);
+    padding: 3px;
+    color: $colorFontFooter;
+    text-decoration: none;
+    border: 4px solid $colorFontFooter;
+}
+
+.button_black:hover {
+    color: $colorMainUnderside;
+    border: 4px solid $colorMainUnderside;
+}
+
+.button_add {
+    border: 4px solid $colorMain;
+    color: #c89600;    
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.button_add:hover {
+    border: 4px solid blue;
+    background-color: blue;
+    color: #cc0033;
+}
+
+.button_service {
+    border: 4px solid $colorMain;
+    color: $colorFontService;    
+    font-weight: bold;
+    font-size: 20px;
+}
+
+.button_service:hover {
+    border: 4px solid blue;
+    background-color: blue;
+    color: #cc0033;
+}
+
+.button_small {
+    font-size: 15px;
+}
+
+.button_to-comment:after {
+    content: "\2709";
+}
+
+.button_to-detail:before {
+   content: "\2709";
+}
+
+.button_to-return:before {
+   content: "\2191"; 
+}
+
+.button_to-return:after {
+   content: "\2191"; 
+}

@@ -1,21 +1,26 @@
-{# Blogger:BlogBundle:News:news_edit.html.twig
+{# AppBundle:Blog:News:news_edit.html.twig
 ==============================================
 ----Template doe editing existing article-----#}
 
-{% extends ':Blog:base.html.twig' %}
+{% extends ':Blog:blog_base.html.twig' %}
 
 {% block content %}
-    <div class="inner">
-        <div class="border">
-            <div class="space-between">
-                <a href="{{ path("main") }}" >
-                    <div class="button inner-orange article-navigation">Назад</div>
-                </a>
-                <div></div>
-            </div>        
-            {{ form_start(form) }}
-            {{ form_widget(form) }}
-            {{ form_end(form) }}
+    <div class="form">
+        <div class="inner innner_red">
+            <div class="inner__border">
+                <div class="form__row">                
+                    <a class="button button_orange button_to-return"
+                       href="{{ path("main") }}" >
+                        Назад
+                    </a>
+                    <div></div>
+                </div>
+                <div class="form__row">
+                    {{ form_start(form) }}
+                    {{ form_widget(form) }}
+                    {{ form_end(form) }}
+                </div>
+            </div>
         </div>
     </div>
 {% endblock %}

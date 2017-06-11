@@ -14,73 +14,69 @@ Main basic template with preload settings#}
         <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
     </head>
     {# ----->body<------ #}
-    <body>    
-        <div class="upper">
+    <body class="page">
+        <div class="page__row page__upper">
             {# ---------header--------- #}
-            <div class="header row">
+            <div class="page__row header">
 
                 <div class="side-container"></div>
 
                 <div class="main-container">
-                    <div class="row space-between">
+                    <div class="header__row space-between">
                         <div class="header-left">
-                            <a href="{{ path('main') }}">
-                                <div class="logo-container row">
+                            <div class="logo logo_container">
+                                <a class="logo logo_big logo__row" href="{{ path('main') }}">
                                     {#<img class="logo" src="{{ asset('images/logo.png') }}" alt="logo" />#}
-                                    <div class="owner">
-                                        <div class="row">
-                                            Япрошик
-                                        </div>
-                                        Путешествие в Японию
-                                    </div>
-                                </div>
-                            </a> 
+                                        Япрошик
+                                </a>
+                                <a class="logo logo_small" href="{{ path('main') }}">
+                                    Путешествие в Японию
+                                </a>
+                            </div>
 
                             {% block navigation %}{% endblock %}
                         </div>
-                        {% block login %}{% endblock %} 
+                        {% block login %}
+                            {% include 'authorisation.html.twig'%}
+                        {% endblock %}
                     </div>
                 </div>
                 <div class="side-container"></div>
             </div>
             {# ----------middle------------ #}
-            <div class="wrapper row">	
+            <div class="page__middle">	
                 <div class="side-container"></div>	
 
-                <div class="main-container">                            
-                    <div class="middle row">
-                        {% block body %}{% endblock %}                      
-                        {% block sidebar %}{% endblock %}                        
-                    </div>  
-                </div>                    
-            
-
+                <div class="main-container">
+                        {% block body %}{% endblock %}
+                    <div class="sidebar">
+                        {% block sidebar %}{% endblock %}
+                    </div>
+                </div>
                 <div class="side-container"></div> 
             </div>            
         </div>
                     
-        <div class ="space row"></div>
         {# -----------footer------------ #}
-        <div class="footer">
-            <div class="foot-border row">
+        <div class="page__row footer">
+            <div class="footer__border">
                 <div class="side-container"></div>
                 <div class="main-container">
-                    {% block foot_navigation %}{% endblock %}
+                    {% block footer_navigation %}{% endblock %}
                 </div>                           
                 <div class="side-container"></div>
             </div>         
-            <div class="row">
+            <div class="footer__row">
                 <div class="side-container"></div>
                 <div class="main-container">
-                    <div class="copyright">
+                    <div class="footer__copyright">
                         Все фото, видео и изображения в статьях принадлежат их создателям &copy;2017 Сергей Япрошик                       
                     </div> 
                 </div>
                 <div class="side-container"></div>
             </div>
-        </div>                    
+        </div>
         {% block javascripts %}
-            <script src="//code.jquery.com/jquery-2.1.4.min.js"></script>
             {% include 'javascripts.html.twig' %}
         {% endblock %}
     </body>

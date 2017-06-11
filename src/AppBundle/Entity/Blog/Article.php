@@ -228,11 +228,21 @@ class Article {
     public function getDescription() {
         return $this->description;
     }
-
+    
+    /**
+     * Get comments
+     * 
+     * @return \Doctrine\Common\Collections\Collection
+     */
     public function getComments() {
         return $this->comments;
     }
-
+    
+    /**
+     * Add comment
+     *
+     * @param \AppBundle\Entity\Blog\Comment $comment
+     */
     public function addComment(\AppBundle\Entity\Blog\Comment $comment) {
         $this->comments[] = $comment;
     }
@@ -356,12 +366,12 @@ class Article {
     /**
      * Add liked
      *
-     * @param \AppBundle\Entity\User\User $liked
+     * @param $user
      *
-     * @return Article
+     * @return \AppBundle\Entity\User\User
      */
-    public function addLiked($liked) {
-        $this->liked[] = $liked;
+    public function addLiked($user) {
+        $this->liked[] = $user;
 
         return $this;
     }
@@ -369,10 +379,10 @@ class Article {
     /**
      * Remove liked
      *
-     * @param \AppBundle\Entity\User\User $liked
+     * @param \AppBundle\Entity\User\User $user
      */
-    public function removeLiked($liked) {
-        $this->liked->removeElement($liked);
+    public function removeLiked($user) {
+        $this->liked->removeElement($user);
     }
 
     /**

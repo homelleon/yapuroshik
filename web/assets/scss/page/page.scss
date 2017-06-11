@@ -1,0 +1,41 @@
+/* page.scss "page" block */
+
+/* block */
+.page {
+    background-color: $colorBackground;
+    color: $colorFont;
+    height: 100%;
+    font-size: 25px;
+    margin: 0px;
+    padding: 0px; 
+    display: flex;
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+/* elemets */
+.page__row {
+    display: flex;
+    min-height: 1%;
+    width: 100%;
+}
+
+.page__welcome {
+    background-color: $colorMainUnderside;
+    color: $colorFontMain;
+    font-size: 20px;
+    font-weight: bold;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.page__upper {
+    flex-direction: column;
+}
+
+.page__middle {
+    display: flex;
+    margin: 0px;
+    height: inherit;
+}

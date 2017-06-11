@@ -1,31 +1,41 @@
-{# ----Blogger:AdminBundle:Admin:users.html.twig----
+{# ----AppBundle:Security:User:users.html.twig----
 ====================================================
 Template to show for admins all users in data base#}
 
-{% extends ':Security:base.html.twig' %}
+{% extends ':Security:admin_base.html.twig' %}
 
 {% block content %}
-    <p>
-        <a href="{{ path('admin') }}">Назад</a>
-    </p>
-    <a href="{{ path('admin_users_create') }}"><div>&#10010;</div></a>
-    <hr>
-    {% for user in users %} 
-        <div class="space-between">
-            <a href="{{ path('user', { 'username': user.username }) }}">
-                {{ user.username }}
-                {{ user.role.name }}
+    <div class="admin-list">
+        <div class="admin-list__row">
+            <a class="admin-list__item button button_orange button_to-return"
+               href="{{ path('admin') }}">
+                Назад
             </a>
-            <div>
+        </div>
+        <div class="admin-list__row">
+            <a class="admin-list__item button button_service"
+               href="{{ path('admin_users_create') }}">
+                &#10010;
+            </a>
+        </div>
+        <hr>
+        {% for user in users %} 
+            <div class="admin-list__row">
+                <a class="admin-list__item button button_service"
+                   href="{{ path('user', { 'username': user.username }) }}">
+                    {{ user.username }}
+                    {{ user.role.name }}
+                </a>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}
-                    <a href="{{ path('admin_users_delete', { 'id': user.id }) }}">
+                    <a class="admin-list__item button button_serivce"
+                       href="{{ path('admin_users_delete', { 'id': user.id }) }}">
                         &#10006;
                     </a>
                 {% endif %}
             </div>
-        </div>
-        <hr>
-    {% endfor %}
+            <hr>
+        {% endfor %}
+    </div>
 {% endblock %}
 
 {% block admin_side %}

@@ -1,0 +1,25 @@
+/* form.scss "form" block */
+
+/* block */
+.form {
+    
+}
+
+/* elements */
+.form__row {
+    display: flex;
+    width: 100%;
+    align-content: space-between;
+}
+
+.form__row:after {
+    visibility: hidden;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+
+.form__item {
+    display: flex;    
+}

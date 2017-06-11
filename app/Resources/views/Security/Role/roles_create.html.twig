@@ -1,16 +1,23 @@
-{# Blogger:AdminBundle:Admin:roles_create.html.twig
+{# -----AppBundle:Admin:roles_create.html.twig-----
 ===================================================
 ---Template for admins to create new user role----#}
 
-{% extends ':Security:base.html.twig' %}
+{% extends ':Security:admin_base.html.twig' %}
 
 {% block content %}
-    <p>
-        <a href="{{ path('roles') }}">Назад</a>
-    </p>     
-    {{ form_start(form) }}
-    {{ form_widget(form) }}
-    {{ form_end(form) }}    
+    <div class="form">
+        <div class="form__row">
+            <a class="form__item" 
+               href="{{ path('roles') }}">
+                Назад
+            </a>
+        </div>
+        <div class="form__row">
+            {{ form_start(form) }}
+            {{ form_widget(form) }}
+            {{ form_end(form) }}
+        </div>
+    </div>
 {% endblock %}
 
 {% block admin_side %}

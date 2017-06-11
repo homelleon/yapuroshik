@@ -1,0 +1,18 @@
+/* container.scss "container" block */
+
+/* block */
+.main-container {
+    width: 80%;
+    padding: 0px;
+    margin: 0px;
+}
+
+.side-container {
+    width: 10%;
+    flex-direction: row;
+    flex-grow: 1;
+    min-height: 1px;
+    margin: 0px; 
+}
+
+/*elements */
