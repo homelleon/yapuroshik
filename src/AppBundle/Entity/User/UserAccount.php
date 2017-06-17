@@ -4,6 +4,8 @@ namespace AppBundle\Entity\User;
 
 use Doctrine\ORM\Mapping as ORM;
 
+use AppBundle\Entity\File\Avatar;
+
 /**
  * User account that describe user information.
  * 
@@ -204,7 +206,7 @@ class UserAccount {
     /**
      * Get avatar
      *
-     * @return \AppBundle\Entity\File\Avatar
+     * @return Avatar
      */
     public function getAvatar() {
         return $this->avatar;

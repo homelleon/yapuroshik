@@ -33,7 +33,7 @@
         {% endif %}
         <div class="account__row account__navigation">
             <a class="button button_orange button_small" 
-               href="{{ path('news_sorted', { 'category': 'author', 'value': user.username }) }}">
+               href="{{ path('news_sorted', { 'category': 'author', 'value': user.username, 'page': 1 }) }}">
                 Статьи от пользователя
             </a>  
             {% if is_granted('ROLE_USER') %}

@@ -19,30 +19,7 @@ class MainPageController extends Controller {
      * @Method("GET")
      */
     public function mainAction() {
-        $articlePerPageCount = self::ARTICLES_PER_PAGE;
-        $doctrine = $this->getDoctrine();
-        $articles = $doctrine->getRepository(Article::class)
-                ->findAll();
-        $articleCount = count($articles);
-        $articles = $doctrine->getRepository(Article::class)
-                ->findBy(
-                array(), array('created' => 'DESC'), $articlePerPageCount, 0
-        );
-
-        $pageCount = ($articleCount - 1) / $articlePerPageCount + 1;
-        $pages = array();
-        if ($pageCount <= 1) {
-            $pages[] = 0;
-        } else {
-            for ($i = 1; $i <= $pageCount; $i++) {
-                $pages[] = $i;
-            }
-        }
-
-        return $this->render(':Blog/Page:index.html.twig', [
-                    'articles' => $articles,
-                    'pages' => $pages
-        ]);
+        return $this->pageAction(1);
     }
 
     /**
@@ -52,9 +29,11 @@ class MainPageController extends Controller {
         $doctrine = $this->getDoctrine();
         $articlePerPageCount = self::ARTICLES_PER_PAGE;
         $articles = $doctrine->getRepository(Article::class)
-                ->findAll();
+                ->findBy(
+                array(), array('created' => 'DESC')
+        );
         $articleCount = count($articles);
-        $pageCount = ($articleCount - 1) / $articlePerPageCount + 1;
+        $pageCount = (int) (($articleCount - 1) / $articlePerPageCount + 1);
         $pages = array();
         if ($pageCount != 1) {
             for ($i = 1; $i <= $pageCount; $i++) {
@@ -79,11 +58,11 @@ class MainPageController extends Controller {
      * Renders page of sorted articles depending on category and value
      * parameters.
      * 
-     * @Route("/sort/news/{category}/{value}", name="news_sorted")
+     * @Route("/sort/news/{category}/{value}/{page}", name="news_sorted")
      * @param string $category
      * @param string $value
      */
-    public function sortAction($category, $value) {
+    public function sortAction($category, $value, $page) {
         $dorctrine = $this->getDoctrine();
         $articlePerPageCount = self::ARTICLES_PER_PAGE;
 
@@ -103,17 +82,13 @@ class MainPageController extends Controller {
         );
         $articleCount = count($articles);
         $pages = array();
-        $pageCount = ($articleCount - 1) / $articlePerPageCount + 1;
+        $pageCount = (int) (($articleCount - 1) / $articlePerPageCount + 1);
         if ($pageCount != 1) {
             for ($i = 1; $i <= $pageCount; $i++) {
                 $pages[] = $i;
             }
-            $offset = $pageCount * $articlePerPageCount - $articlePerPageCount;
+            $offset = $page * $articlePerPageCount - $articlePerPageCount;
 
-            if ($offset < 0) {
-                $offset = 0;
-                $pages = 1;
-            }
             $articles = $dorctrine->getRepository(Article::class)
                     ->findBy(
                     array($category => $newValue), array('created' => 'DESC'), $articlePerPageCount, $offset
@@ -125,7 +100,8 @@ class MainPageController extends Controller {
         return $this->render(':Blog/News:news_sorted.html.twig', [
                     'articles' => $articles,
                     'pages' => $pages,
-                    'category' => $categoryRus,
+                    'category' => $category,
+                    'categoryRus' => $categoryRus,
                     'value' => $value
         ]);
     }

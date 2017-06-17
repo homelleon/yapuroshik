@@ -28,7 +28,7 @@
                                 </a>
                                 <div class="article__row article__head-info">
                                     <a class="article__theme button button_orange button_small"
-                                       href="{{ path('news_sorted', { 'category': 'theme', 'value': article.theme }) }}">                                 
+                                       href="{{ path('news_sorted', { 'category': 'theme', 'value': article.theme, 'page': 1 }) }}">                                 
                                         #{{ article.theme }}
                                     </a>
                                     <a class="article__author button button_orange button_small" 
@@ -78,7 +78,9 @@
         {% endif %}
         {% if pages|length > 1 %}
             {% for page in pages %}
-                <a href="{{ path('show_page', { 'page': page }) }}">{{ page }}</a>
+                {% block page_link %}
+                    <a href="{{ path('show_page', { 'page': page }) }}">{{ page }}</a>
+                {% endblock %}
             {% endfor %}
         {% endif %}
     </div>

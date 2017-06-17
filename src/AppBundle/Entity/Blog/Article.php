@@ -3,6 +3,11 @@
 namespace AppBundle\Entity\Blog;
 
 use Doctrine\ORM\Mapping as ORM;
+use AppBundle\Entity\User\User;
+use AppBundle\Entity\Blog\Comment;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Entity\File\Image;
 
 /**
  * News blog entity.
@@ -119,6 +124,7 @@ class Article {
     private $isUpdated;
 
     public function __construct() {
+        $this->liked = new ArrayCollection();
         $this->isDeleted = false;
         $this->isUpdated = false;
         $this->watched = 0;
@@ -204,7 +210,7 @@ class Article {
     /**
      * Get image
      *
-     * @return \AppBundle\Entity\File\Image
+     * @return Image
      */
     public function getImage() {
         return $this->image;
@@ -232,7 +238,7 @@ class Article {
     /**
      * Get comments
      * 
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getComments() {
         return $this->comments;
@@ -241,18 +247,18 @@ class Article {
     /**
      * Add comment
      *
-     * @param \AppBundle\Entity\Blog\Comment $comment
+     * @param Comment $comment
      */
-    public function addComment(\AppBundle\Entity\Blog\Comment $comment) {
+    public function addComment(Comment $comment) {
         $this->comments[] = $comment;
     }
 
     /**
      * Remove comment
      *
-     * @param \AppBundle\Entity\Blog\Comment $comment
+     * @param Comment $comment
      */
-    public function removeComment(\AppBundle\Entity\Blog\Comment $comment) {
+    public function removeComment(Comment $comment) {
         $this->comments->removeElement($comment);
     }
 
@@ -368,9 +374,9 @@ class Article {
      *
      * @param $user
      *
-     * @return \AppBundle\Entity\User\User
+     * @return User
      */
-    public function addLiked($user) {
+    public function addLiked(User $user) {
         $this->liked[] = $user;
 
         return $this;
@@ -379,16 +385,16 @@ class Article {
     /**
      * Remove liked
      *
-     * @param \AppBundle\Entity\User\User $user
+     * @param User $user
      */
-    public function removeLiked($user) {
+    public function removeLiked(User $user) {
         $this->liked->removeElement($user);
     }
 
     /**
      * Get liked
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getLiked() {
         return $this->liked;

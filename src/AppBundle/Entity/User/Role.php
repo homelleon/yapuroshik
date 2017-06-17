@@ -3,8 +3,11 @@
 namespace AppBundle\Entity\User;
 
 use Symfony\Component\Security\Core\Role\RoleInterface;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Entity\User\User;
 
 /**
  * @ORM\Entity
@@ -32,7 +35,7 @@ class Role implements RoleInterface {
     private $role;
 
     /**
-     * @var \Doctine\Common\Collections\ArrayCollection
+     * @var Collection
      * @ORM\OneToMany(targetEntity="User", mappedBy="role")
      */
     private $users;
@@ -83,11 +86,11 @@ class Role implements RoleInterface {
     /**
      * Add user
      *
-     * @param \AppBundle\Entity\User\User $user
+     * @param User $user
      *
      * @return Role
      */
-    public function addUser(\AppBundle\Entity\User\User $user) {
+    public function addUser(User $user) {
         $this->users[] = $user;
 
         return $this;
@@ -96,16 +99,16 @@ class Role implements RoleInterface {
     /**
      * Remove user
      *
-     * @param \AppBundle\Entity\User\User $user
+     * @param User $user
      */
-    public function removeUser(\AppBundle\Entity\User\User $user) {
+    public function removeUser(User $user) {
         $this->users->removeElement($user);
     }
 
     /**
      * Get users
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getUsers() {
         return $this->users;

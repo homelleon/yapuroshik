@@ -3,7 +3,10 @@
 namespace AppBundle\Entity\Blog;
 
 use Doctrine\ORM\Mapping as ORM;
+
+use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
+use AppBundle\Entity\User\User;
 
 /**
  * Article comment entity.
@@ -176,7 +179,7 @@ class Comment {
     /**
      * Set author
      *
-     * @param AppBundle\Entity\User\User $author
+     * @param User $author
      *
      * @return Comment
      */
@@ -189,7 +192,7 @@ class Comment {
     /**
      * Get author
      *
-     * @return AppBundle\Entity\User\User
+     * @return User
      */
     public function getAuthor() {
         return $this->author;
@@ -198,7 +201,7 @@ class Comment {
     /**
      * Add liked
      *
-     * @param AppBundle\Entity\User\User $liked
+     * @param User $liked
      *
      * @return Comment
      */
@@ -211,16 +214,16 @@ class Comment {
     /**
      * Remove liked
      *
-     * @param AppBundle\Entity\User\User $liked
+     * @param User $liked
      */
-    public function removeLiked(AppBundle\Entity\User\User $liked) {
+    public function removeLiked(User $liked) {
         $this->liked->removeElement($liked);
     }
 
     /**
      * Get liked
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return Collection
      */
     public function getLiked() {
         return $this->liked;

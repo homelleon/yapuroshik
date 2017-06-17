@@ -3,9 +3,11 @@
 namespace AppBundle\Entity\User;
 
 use Symfony\Component\Security\Core\User\AdvancedUserInterface;
-use AppBundle\Entity\User\UserAccount;
-use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+
+use AppBundle\Entity\User\UserAccount;
+use AppBundle\Entity\User\Role;
+
 
 /**
  * Description of User
@@ -68,7 +70,7 @@ class User implements \Serializable, AdvancedUserInterface {
     /**
      * @ORM\OneToOne(targetEntity="UserAccount",inversedBy="user")
      * @ORM\JoinColumn(name="account_id", referencedColumnName="id")
-     * @var type     
+     * @var type    
      */
     private $userAccount;
 
@@ -255,11 +257,11 @@ class User implements \Serializable, AdvancedUserInterface {
     /**
      * Set userAccount
      *
-     * @param \AppBundle\Entity\User\UserAccount $userAccount
+     * @param UserAccount $userAccount
      *
      * @return User
      */
-    public function setUserAccount(\AppBundle\Entity\User\UserAccount $userAccount = null) {
+    public function setUserAccount(UserAccount $userAccount = null) {
         $this->userAccount = $userAccount;
 
         return $this;
@@ -268,7 +270,7 @@ class User implements \Serializable, AdvancedUserInterface {
     /**
      * Get userAccount
      *
-     * @return \AppBundle\Entity\User\UserAccount
+     * @return UserAccount
      */
     public function getUserAccount() {
         return $this->userAccount;
@@ -299,11 +301,11 @@ class User implements \Serializable, AdvancedUserInterface {
     /**
      * Set role
      *
-     * @param \AppBundle\Entity\User\Role $role
+     * @param Role $role
      *
      * @return User
      */
-    public function setRole(\AppBundle\Entity\User\Role $role = null) {
+    public function setRole(Role $role = null) {
         $this->role = $role;
 
         return $this;
