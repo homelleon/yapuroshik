@@ -1,11 +1,8 @@
 engines:
   rubocop:
     enabled: true
-    #checks:
-    #	Rubocop/Metrics/ClassLength:
-    #  	enabled: false
   golint:
-   	enabled: true
+    enabled: true
   eslint:
     enabled: true
   csslint:
@@ -13,18 +10,18 @@ engines:
   duplication:
     enabled: true
     config:
-    	languages:
-      - php
-      	#mass_threshold: 30
-      - javascript
-      - css
+        languages:
+            - php
+            - javascript
+            - scss
 ratings:
   paths:
-  - app/**
-  - lib/**
-  - "**.rb"
-  - "**.go"
+    - app/**
+    - src/**
+    - web/**
+    - "**.php"
 exclude_paths:
-- spec/**/*
-- "**/vendor/**/*"
-- "**/var/**/*"
+    - spec/**/*
+    - "**/vendor/**/*"
+    - "**/var/**/*"
+    - "web/*.php"
