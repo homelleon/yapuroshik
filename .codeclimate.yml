@@ -1,10 +1,28 @@
-JavaScript: true
-Ruby: false
-Python: false
-PHP: true
-
+engines:
+  rubocop:
+    enabled: true
+  golint:
+    enabled: true
+  eslint:
+    enabled: true
+  csslint:
+    enabled: true
+  duplication:
+   enabled: true
+   config:
+      languages:
+      - php
+      - javascript
+ratings:
+  paths:
+  - app/**
+  - src/**
+  - web/assets/**/*
 exclude_paths:
-- test/**/*
+- spec/**/*
 - vendor/**/*
+- var/*.php
 - web/*.php
-- var/**/*
+- app/*.php
+- nbroject/**/*
+- tests/**/*
