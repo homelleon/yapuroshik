@@ -8,6 +8,8 @@ use AppBundle\Entity\File\Avatar;
 
 /*
  * Configure files.
+ * 
+ * @author homelleon
  */
 
 class FileConfigurator {

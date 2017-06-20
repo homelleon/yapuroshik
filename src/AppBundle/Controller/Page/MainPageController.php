@@ -27,6 +27,10 @@ class MainPageController extends Controller {
      */
     public function pageAction($page) {
         $doctrine = $this->getDoctrine();
+        $articleCalculator = $this->get('article_calculator',
+                $this->getDoctrine,
+                self::ARTICLES_PER_PAGE
+        );
         $articlePerPageCount = self::ARTICLES_PER_PAGE;
         $articles = $doctrine->getRepository(Article::class)
                 ->findBy(
