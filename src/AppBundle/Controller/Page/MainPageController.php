@@ -26,32 +26,27 @@ class MainPageController extends Controller {
      * @Route("/page/{page}", name="show_page")
      */
     public function pageAction($page) {
-        $doctrine = $this->getDoctrine();
-        $articleCalculator = $this->get('article_calculator',
-                $this->getDoctrine,
-                self::ARTICLES_PER_PAGE
-        );
-        $articlePerPageCount = self::ARTICLES_PER_PAGE;
-        $articles = $doctrine->getRepository(Article::class)
-                ->findBy(
-                array(), array('created' => 'DESC')
-        );
-        $articleCount = count($articles);
-        $pageCount = (int) (($articleCount - 1) / $articlePerPageCount + 1);
+        if ($page <= 0) {
+            throw $this->createNotFoundException(
+                    'Incorrect page number: ' . $page
+            );
+        }
+        $articleCalculator = $this->get('article_calculator');
+        $pageCount = $articleCalculator->calculatePageCount();
         $pages = array();
         if ($pageCount != 1) {
             for ($i = 1; $i <= $pageCount; $i++) {
                 $pages[] = $i;
             }
-            $offset = $page * $articlePerPageCount - $articlePerPageCount;
-            $articles = $doctrine->getRepository(Article::class)
-                    ->findBy(
-                    array(), array('created' => 'DESC'), $articlePerPageCount, $offset
-            );
         } else {
             $pages[] = 1;
         }
-
+        if ($page > count($pages)) {
+            throw $this->createNotFoundException(
+                    'There is no page number: ' . $page
+            );
+        }
+        $articles = $articleCalculator->getArticlesByPage($page);
         return $this->render(':Blog/Page:index.html.twig', [
                     'articles' => $articles,
                     'pages' => $pages

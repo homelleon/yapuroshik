@@ -2,7 +2,7 @@
 
 namespace AppBundle\Service;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Bundle\DoctrineBundle\Registry;
 use AppBundle\Entity\Blog\Article;
 
 /**
@@ -11,25 +11,34 @@ use AppBundle\Entity\Blog\Article;
  * @author Админ
  */
 class ArticleCalculator {
-
+    
+    const ARTICLES_PER_PAGE = 5;
+    
     private $doctrine;
-    private $articlesPerPageCount;
 
-    public function __construct(EntityManagerInterface $doctrine, int $articlesPerPageCount) {
-        $this->entityManager = $entityManager;
-        $this->articlesPerPageCount = $articlesPerPageCount;
+    public function __construct(Registry $doctrine) {
+        $this->doctrine = $doctrine;
     }
 
     public function calculatePageCount() {
-        $articles = $this->entityManager
+        $articles = $this->doctrine
         ->getRepository(Article::class)
                 ->findBy(
                 array(), array('created' => 'DESC')
         );
         $articleCount = count($articles);
-        $pageCount = (int) (($articleCount - 1) / $this->articlePerPageCount + 1);
+        $pageCount = (int) (($articleCount - 1) / self::ARTICLES_PER_PAGE + 1);
 
         return $pageCount;
+    }
+    
+    public function getArticlesByPage($page) {
+        $offset = $page * self::ARTICLES_PER_PAGE - self::ARTICLES_PER_PAGE;
+        $articles = $this->doctrine->getRepository(Article::class)
+                ->findBy(
+                array(), array('created' => 'DESC'), self::ARTICLES_PER_PAGE, $offset
+        );
+        return $articles;
     }
 
 }

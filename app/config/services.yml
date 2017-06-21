@@ -14,5 +14,5 @@ services:
         class: 'AppBundle\Service\ArticleCalculator'
         public: true
         arguments:
-            $articlesPerPageCount: 5
+            $doctrine: '@doctrine'
             
