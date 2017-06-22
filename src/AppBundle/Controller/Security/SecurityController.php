@@ -63,7 +63,7 @@ class SecurityController extends Controller {
             return $this->redirectToRoute('main');
         }
 
-        return $this->render(':Security\User:users_create.html.twig', [
+        return $this->render(':Security\User:users_registration.html.twig', [
                     'form' => $form->createView(),
                     'user' => $user
         ]);

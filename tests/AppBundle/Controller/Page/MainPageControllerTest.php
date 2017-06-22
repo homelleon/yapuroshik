@@ -15,5 +15,9 @@ class MainPageControllerTest extends WebTestCase {
 
         $this->assertContains('Рад вас приветствовать на моем сайте!', $crawler->filter('div.page__welcome')->text());
     }
+    
+    public function testPage() {
+        
+    }
 
 }

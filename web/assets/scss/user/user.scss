@@ -5,21 +5,14 @@
   display: flex;
   flex-flow: column;
   justify-content: flex-end;
+  text-align: center;  
 }
 
 /* elements */
 .user__row {
-    height: 1%;
-    display: flex;
+    min-height: 1%;
     width: 100%;
-}
-
-.user__row:after {
-    visibility: hidden;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0;
+    margin: 5px 0;
 }
 
 .user__avatar {

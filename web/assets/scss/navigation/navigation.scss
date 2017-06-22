@@ -11,15 +11,19 @@
 }
 
 /* elemets */
-navigation__row {
+.navigation__row {
     display: flex;
     width: 100%;
 }
 
-navigation__row:after {
+.navigation__row:after {
     visibility: hidden;
     font-size: 0;
     content: " ";
     clear: both;
     height: 0;
+}
+
+.navigation__item {
+    margin: 5px;
 }
