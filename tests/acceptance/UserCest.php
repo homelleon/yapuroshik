@@ -1,9 +1,11 @@
 <?php
 
+use Codeception\Example;
+
 class UserCest {
-    
+
     public function _before(AcceptanceTester $I) {
-        $I->amOnPage('/');
+        $I->am('User');
     }
 
     public function _after(AcceptanceTester $I) {
@@ -11,33 +13,37 @@ class UserCest {
     }
 
     // tests
-    public function wrongLoginTest(AcceptanceTester $I) {
-        $I->am('not registred user');
-        $I->wantTo('try to login as user with wrong parameters');
-        $I->click('вход');
-        $I->fillField('_username', 'wrongUser');
-        $I->fillField('_password', 'wrongPassword');
-        $I->click('подтвердить');
-        $I->see('Invalid credentials');
-    }
-
-    public function loginTest(AcceptanceTester $I) {
-        $I->am('registered user');
-        $I->wantTo('login as user');
-        $I->click('вход');
-        $I->fillField('_username', 'admin');
-        $I->fillField('_password', 'href');
-        $I->click('подтвердить');
-        $I->see('выход');
-        $I->click('выход');
+    /**
+     * @dataprovider pageDataProvider
+     * @param AcceptanceTester I
+     */
+    public function smokeTest(AcceptanceTester $I, Example $page) {
+        $I->amOnPage($page['url']);
+        $I->see($page['content']);
     }
     
-    public function registerTest(AcceptanceTester $I) {
-        $I->am('not registered user');
-        $I->wantTo('register as new user');
-        $I->click('регистрация');
-        $I->see('Введите ваши данные для регистрации на сайте!');
-        
+    /**
+     * 
+     * @return array
+     */
+    protected function pageDataProvider() {
+        return [
+            'main_page' => ['url'=> '/', 
+                'content' => 'Рад вас приветствовать на моем сайте!'],
+            'about_page' => ['url'=> '/about', 
+                'content' => 'Здравствуйте, меня зовут Сергей "Япрошик"!'],
+            'photo_page' => ['url'=> '/photo', 
+                'content' => 'вход'],
+            'video_page' => ['url'=> '/video', 
+                'content' => 'вход'],
+            'contacts_page' => ['url'=> '/contacts', 
+                'content' => 'Контактные данные'],
+            'login_page' => ['url'=> '/login', 
+                'content' => 'Введите логин и пароль для входа!'],
+            'registration_page' => ['url'=> '/registration', 
+                'content' => 'Введите ваши данные для регистрации на сайте!'],
+            'admin_page' => ['url'=> '/admin', 
+                'content' => 'Введите логин и пароль для входа!']
+        ];
     }
-
 }

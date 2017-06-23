@@ -9,8 +9,8 @@ actor: FunctionalTester
 modules:
     enabled:        
         - Symfony:
-            app_path: 'app/Resources'
+            app_path: 'app'
             var_path: 'var'
-            environment: 'app'
+            environment: 'test'
         - \Helper\Functional
         

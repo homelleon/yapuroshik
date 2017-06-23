@@ -41,7 +41,7 @@ class MainPageController extends Controller {
         } else {
             $pages[] = 1;
         }
-        if ($page > count($pages)) {
+        if ($page > count($pages) && $page > 1) {
             throw $this->createNotFoundException(
                     'There is no page number: ' . $page
             );
