@@ -9,6 +9,7 @@ use DateTime;
 use AppBundle\Entity\Blog\Article;
 use AppBundle\Form\Blog\Article\ArticleType;
 use AppBundle\Form\Blog\Article\EditArticleType;
+use AppBundle\Entity\File\Image;
 
 /**
  * Articles and news controller.
@@ -63,7 +64,7 @@ class ArticleController extends Controller {
             $file = $article->getImage();
             $fileConfigurator = $this->get('file_configurator');
             $image = $fileConfigurator->getImage(
-                    $file, $this->getParameter('image_directory')
+                    $file, $this->getParameter('image_directory'), Image::class
             );
 
             $article->setAuthor($author);
@@ -128,7 +129,7 @@ class ArticleController extends Controller {
             if ($file != NULL) {
                 $fileConfigurator = $this->get('file_configurator');
                 $image = $fileConfigurator->getImage(
-                        $file, $this->getParameter('image_directory')
+                        $file, $this->getParameter('image_directory'), Image::class
                 );
 
                 $manager->persist($image);
