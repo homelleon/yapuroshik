@@ -70,9 +70,10 @@ class UserAdminController extends Controller {
      * Deletes user from data base. Redirects to users' list page.
      * <p>NOTE: Use it cearfully! Can't turn user back after deleting.
      * 
-     * @Route("/admin/users/delete/{id}", name="admin_users_delete")
+     * @Route("/admin/users/delete/{id}", name="admin_users_delete") 
+     * @param integer $id
      */
-    public function deleteAction($id) {
+    public function deleteAction(int $id) {
         $user = $this->getDoctrine()
                 ->getRepository(User::class)
                 ->find($id);

@@ -48,7 +48,7 @@ class RoleAdminController extends Controller {
      * @Route("/admin/roles/delete/{id}", name="role_delete")
      * @param integer $id Role's id
      */
-    public function deleteAction($id) {
+    public function deleteAction(int $id) {
         $doctrine = $this->getDoctrine();
         $role = $doctrine
                 ->getRepository(Role::class)
@@ -65,8 +65,9 @@ class RoleAdminController extends Controller {
      * Renders page with role description with setted name parameter.
      * 
      * @Route("/admin/role/{name}", name="role")
+     * @param string $name
      */
-    public function showAction($name) {
+    public function showAction(string $name) {
         $role = $this->getDoctrine()
                 ->getRepository(Role::class)
                 ->findOneBy([
