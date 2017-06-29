@@ -23,7 +23,7 @@ class MainPageController extends Controller {
 
     /**
      * @Route("/page/{page}", name="show_page")
-     * @param integer $page
+     * @param int $page
      */
     public function pageAction(int $page) {
         if ($page <= 0) {
@@ -33,15 +33,8 @@ class MainPageController extends Controller {
         }
         $articleCalculator = $this->get('article_calculator');
         $pageCount = $articleCalculator->calculatePageCount();
-        $pages = array();
-        if ($pageCount != 1) {
-            for ($i = 1; $i <= $pageCount; $i++) {
-                $pages[] = $i;
-            }
-        } else {
-            $pages[] = 1;
-        }
-        if ($page > count($pages) && $page > 1) {
+        
+        if ($page > $pageCount && $page > 1) {
             throw $this->createNotFoundException(
                     'There is no page number: ' . $page
             );
@@ -49,7 +42,7 @@ class MainPageController extends Controller {
         $articles = $articleCalculator->getByPage($page);
         return $this->render(':Blog/Page:index.html.twig', [
                     'articles' => $articles,
-                    'pages' => $pages
+                    'pageCount' => $pageCount
         ]);
     }
 
@@ -60,7 +53,7 @@ class MainPageController extends Controller {
      * @Route("/sort/news/{category}/{value}/{page}", name="news_sorted")
      * @param string $category
      * @param string $value
-     * @param integer $page
+     * @param int $page
      */
     public function sortAction($category, $value, int $page) {
         $dorctrine = $this->getDoctrine();
@@ -75,27 +68,18 @@ class MainPageController extends Controller {
         } else {
             $newValue = $value;
         }
-        
-        $pages = array();        
+          
         $pageCount = $articleCalculator->calculateSortedPageCount($category, $newValue);
-        if ($pageCount != 1) {
-            for ($i = 1; $i <= $pageCount; $i++) {
-                $pages[] = $i;
-            }
-            
-        } else {
-            $pages[] = 1;
-        }
-        if ($page > count($pages) && $page > 1) {
+        if ($page > $pageCount && $page > 1) {
             throw $this->createNotFoundException(
                     'There is no page number: ' . $page
             );
         }
-        $articles = $articleCalculator->getSortedByPage($page, $category, $newValue);        
+        $articles = $articleCalculator->getSortedByPage($page, $category, $newValue); 
         $categoryRus = $articleCalculator->getSortCategoryRus($category);
         return $this->render(':Blog/News:news_sorted.html.twig', [
                     'articles' => $articles,
-                    'pages' => $pages,
+                    'pageCount' => $pageCount,
                     'category' => $category,
                     'categoryRus' => $categoryRus,
                     'value' => $value

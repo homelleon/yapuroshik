@@ -18,56 +18,54 @@
         </div>
         {% if (articles|length) >0 %}
             {% for article in articles %}
-                {% if not article.isDeleted %}
-                    <div class="inner inner_red">
-                        <div class="inner__border">
-                            <div class="article">
-                                <a class="article__row article__title article__title_to-detail" 
-                                   href="{{ path('show_news', { 'id': article.id}) }}">
-                                    {{ article.title }}
+                <div class="inner inner_red">
+                    <div class="inner__border">
+                        <div class="article">
+                            <a class="article__row article__title article__title_to-detail" 
+                               href="{{ path('show_news', { 'id': article.id}) }}">
+                                {{ article.title }}
+                            </a>
+                            <div class="article__row article__head-info">
+                                <a class="article__theme button button_orange button_small"
+                                   href="{{ path('news_sorted', { 'category': 'theme', 'value': article.theme, 'page': 1 }) }}">                                 
+                                    #{{ article.theme }}
                                 </a>
-                                <div class="article__row article__head-info">
-                                    <a class="article__theme button button_orange button_small"
-                                       href="{{ path('news_sorted', { 'category': 'theme', 'value': article.theme, 'page': 1 }) }}">                                 
-                                        #{{ article.theme }}
-                                    </a>
-                                    <a class="article__author button button_orange button_small" 
-                                       href="{{ path('user', { 'username': article.author.username }) }}">                           
-                                        автор: {{ article.author.username }}
-                                    </a>
-                                </div>
-                                <div class="article__row article__date">
-                                    создано: {{ article.created|date }}
-                                </div>
-                                <a class="article__row article__image-container" href="{{ path('show_news', { 'id': article.id }) }}">
-                                    <img class="article__image" 
-                                         src="{{ asset('uploads/images/' ~ article.image.path) }}">
+                                <a class="article__author button button_orange button_small" 
+                                   href="{{ path('user', { 'username': article.author.username }) }}">                           
+                                    автор: {{ article.author.username }}
                                 </a>
-                                <div class="article__row article__description">
-                                    {{ article.description }}
-                                </div>
-                                {% if article.isUpdated %}
-                                    <div class="article__row article__date">
-                                        отредактировано: {{ article.updated|date }}
-                                    </div>
-                                {% endif %}
                             </div>
-                            <div class="article__row article__navigation">
-                                <div>
-                                    <a class="button button_orange button_to-detail button_small" href="{{ path('show_news', { 'id': article.id }) }}">
-                                        подробнее
-                                    </a>
+                            <div class="article__row article__date">
+                                создано: {{ article.created|date }}
+                            </div>
+                            <a class="article__row article__image-container" href="{{ path('show_news', { 'id': article.id }) }}">
+                                <img class="article__image" 
+                                     src="{{ asset('uploads/images/' ~ article.image.path) }}">
+                            </a>
+                            <div class="article__row article__description">
+                                {{ article.description }}
+                            </div>
+                            {% if article.isUpdated %}
+                                <div class="article__row article__date">
+                                    отредактировано: {{ article.updated|date }}
                                 </div>
-                                <div>
-                                <a class="button button_orange button_to-comment button_small" href="{{ path('comment_add', { 'id': article.id }) }}">
-                                    комментировать
+                            {% endif %}
+                        </div>
+                        <div class="article__row article__navigation">
+                            <div>
+                                <a class="button button_orange button_to-detail button_small" href="{{ path('show_news', { 'id': article.id }) }}">
+                                    подробнее
                                 </a>
-                                </div>
+                            </div>
+                            <div>
+                            <a class="button button_orange button_to-comment button_small" href="{{ path('comment_add', { 'id': article.id }) }}">
+                                комментировать
+                            </a>
                             </div>
                         </div>
-                        <hr>
                     </div>
-                {% endif %}
+                    <hr>
+                </div>
             {% endfor %}
         {% else %}
             <div class="inner inner_red">
@@ -76,8 +74,8 @@
                 </div>
             </div>
         {% endif %}
-        {% if pages|length > 1 %}
-            {% for page in pages %}
+        {% if pageCount > 1 %}
+            {% for page in 1..pageCount %}
                 {% block page_link %}
                     <a href="{{ path('show_page', { 'page': page }) }}">{{ page }}</a>
                 {% endblock %}

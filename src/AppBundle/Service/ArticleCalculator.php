@@ -22,7 +22,7 @@ class ArticleCalculator {
     }
     
     /**
-     * Calculates how much pages articles takes.
+     * Calculates how many pages articles take.
      * 
      * @return int page count value
      */
@@ -32,26 +32,26 @@ class ArticleCalculator {
     }
     
     /**
-     * Calculates how much pages sorted by category and its value 
-     * articles takes.
+     * Calculates how many pages sorted articles take.
      * 
      * @param string|null $category
      * @param string|User|null $value
-     * @return int page count value
+     * @return integer page count value
      */
     public function calculateSortedPageCount($category, $value) {
-        if($category == null || $value == null) {
-            $sortedArray = array();
+        if($category === null || $value === null) {
+            $sortedArray = array('isDeleted' => 0);
         } else {
-            $sortedArray = array($category => $value);
+            $sortedArray = array('isDeleted' => 0, $category => $value);
         }
         $articles = $this->doctrine
         ->getRepository(Article::class)
                 ->findBy(
-                $sortedArray, array('created' => 'DESC')
+                $sortedArray,
+                array('created' => 'DESC')
         );
         $articleCount = count($articles);
-        $pageCount = (int) (($articleCount - 1) / self::ARTICLES_PER_PAGE + 1);
+        $pageCount = (integer) (($articleCount - 1) / self::ARTICLES_PER_PAGE + 1);
 
         return $pageCount;
     }
@@ -75,10 +75,10 @@ class ArticleCalculator {
      * @return array of articles
      */
     public function getAllSorted($category, $value) {
-        if($category == null || $value == null) {
-            $sortedArray = array();
+        if($category === null || $value === null) {
+            $sortedArray = array('isDeleted' => 0);
         } else {
-            $sortedArray = array($category => $value);
+            $sortedArray = array('isDeleted' => 0, $category => $value);
         }
         $articles = $this->doctrine
                 ->getRepository(Article::class)
@@ -110,10 +110,10 @@ class ArticleCalculator {
      * @return array of articles
      */
     public function getSortedByPage(int $page, $category, $value) {
-        if($category == null || $value == null) {
-            $sortArray = array();
+        if($category === null || $value === null) {
+            $sortArray = array('isDeleted' => 0);
         } else {
-            $sortArray = array($category => $value);
+            $sortArray = array('isDeleted' => 0, $category => $value);
         };
         $offset = $page * self::ARTICLES_PER_PAGE - self::ARTICLES_PER_PAGE;
         $articles = $this->doctrine->getRepository(Article::class)
