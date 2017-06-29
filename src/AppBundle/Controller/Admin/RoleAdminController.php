@@ -18,7 +18,7 @@ class RoleAdminController extends Controller {
     /**
      * Renders page with form to create new role.
      * 
-     * @Route("/admin/roles/create", name="roles_create")
+     * @Route("/admin/roles/create", name="role_create")
      */
     public function createAction(Request $request) {
         $role = new Role();
@@ -36,7 +36,7 @@ class RoleAdminController extends Controller {
             return $this->redirectToRoute('roles');
         }
 
-        return $this->render(':Security\Role:roles_create.html.twig', [
+        return $this->render(':Admin\Role:role_create.html.twig', [
                     'form' => $form->createView(),
                     'role' => $role
         ]);
@@ -74,7 +74,7 @@ class RoleAdminController extends Controller {
             'name' => $name
         ]);
 
-        return $this->render(':Security\Role:role.html.twig', [
+        return $this->render(':Admin\Role:role.html.twig', [
                     'role' => $role
         ]);
     }
@@ -90,7 +90,7 @@ class RoleAdminController extends Controller {
                 ->getRepository(Role::class)
                 ->findAll();
 
-        return $this->render(':Security\Role:roles.html.twig', [
+        return $this->render(':Admin\Role:roles.html.twig', [
                     'roles' => $roles
         ]);
     }

@@ -1,0 +1,26 @@
+{# AppBundle:Security:registration.html.twig
+==============================================
+------------Template to create user----------#}
+
+{% extends ':Admin:admin_base.html.twig' %}
+
+{% block content %}
+    <div class="inner inner_red">
+        <div class="inner__border">
+            <div class="content__row">
+                <a class="content__item button button_orange button_to-return"
+                   href="{{ path('admin') }}">
+                    Назад
+                </a>
+            </div>
+            <div class="content__row">
+                Введите данные пользователя!
+            </div>
+            <div class="content__row form inner__border inner__border_orange">
+                {{ form_start(form) }}
+                {{ form_widget(form) }}
+                {{ form_end(form) }} 
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -17,7 +17,7 @@ class PageAdminController extends Controller {
      * @Route("/admin", name="admin")
      */
     public function indexAction() {
-        return $this->render(':Security\Admin:index.html.twig');
+        return $this->render(':Admin\Main:index.html.twig');
     }
 
     /**
@@ -30,7 +30,7 @@ class PageAdminController extends Controller {
         $articles = $this->getDoctrine()
                 ->getRepository(Article::class)
                 ->findAll();
-        return $this->render(':Security\Admin:articles.html.twig', [
+        return $this->render(':Admin\Article:articles.html.twig', [
                     'articles' => $articles
         ]);
     }

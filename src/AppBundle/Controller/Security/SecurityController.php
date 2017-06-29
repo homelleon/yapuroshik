@@ -28,7 +28,7 @@ class SecurityController extends Controller {
         // last username entered by the user
         $lastUsername = $authenticationUtils->getLastUsername();
 
-        return $this->render(':Security\User:login.html.twig', [
+        return $this->render(':Security:login.html.twig', [
                     'last_username' => $lastUsername,
                     'error' => $error,
         ]);
@@ -63,7 +63,7 @@ class SecurityController extends Controller {
             return $this->redirectToRoute('main');
         }
 
-        return $this->render(':Security\User:users_registration.html.twig', [
+        return $this->render(':Security:registration.html.twig', [
                     'form' => $form->createView(),
                     'user' => $user
         ]);

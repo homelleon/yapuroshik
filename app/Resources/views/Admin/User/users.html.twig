@@ -1,32 +1,34 @@
-{# --------AppBundle:Admin:roles.html.twig------
-================================================
-Template to show list of all roles in data base#}
+{# ----AppBundle:Admin:User:users.html.twig----
+====================================================
+Template to show for admins all users in data base#}
 
-{% extends ':Security:admin_base.html.twig' %}
+{% extends ':Admin:admin_base.html.twig' %}
 
 {% block content %}
     <div class="admin-list">
         <div class="admin-list__row">
             <a class="admin-list__item button button_orange button_to-return"
-               href="{{ path('admin') }}">Назад</a>
+               href="{{ path('admin') }}">
+                Назад
+            </a>
         </div>
         <div class="admin-list__row">
             <a class="admin-list__item button button_service"
-               href="{{ path('roles_create') }}">
+               href="{{ path('user_create') }}">
                 &#10010;
             </a>
         </div>
         <hr>
-        {% for role in roles %}
+        {% for user in users %} 
             <div class="admin-list__row">
                 <a class="admin-list__item button button_service"
-                   href="{{ path('role', { 'name': role.name }) }}">
-                    {{ role.name }}
-                    {{ role.role }}
+                   href="{{ path('user', { 'username': user.username }) }}">
+                    {{ user.username }}
+                    {{ user.role.name }}
                 </a>
                 {% if is_granted('ROLE_SUPER_ADMIN') %}
-                    <a class="admin-list__item button button_service"
-                       href="{{ path('role_delete', { 'id': role.id }) }}">
+                    <a class="admin-list__item button button_serivce"
+                       href="{{ path('admin_users_delete', { 'id': user.id }) }}">
                         &#10006;
                     </a>
                 {% endif %}
@@ -37,5 +39,5 @@ Template to show list of all roles in data base#}
 {% endblock %}
 
 {% block admin_side %}
-    Roles side
+    User side
 {% endblock %}

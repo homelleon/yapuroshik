@@ -26,7 +26,7 @@ class UserAdminController extends Controller {
         $users = $this->getDoctrine()
                 ->getRepository(User::class)
                 ->findAll();
-        return $this->render(':Security\User:users.html.twig', [
+        return $this->render(':Admin\User:users.html.twig', [
                     'users' => $users
         ]);
     }
@@ -35,7 +35,7 @@ class UserAdminController extends Controller {
      * Renders page with form to create new user. <br>Redirects to users' list
      * page.
      * 
-     * @Route("/admin/users/create", name="admin_users_create")
+     * @Route("/admin/users/create", name="user_create")
      */
     public function createAction(Request $request) {
         $user = new User();
@@ -60,7 +60,7 @@ class UserAdminController extends Controller {
             return $this->redirectToRoute('admin_users');
         }
 
-        return $this->render(':Security\User:users_create.html.twig', [
+        return $this->render(':Admin\User:user_create.html.twig', [
                     'form' => $form->createView(),
                     'user' => $user
         ]);

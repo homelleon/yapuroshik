@@ -1,25 +1,27 @@
-{# AppBundle:Security:User:login.html.twig
+{# AppBundle:Security:login.html.twig
 ==============================================
 -----Template for users' authorisation------ #}
 
 {% extends ':Blog/Page:nonews.html.twig' %}
 
 {% block text %}
-    {% if error %}
-        <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
-    <div class="form">
-        <div class="form__row">
-            Введите логин и пароль для входа!
-        </div>
+    <div class="content__row">
+        Введите логин и пароль для входа!
+    </div>
+    <div class="content__row form inner__border inner__border_orange">
+        {% if error %}
+            <div class="form__row">
+                {{ error.messageKey|trans(error.messageData, 'security') }}
+            </div>
+        {% endif %}
         <div class="form__row">
             <form action="{{ path('login') }}" method="post">
                 <div class="inner__block inner__block_orange">
-                    <label for="username">Username:</label>
+                    <label for="username">Логин:</label>
                     <input type="text" id="username" name="_username" value="{{ last_username }}" />
                 </div>
                 <div class="inner__block inner__block_orange">
-                    <label for="password">Password:</label>
+                    <label for="password">Пароль:</label>
                     <input type="password" id="password" name="_password" />
                 </div>        
                 {#<input type="hidden" name="_target_path" value="/account" />   #}     
