@@ -27,7 +27,7 @@ class CommentController extends Controller {
      * @return string html.twig page
      * @throws type
      */
-    public function createAction($id, Request $request) {
+    public function createAction(int $id, Request $request) {
         $doctrine = $this->getDoctrine();
         $article = $doctrine
                 ->getRepository(Article::class)

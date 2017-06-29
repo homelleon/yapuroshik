@@ -24,7 +24,7 @@ class ArticleController extends Controller {
      * @param integer $id
      * @return string html.twig page
      */
-    public function showAction($id) {
+    public function showAction(int $id) {
         $article = $this->getDoctrine()
                 ->getRepository(Article::class)
                 ->find($id);
@@ -96,7 +96,7 @@ class ArticleController extends Controller {
      * @return string html.twig page
      * @throws type
      */
-    public function editAction($id, Request $request) {
+    public function editAction(int $id, Request $request) {
         $doctrine = $this->getDoctrine();
 
         $article = $doctrine

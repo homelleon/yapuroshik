@@ -21,7 +21,7 @@ class UserController extends Controller {
      * @Route("/user/{username}", name="user")
      * @param string username
      */
-    public function userAction($username) {
+    public function userAction(string $username) {
         $doctrine = $this->getDoctrine();
         $user = $doctrine->getRepository(User::class)
                 ->findOneBy([
@@ -39,7 +39,7 @@ class UserController extends Controller {
      * @param string username
      * @param Request $request
      */
-    public function editAccountAction($username, Request $request) {
+    public function editAccountAction(string $username, Request $request) {
         $doctrine = $this->getDoctrine();
         $user = $doctrine->getRepository(User::class)
                 ->findOneBy([

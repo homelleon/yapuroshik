@@ -23,8 +23,9 @@ class MainPageController extends Controller {
 
     /**
      * @Route("/page/{page}", name="show_page")
+     * @param integer $page
      */
-    public function pageAction($page) {
+    public function pageAction(int $page) {
         if ($page <= 0) {
             throw $this->createNotFoundException(
                     'Incorrect page number: ' . $page
@@ -59,8 +60,9 @@ class MainPageController extends Controller {
      * @Route("/sort/news/{category}/{value}/{page}", name="news_sorted")
      * @param string $category
      * @param string $value
+     * @param integer $page
      */
-    public function sortAction($category, $value, $page) {
+    public function sortAction($category, $value, int $page) {
         $dorctrine = $this->getDoctrine();
         $articleCalculator = $this->get('article_calculator');        
 

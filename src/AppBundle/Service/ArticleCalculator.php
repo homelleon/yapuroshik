@@ -4,6 +4,7 @@ namespace AppBundle\Service;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use AppBundle\Entity\Blog\Article;
+use AppBundle\Entity\User\User;
 
 /**
  * Calculates variables for artciles.
@@ -23,7 +24,7 @@ class ArticleCalculator {
     /**
      * Calculates how much pages articles takes.
      * 
-     * @return type
+     * @return int page count value
      */
     public function calculatePageCount() {
         $pageCount = $this->calculateSortedPageCount(null, null);
@@ -34,7 +35,9 @@ class ArticleCalculator {
      * Calculates how much pages sorted by category and its value 
      * articles takes.
      * 
-     * @return type
+     * @param string|null $category
+     * @param string|User|null $value
+     * @return int page count value
      */
     public function calculateSortedPageCount($category, $value) {
         if($category == null || $value == null) {
@@ -56,7 +59,7 @@ class ArticleCalculator {
     /**
      * Gets all articles from repository orderd from old to new.
      * 
-     * @return type
+     * @return array of articles
      */
     public function getAll() {
         $articles = getAllSorted(null, null);
@@ -67,9 +70,9 @@ class ArticleCalculator {
      * Gets all articles with chosen category and its value from repository 
      * orderd from old to new.
      * 
-     * @param type $category
-     * @param type $value
-     * @return type
+     * @param string|null $category
+     * @param string|User|null $value
+     * @return array of articles
      */
     public function getAllSorted($category, $value) {
         if($category == null || $value == null) {
@@ -90,10 +93,10 @@ class ArticleCalculator {
     /**
      * Gets all articles from chosen page.
      * 
-     * @param type $page
+     * @param int $page
      * @return array of articles
      */
-    public function getByPage($page) {
+    public function getByPage(int $page) {
         $articles = $this->getSortedByPage($page, null, null);
         return $articles;
     }
@@ -101,12 +104,12 @@ class ArticleCalculator {
     /**
      * Gets articles from chosen page, sorted by category and category value parameters.
      * 
-     * @param type $page
-     * @param type $category
-     * @param type $value
+     * @param int $page
+     * @param string|null $category
+     * @param string|User|null $value
      * @return array of articles
      */
-    public function getSortedByPage($page, $category, $value) {
+    public function getSortedByPage(int $page, $category, $value) {
         if($category == null || $value == null) {
             $sortArray = array();
         } else {
@@ -124,8 +127,8 @@ class ArticleCalculator {
     /**
      * Gets russian word for category name.
      * 
-     * @param type $category
-     * @return string
+     * @param string|null $category
+     * @return string value of russian text
      */
     public function getSortCategoryRus($category) {
         switch ($category) {
