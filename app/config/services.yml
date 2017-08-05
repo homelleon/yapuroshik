@@ -10,8 +10,8 @@ services:
     file_configurator:
         class: 'AppBundle\Service\FileConfigurator'
         public: true
-    article_calculator:
-        class: 'AppBundle\Service\Article\Calculator\ArticleCalculator'
+    article_tools:
+        class: 'AppBundle\Service\Article\ArticleTools'
         public: true
         arguments:
             $doctrine: '@doctrine'

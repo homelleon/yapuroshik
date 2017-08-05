@@ -31,7 +31,7 @@ class MainPageController extends Controller {
                     'Incorrect page number: ' . $page
             );
         }
-        $articleCalculator = $this->get('article_calculator');
+        $articleCalculator = $this->get('article_tools')->getCalculator();
         $pageCount = $articleCalculator->calculatePageCount();
         
         if ($page > $pageCount && $page > 1) {
@@ -57,7 +57,7 @@ class MainPageController extends Controller {
      */
     public function sortAction($category, $value, int $page) {
         $dorctrine = $this->getDoctrine();
-        $articleCalculator = $this->get('article_calculator');        
+        $articleCalculator = $this->get('article_tools')->getCalculator();        
 
         if ($category == 'author') {
             $user = $dorctrine->getRepository(User::class)
