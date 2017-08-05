@@ -17,8 +17,45 @@
                 </div>
                 <div class="content__row form inner__border inner__border_orange">
                     {{ form_start(form) }}
-                    {{ form_widget(form) }}
-                    {{ form_end(form) }} 
+                        <div class="row">
+                            <div class="form__label">
+                                {{ form_label(form.username) }}
+                            </div>
+                            <div class="form__error">
+                                {{ form_errors(form.username) }}
+                            </div>
+                            <div class="form__item">
+                                {{ form_widget(form.username) }}
+                            </div>
+                        </div>
+                            
+                        <div class="row">
+                            <div class="form__error">                            
+                                {{ form_errors(form.password) }}
+                            </div>
+                            <div class="form__item">
+                                {{ form_widget(form.password) }}
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="form__error"> 
+                                {{ form_label(form.email) }}
+                            </div>
+                            <div class="form__error">  
+                                {{ form_errors(form.email) }}
+                            </div>
+                            <div class="form__item">
+                                {{ form_widget(form.email) }}
+                            </div>
+                        </div>
+                            
+                        <div class="row">
+                            <div class="form__item">
+                                {{ form_widget(form.submit) }}
+                            </div>
+                        </div>
+                    {{ form_end(form) }}
                 </div>
         </div>
     </div>
