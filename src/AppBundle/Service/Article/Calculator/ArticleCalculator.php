@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Service;
+namespace AppBundle\Service\Article\Calculator;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use AppBundle\Entity\Blog\Article;

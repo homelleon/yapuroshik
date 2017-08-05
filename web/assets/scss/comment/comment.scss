@@ -1,34 +1,39 @@
 /* comment.scss "comment" block */
 
 /* block */
-.comment {}
+.comment {
+    display: flex;
+    flex-flow: column;
+}
 
 /* elements */
-.comment__author {
-    width: 100%;
-    justify-content: flex-start;
-    align-items: center;
+.comment__row {
+    width: 100%; 
 }
-
-.comment__avatar {
-    max-height: 20px;
-    border-radius: 2px 2px 2px 2px;
-}
-
 .comment__head {
+    box-sizing: inherit;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-between;
+}
+
+.comment__item {
     
 }
-.comment__author {
-    width: 90%;
-}
 
-.commen__author .right {
+.comment__number {
+    margin: 0 5px;
     width: 10%;
 }
 
 .comment__date {
+    margin: 5px 0;
     font-size: 15px;
     font-style: italic;
+}
+
+.comment__description {
+    
 }
 
 /* modificators */

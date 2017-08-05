@@ -11,8 +11,9 @@ services:
         class: 'AppBundle\Service\FileConfigurator'
         public: true
     article_calculator:
-        class: 'AppBundle\Service\ArticleCalculator'
+        class: 'AppBundle\Service\Article\Calculator\ArticleCalculator'
         public: true
         arguments:
             $doctrine: '@doctrine'
+
             

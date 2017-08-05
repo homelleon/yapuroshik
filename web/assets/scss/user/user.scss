@@ -11,13 +11,14 @@
 /* elements */
 .user__row {
     min-height: 1%;
+    min-width: 120px;
     width: 100%;
-    margin: 5px 0;
+    margin: 5px 5px;
 }
 
 .user__avatar {
-   width: 150px;
-   max-height: 150px;
+   max-width: 120px;
+   max-height: 120px;
    justify-content: space-between;
    border-radius: 2px 2px 2px 2px;
 }

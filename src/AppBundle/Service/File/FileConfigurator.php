@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Service;
+namespace AppBundle\Service\File;
 
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use AppBundle\Entity\File\Image;
