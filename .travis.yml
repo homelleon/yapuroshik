@@ -1,10 +1,13 @@
 dist: trusty
 language: php
 php:
-  - '5.5'
   - '7.0'
   - '7.1'
-  
+  - 'nightly'
+env:
+matrix:
+  allow_failures:
+  - php: nightly
 services:
 - mysql
     
@@ -15,6 +18,9 @@ install:
   - mysql -u root -e 'CREATE DATABASE IF NOT EXISTS symfony;'
   - php bin/console doctrine:schema:create --env=test
   - php bin/console doctrine:schema:update
+
+before_script:
+  - php bin/console server:start
   
 script:
-  - ./vendor/bin/phpunit
+  - ./vendor/bin/codecept run acceptance

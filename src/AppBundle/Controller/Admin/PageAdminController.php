@@ -43,7 +43,7 @@ class PageAdminController extends Controller {
      * @param integer $id Article's id.
      * @return article list html.twig page.
      */
-    public function deleteAction($id) {
+    public function deleteAction(int $id) {
         $article = $this->getDoctrine()
                 ->getRepository(Article::class)
                 ->find($id);

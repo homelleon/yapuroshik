@@ -15,8 +15,9 @@ class ImageController extends Controller {
      * Renders page with image with setted id parameter.
      * 
      * @Route("/image/{id}")
+     * @param integer $id
      */
-    public function showAction($id) {
+    public function showAction(int $id) {
         $doctrine = $this->getDoctrine();
         $image = $doctrine
                 ->getRepository(Image::class)

@@ -9,4 +9,11 @@ services:
     #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
     file_configurator:
         class: 'AppBundle\Service\FileConfigurator'
-        public: true;
+        public: true
+    article_calculator:
+        class: 'AppBundle\Service\Article\Calculator\ArticleCalculator'
+        public: true
+        arguments:
+            $doctrine: '@doctrine'
+
+            

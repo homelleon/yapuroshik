@@ -7,7 +7,6 @@ namespace AppBundle\Controller\Page;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use AppBundle\Entity\Blog\Article;
 use AppBundle\Entity\User\User;
 
 class MainPageController extends Controller {
@@ -24,33 +23,26 @@ class MainPageController extends Controller {
 
     /**
      * @Route("/page/{page}", name="show_page")
+     * @param int $page
      */
-    public function pageAction($page) {
-        $doctrine = $this->getDoctrine();
-        $articlePerPageCount = self::ARTICLES_PER_PAGE;
-        $articles = $doctrine->getRepository(Article::class)
-                ->findBy(
-                array(), array('created' => 'DESC')
-        );
-        $articleCount = count($articles);
-        $pageCount = (int) (($articleCount - 1) / $articlePerPageCount + 1);
-        $pages = array();
-        if ($pageCount != 1) {
-            for ($i = 1; $i <= $pageCount; $i++) {
-                $pages[] = $i;
-            }
-            $offset = $page * $articlePerPageCount - $articlePerPageCount;
-            $articles = $doctrine->getRepository(Article::class)
-                    ->findBy(
-                    array(), array('created' => 'DESC'), $articlePerPageCount, $offset
+    public function pageAction(int $page) {
+        if ($page <= 0) {
+            throw $this->createNotFoundException(
+                    'Incorrect page number: ' . $page
             );
-        } else {
-            $pages[] = 1;
         }
-
+        $articleCalculator = $this->get('article_calculator');
+        $pageCount = $articleCalculator->calculatePageCount();
+        
+        if ($page > $pageCount && $page > 1) {
+            throw $this->createNotFoundException(
+                    'There is no page number: ' . $page
+            );
+        }
+        $articles = $articleCalculator->getByPage($page);
         return $this->render(':Blog/Page:index.html.twig', [
                     'articles' => $articles,
-                    'pages' => $pages
+                    'pageCount' => $pageCount
         ]);
     }
 
@@ -61,10 +53,11 @@ class MainPageController extends Controller {
      * @Route("/sort/news/{category}/{value}/{page}", name="news_sorted")
      * @param string $category
      * @param string $value
+     * @param int $page
      */
-    public function sortAction($category, $value, $page) {
+    public function sortAction($category, $value, int $page) {
         $dorctrine = $this->getDoctrine();
-        $articlePerPageCount = self::ARTICLES_PER_PAGE;
+        $articleCalculator = $this->get('article_calculator');        
 
         if ($category == 'author') {
             $user = $dorctrine->getRepository(User::class)
@@ -75,50 +68,22 @@ class MainPageController extends Controller {
         } else {
             $newValue = $value;
         }
-
-        $articles = $dorctrine->getRepository(Article::class)
-                ->findBy(
-                array($category => $newValue), array('created' => 'DESC')
-        );
-        $articleCount = count($articles);
-        $pages = array();
-        $pageCount = (int) (($articleCount - 1) / $articlePerPageCount + 1);
-        if ($pageCount != 1) {
-            for ($i = 1; $i <= $pageCount; $i++) {
-                $pages[] = $i;
-            }
-            $offset = $page * $articlePerPageCount - $articlePerPageCount;
-
-            $articles = $dorctrine->getRepository(Article::class)
-                    ->findBy(
-                    array($category => $newValue), array('created' => 'DESC'), $articlePerPageCount, $offset
+          
+        $pageCount = $articleCalculator->calculateSortedPageCount($category, $newValue);
+        if ($page > $pageCount && $page > 1) {
+            throw $this->createNotFoundException(
+                    'There is no page number: ' . $page
             );
-        } else {
-            $pages[] = 1;
         }
-        $categoryRus = $this->getSortCategoryRus($category);
+        $articles = $articleCalculator->getSortedByPage($page, $category, $newValue); 
+        $categoryRus = $articleCalculator->getSortCategoryRus($category);
         return $this->render(':Blog/News:news_sorted.html.twig', [
                     'articles' => $articles,
-                    'pages' => $pages,
+                    'pageCount' => $pageCount,
                     'category' => $category,
                     'categoryRus' => $categoryRus,
                     'value' => $value
         ]);
-    }
-
-    private function getSortCategoryRus($category) {
-        switch ($category) {
-            case 'theme':
-                $category = 'теме';
-                break;
-            case 'title':
-                $category = 'названию';
-                break;
-            case 'author':
-                $category = 'автору';
-                break;
-        }
-        return $category;
     }
 
 }

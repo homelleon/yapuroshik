@@ -7,21 +7,23 @@ Base template with navigation for pages #}
 {# navigation #}
 {% block navigation %}
     <div class="navigation">
-        <a class="button button_orange" href="{{ path('main') }}">
-            Главная
-        </a>
-        <a class="button button_orange" id="about" href="{{ path('about') }}">
-            Обо мне
-        </a>
-        <a class="button button_orange" href="{{ path('photo') }}">
-            Фото
-        </a>
-        <a class="button button_orange" href="{{ path('video') }}">
-            Видео
-        </a>
-        <a class="button button_orange" href="{{ path('contacts') }}">
-            Контакты
-        </a>
+        <div class="navigation__row">
+            <a class="navigation__item button button_orange" href="{{ path('main') }}">
+                Главная
+            </a>
+            <a class="navigation__item button button_orange" id="about" href="{{ path('about') }}">
+                Обо мне
+            </a>
+            <a class="navigation__item button button_orange" href="{{ path('photo') }}">
+                Фото
+            </a>
+            <a class="navigation__item button button_orange" href="{{ path('video') }}">
+                Видео
+            </a>
+            <a class="navigation__item button button_orange" href="{{ path('contacts') }}">
+                Контакты
+            </a>
+        </div>
     </div>
 {% endblock %}
 

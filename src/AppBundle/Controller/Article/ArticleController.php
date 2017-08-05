@@ -9,6 +9,7 @@ use DateTime;
 use AppBundle\Entity\Blog\Article;
 use AppBundle\Form\Blog\Article\ArticleType;
 use AppBundle\Form\Blog\Article\EditArticleType;
+use AppBundle\Entity\File\Image;
 
 /**
  * Articles and news controller.
@@ -23,7 +24,7 @@ class ArticleController extends Controller {
      * @param integer $id
      * @return string html.twig page
      */
-    public function showAction($id) {
+    public function showAction(int $id) {
         $article = $this->getDoctrine()
                 ->getRepository(Article::class)
                 ->find($id);
@@ -63,7 +64,7 @@ class ArticleController extends Controller {
             $file = $article->getImage();
             $fileConfigurator = $this->get('file_configurator');
             $image = $fileConfigurator->getImage(
-                    $file, $this->getParameter('image_directory')
+                    $file, $this->getParameter('image_directory'), Image::class
             );
 
             $article->setAuthor($author);
@@ -95,7 +96,7 @@ class ArticleController extends Controller {
      * @return string html.twig page
      * @throws type
      */
-    public function editAction($id, Request $request) {
+    public function editAction(int $id, Request $request) {
         $doctrine = $this->getDoctrine();
 
         $article = $doctrine
@@ -128,7 +129,7 @@ class ArticleController extends Controller {
             if ($file != NULL) {
                 $fileConfigurator = $this->get('file_configurator');
                 $image = $fileConfigurator->getImage(
-                        $file, $this->getParameter('image_directory')
+                        $file, $this->getParameter('image_directory'), Image::class
                 );
 
                 $manager->persist($image);

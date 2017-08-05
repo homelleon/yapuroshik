@@ -19,12 +19,5 @@
 .admin__row {
     display: flex;
     width: 100%;
-}
-
-.admin__row:after {
-    visibility: hidden;
-    font-size: 0;
-    content: " ";
-    clear: both;
-    height: 0;
+    margin: 5px 0;
 }
