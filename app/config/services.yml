@@ -8,7 +8,7 @@ services:
     #    class: AppBundle\Directory\ClassName
     #    arguments: ['@another_service_name', 'plain_value', '%parameter_name%']
     file_configurator:
-        class: 'AppBundle\Service\FileConfigurator'
+        class: 'AppBundle\Service\File\FileConfigurator'
         public: true
     article_tools:
         class: 'AppBundle\Service\Article\ArticleTools'

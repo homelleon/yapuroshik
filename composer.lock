@@ -913,16 +913,16 @@
         },
         {
             "name": "doctrine/orm",
-            "version": "v2.5.8",
+            "version": "v2.5.9",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/doctrine2.git",
-                "reference": "e3aa3f2d1d7ac4bc732f8630f78fcb92d2885e68"
+                "reference": "4f96fc62cef60093573acea955ed5e07643401d8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/e3aa3f2d1d7ac4bc732f8630f78fcb92d2885e68",
-                "reference": "e3aa3f2d1d7ac4bc732f8630f78fcb92d2885e68",
+                "url": "https://api.github.com/repos/doctrine/doctrine2/zipball/4f96fc62cef60093573acea955ed5e07643401d8",
+                "reference": "4f96fc62cef60093573acea955ed5e07643401d8",
                 "shasum": ""
             },
             "require": {
@@ -985,7 +985,7 @@
                 "database",
                 "orm"
             ],
-            "time": "2017-08-13T18:46:56+00:00"
+            "time": "2017-08-16T13:30:32+00:00"
         },
         {
             "name": "facebook/webdriver",
