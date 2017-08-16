@@ -60,7 +60,7 @@ class SecurityController extends Controller {
             $manager->persist($user);
             $manager->flush();
 
-            return $this->redirectToRoute('main');
+            return $this->redirectToRoute('mail', ['name' => $user->getUsername()]);
         }
 
         return $this->render(':Security:registration.html.twig', [

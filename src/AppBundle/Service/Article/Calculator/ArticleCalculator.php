@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Service;
+namespace AppBundle\Service\Article\Calculator;
 
 use Doctrine\Bundle\DoctrineBundle\Registry;
 use AppBundle\Entity\Blog\Article;
@@ -24,9 +24,9 @@ class ArticleCalculator {
     /**
      * Calculates how many pages articles take.
      * 
-     * @return int page count value
+     * @return integer page count value
      */
-    public function calculatePageCount() {
+    public function calculatePageCount(): int {
         $pageCount = $this->calculateSortedPageCount(null, null);
         return $pageCount;
     }
@@ -38,7 +38,7 @@ class ArticleCalculator {
      * @param string|User|null $value
      * @return integer page count value
      */
-    public function calculateSortedPageCount($category, $value) {
+    public function calculateSortedPageCount($category, $value): int {
         if($category === null || $value === null) {
             $sortedArray = array('isDeleted' => 0);
         } else {
@@ -61,7 +61,7 @@ class ArticleCalculator {
      * 
      * @return array of articles
      */
-    public function getAll() {
+    public function getAll(): array {
         $articles = getAllSorted(null, null);
         return $articles;
     }
@@ -74,7 +74,7 @@ class ArticleCalculator {
      * @param string|User|null $value
      * @return array of articles
      */
-    public function getAllSorted($category, $value) {
+    public function getAllSorted($category, $value): array {
         if($category === null || $value === null) {
             $sortedArray = array('isDeleted' => 0);
         } else {
@@ -96,7 +96,7 @@ class ArticleCalculator {
      * @param int $page
      * @return array of articles
      */
-    public function getByPage(int $page) {
+    public function getByPage(int $page): array {
         $articles = $this->getSortedByPage($page, null, null);
         return $articles;
     }
@@ -109,7 +109,7 @@ class ArticleCalculator {
      * @param string|User|null $value
      * @return array of articles
      */
-    public function getSortedByPage(int $page, $category, $value) {
+    public function getSortedByPage(int $page, $category, $value): array {
         if($category === null || $value === null) {
             $sortArray = array('isDeleted' => 0);
         } else {
@@ -130,7 +130,7 @@ class ArticleCalculator {
      * @param string|null $category
      * @return string value of russian text
      */
-    public function getSortCategoryRus($category) {
+    public function getSortCategoryRus($category): string {
         switch ($category) {
             case 'theme':
                 $category = 'теме';

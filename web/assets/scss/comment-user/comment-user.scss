@@ -1,0 +1,18 @@
+/* comment-user.scss "comment-user" block */
+
+/* block */
+.comment-user {
+    width: 80%;
+    display: flex;
+    flex-flow: row;
+    text-decoration: none;
+}
+
+/* elements */
+.comment-user__name {
+    margin: 0 5px;
+}
+.comment-user__avatar {
+    max-height: 30px;
+    border-radius: 2px 2px 2px 2px;
+}
