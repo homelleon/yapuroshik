@@ -64,40 +64,7 @@ Template to show page with one article detailed #}
         {% block comment_form %}
         {% endblock %}
         {% block comments %}
-            {% if article.comments!= null %}
-                <div class="inner inner_red">
-                    <div class="inner__border">
-                        {% set comment_number = 0 %}
-                        {% for comment in article.comments %}
-                            {% set comment_number = comment_number + 1 %}
-                            <div class="comment">                            
-                                <div class="comment__row comment__head button button_orange">
-                                    <a class="comment__item comment-user" href="{{ path('user', { 'username': comment.author.username }) }}">
-                                        {% if comment.author.userAccount != null %}
-                                            {% if comment.author.userAccount.avatar != null %}                                                
-                                                <img class="comment-user__avatar" src="{{ asset('uploads/users/' ~ comment.author.userAccount.avatar.name) }}">
-                                            {% endif %}
-                                        {% endif %}                                    
-                                        <div class="comment-user__name">
-                                            {{ comment.author.username }}
-                                        </div> 
-                                    </a>                                   
-                                    <div class="comment__number">
-                                        #{{ comment_number }}
-                                    </div> 
-                                </div>                          
-                                <div class="comment__row comment__date">
-                                    {{ comment.created|date }}
-                                </div>
-                                <div class="comment__row comment__description">
-                                    {{ comment.content }}
-                                </div>
-                            </div>
-                            <hr>
-                        {% endfor %}
-                    </div>
-                </div>
-            {% endif %}
+            {% include ':Blog/News:comments.html.twig' %}
         {% endblock %}
     </div>
 {% endblock %}
