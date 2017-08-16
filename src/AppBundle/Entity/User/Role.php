@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity\User;
 
-use Symfony\Component\Security\Core\Role\RoleInterface;
 use Doctrine\ORM\Mapping as ORM;
 
 use Doctrine\Common\Collections\Collection;
@@ -14,7 +13,7 @@ use AppBundle\Entity\User\User;
  * @ORM\Table(name="role")
  *
  */
-class Role implements RoleInterface {
+class Role extends \Symfony\Component\Security\Core\Role\Role {
 
     /**
      * @ORM\Column(type="integer")
@@ -44,12 +43,13 @@ class Role implements RoleInterface {
         $this->users = new ArrayCollection();
     }
 
-    public function getRole() {
+    public function getRole(): string {
         return $this->role;
     }
 
-    public function setRole($role) {
+    public function setRole($role): Role {
         $this->role = $role;
+        return $this;
     }
 
     /**
@@ -57,7 +57,7 @@ class Role implements RoleInterface {
      *
      * @return integer
      */
-    public function getId() {
+    public function getId(): int {
         return $this->id;
     }
 
@@ -68,9 +68,8 @@ class Role implements RoleInterface {
      *
      * @return Role
      */
-    public function setName($name) {
+    public function setName(string $name): Role {
         $this->name = $name;
-
         return $this;
     }
 
@@ -79,7 +78,7 @@ class Role implements RoleInterface {
      *
      * @return string
      */
-    public function getName() {
+    public function getName(): string {
         return $this->name;
     }
 
@@ -90,9 +89,8 @@ class Role implements RoleInterface {
      *
      * @return Role
      */
-    public function addUser(User $user) {
+    public function addUser(User $user): Role {
         $this->users[] = $user;
-
         return $this;
     }
 
@@ -101,8 +99,9 @@ class Role implements RoleInterface {
      *
      * @param User $user
      */
-    public function removeUser(User $user) {
+    public function removeUser(User $user): Role {
         $this->users->removeElement($user);
+        return $this;
     }
 
     /**
@@ -110,7 +109,7 @@ class Role implements RoleInterface {
      *
      * @return Collection
      */
-    public function getUsers() {
+    public function getUsers(): Collection {
         return $this->users;
     }
 

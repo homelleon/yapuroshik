@@ -76,29 +76,28 @@ class UserAccount {
      *
      * @return integer
      */
-    public function getId() {
+    public function getId(): int {
         return $this->id;
     }
 
     /**
      * Set user
      *
-     * @param \User $user
+     * @param User $user
      *
      * @return UserAccount
      */
-    public function setUser($user) {
+    public function setUser(User $user): UserAccount {
         $this->user = $user;
-
         return $this;
     }
 
     /**
      * Get user
      *
-     * @return \User
+     * @return User
      */
-    public function getUser() {
+    public function getUser(): User {
         return $this->user;
     }
 
@@ -109,9 +108,8 @@ class UserAccount {
      *
      * @return UserAccount
      */
-    public function setFirstName($firstName) {
+    public function setFirstName(string $firstName): UserAccount {
         $this->firstName = $firstName;
-
         return $this;
     }
 
@@ -131,9 +129,8 @@ class UserAccount {
      *
      * @return UserAccount
      */
-    public function setLastName($lastName) {
+    public function setLastName(string $lastName): UserAccount {
         $this->lastName = $lastName;
-
         return $this;
     }
 
@@ -153,9 +150,8 @@ class UserAccount {
      *
      * @return UserAccount
      */
-    public function setBirthday($birthday) {
+    public function setBirthday(\DateTime $birthday): UserAccount {
         $this->birthday = $birthday;
-
         return $this;
     }
 
@@ -175,9 +171,8 @@ class UserAccount {
      *
      * @return UserAccount
      */
-    public function setGender($gender) {
+    public function setGender(string $gender): UserAccount {
         $this->gender = $gender;
-
         return $this;
     }
 
@@ -197,9 +192,8 @@ class UserAccount {
      *
      * @return UserAccount
      */
-    public function setAvatar($avatar = null) {
+    public function setAvatar(Avatar $avatar = null): UserAccount {
         $this->avatar = $avatar;
-
         return $this;
     }
 
