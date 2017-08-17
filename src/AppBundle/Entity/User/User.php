@@ -2,9 +2,8 @@
 
 namespace AppBundle\Entity\User;
 
-use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use Doctrine\ORM\Mapping as ORM;
-
+use Symfony\Component\Security\Core\User\AdvancedUserInterface;
 use AppBundle\Entity\User\UserAccount;
 use AppBundle\Entity\User\Role;
 
@@ -22,41 +21,49 @@ class User implements \Serializable, AdvancedUserInterface {
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @var integer
      */
     private $id;
 
     /**
-     * @ORM\Column(type="string", unique=true) 
+     * @ORM\Column(type="string", unique=true)
+     * @var string 
      */
     private $username;
 
     /**
      * @ORM\Column(type="string", unique=true) 
+     * @var string
      */
     private $email;
 
     /**
-     * @ORM\Column(type="string", length=100) 
+     * @ORM\Column(type="string", length=100)
+     * @var string
      */
     private $password;
 
     /**
-     * @ORM\Column(type="string") 
+     * @ORM\Column(type="string")
+     * @var string
      */
     private $salt;
 
     /**
-     * @ORM\Column(type="datetime") 
+     * @ORM\Column(type="datetime")
+     * @var \DateTime
      */
     private $created;
 
     /**
-     * @ORM\Column(type="datetime") 
+     * @ORM\Column(type="datetime")
+     * @var \DateTime 
      */
     private $updated;
 
     /**
      * @ORM\Column(type="boolean", nullable=false)
+     * @var boolean
      */
     private $isActive;
 
@@ -64,12 +71,14 @@ class User implements \Serializable, AdvancedUserInterface {
      *
      * @ORM\ManyToOne(targetEntity="Role",inversedBy="users")
      * @ORM\JoinColumn(name="role_id", referencedColumnName="id")
+     * @var Role
      */
     private $role;
 
     /**
      * @ORM\OneToOne(targetEntity="UserAccount",inversedBy="user")
-     * @ORM\JoinColumn(name="account_id", referencedColumnName="id")  
+     * @ORM\JoinColumn(name="account_id", referencedColumnName="id")
+     * @var UserAccount  
      */
     private $userAccount;
 
@@ -123,11 +132,11 @@ class User implements \Serializable, AdvancedUserInterface {
         return $this->role;
     }
 
-    public function getPassword(): string {
+    public function getPassword() {
         return $this->password;
     }
 
-    public function getUsername(): string {
+    public function getUsername() {
         return $this->username;
     }
 
@@ -173,7 +182,7 @@ class User implements \Serializable, AdvancedUserInterface {
      *
      * @return string
      */
-    public function getEmail(): string {
+    public function getEmail() {
         return $this->email;
     }
 
@@ -216,7 +225,6 @@ class User implements \Serializable, AdvancedUserInterface {
      */
     public function setCreated(\DateTime $created): User {
         $this->created = $created;
-
         return $this;
     }
 
@@ -238,7 +246,6 @@ class User implements \Serializable, AdvancedUserInterface {
      */
     public function setUpdated(\DateTime $updated): User {
         $this->updated = $updated;
-
         return $this;
     }
 
@@ -269,7 +276,7 @@ class User implements \Serializable, AdvancedUserInterface {
      *
      * @return UserAccount
      */
-    public function getUserAccount(): UserAccount {
+    public function getUserAccount() {
         return $this->userAccount;
     }
 
@@ -302,7 +309,7 @@ class User implements \Serializable, AdvancedUserInterface {
      *
      * @return User
      */
-    public function setRole(Role $role = null): User {
+    public function setRole(Role $role): User {
         $this->role = $role;
 
         return $this;

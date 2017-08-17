@@ -12,12 +12,14 @@ use AppBundle\Entity\User\User;
 class MailSendController extends Controller {
 
     /**
+     * Sends registration greetings information for user by e-mail.
+     * 
      * @Route("/mail/{name}", name="mail")
      * 
      * @param string name
      * @return type
      */
-    public function sendRegistrationMailAction(string $name) {
+    public function sendGreetingsAction(string $name) {
         $user = $this->getDoctrine()->getRepository(User::class)
             ->findOneBy(['username' => $name]);
         if($user == null) {

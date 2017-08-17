@@ -3,7 +3,6 @@
 namespace AppBundle\Entity\User;
 
 use Doctrine\ORM\Mapping as ORM;
-
 use AppBundle\Entity\File\Avatar;
 
 /**
@@ -22,6 +21,8 @@ class UserAccount {
      * @ORM\Column(type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * 
+     * @var integer
      */
     private $id;
 
@@ -29,7 +30,8 @@ class UserAccount {
      * User linked to that account.
      * 
      * @ORM\OneToOne(targetEntity="User",mappedBy="userAccount")
-     * @var \User     
+     * 
+     * @var User     
      */
     private $user;
 
@@ -39,7 +41,8 @@ class UserAccount {
      * @ORM\OneToOne(targetEntity="AppBundle\Entity\File\Avatar",
      * inversedBy="userAccount")
      * @ORM\JoinColumn(name="avatar_id", referencedColumnName="id")
-     * @var type     
+     * 
+     * @var Avatar|null    
      */
     private $avatar;
 
@@ -47,32 +50,40 @@ class UserAccount {
      * User's first name.
      * 
      * @ORM\Column(type="string", nullable=true)
+     * 
+     * @var string|null
      */
     private $firstName;
 
     /**
      * User's last name.
      * 
-     * @ORM\Column(type="string", nullable=true) 
+     * @ORM\Column(type="string", nullable=true)
+     * 
+     * @var string|null
      */
     private $lastName;
 
     /**
      * User's day  of birth.
      * 
-     * @ORM\Column(type="datetime", nullable=true) 
+     * @ORM\Column(type="datetime", nullable=true)
+     * 
+     * @var \DateTime|null
      */
     private $birthday;
 
     /**
      * User's gender.
      * 
-     * @ORM\Column(type="string", nullable=true) 
+     * @ORM\Column(type="string", nullable=true)
+     * 
+     * @var string|null
      */
     private $gender;
 
     /**
-     * Get id
+     * Gets id
      *
      * @return integer
      */
@@ -81,7 +92,7 @@ class UserAccount {
     }
 
     /**
-     * Set user
+     * Sets user
      *
      * @param User $user
      *
@@ -93,7 +104,7 @@ class UserAccount {
     }
 
     /**
-     * Get user
+     * Gets user
      *
      * @return User
      */
@@ -102,19 +113,19 @@ class UserAccount {
     }
 
     /**
-     * Set firstName
+     * Sets firstName
      *
      * @param string $firstName
      *
      * @return UserAccount
      */
-    public function setFirstName(string $firstName): UserAccount {
+    public function setFirstName(string $firstName = null): UserAccount {
         $this->firstName = $firstName;
         return $this;
     }
 
     /**
-     * Get firstName
+     * Gets firstName
      *
      * @return string
      */
@@ -123,40 +134,40 @@ class UserAccount {
     }
 
     /**
-     * Set lastName
+     * Sets lastName
      *
      * @param string $lastName
      *
      * @return UserAccount
      */
-    public function setLastName(string $lastName): UserAccount {
+    public function setLastName(string $lastName = null): UserAccount {
         $this->lastName = $lastName;
         return $this;
     }
 
     /**
-     * Get lastName
+     * Gets lastName
      *
      * @return string
      */
-    public function getLastName() {
+    public function getLastName()  {
         return $this->lastName;
     }
 
     /**
-     * Set birthday
+     * Sets birthday
      *
      * @param \DateTime $birthday
      *
      * @return UserAccount
      */
-    public function setBirthday(\DateTime $birthday): UserAccount {
+    public function setBirthday(\DateTime $birthday = null): UserAccount {
         $this->birthday = $birthday;
         return $this;
     }
 
     /**
-     * Get birthday
+     * Gets birthday
      *
      * @return \DateTime
      */
@@ -165,19 +176,19 @@ class UserAccount {
     }
 
     /**
-     * Set gender
+     * Sets gender
      *
      * @param string $gender
      *
      * @return UserAccount
      */
-    public function setGender(string $gender): UserAccount {
+    public function setGender(string $gender = null): UserAccount {
         $this->gender = $gender;
         return $this;
     }
 
     /**
-     * Get gender
+     * Gets gender
      *
      * @return string
      */
@@ -186,7 +197,7 @@ class UserAccount {
     }
 
     /**
-     * Set avatar
+     * Sets avatar
      *
      * @param $avatar
      *
@@ -198,7 +209,7 @@ class UserAccount {
     }
 
     /**
-     * Get avatar
+     * Gets avatar
      *
      * @return Avatar
      */
